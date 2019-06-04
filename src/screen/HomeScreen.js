@@ -91,40 +91,40 @@ export default class HomeScreen extends PureComponent {
         }
     }
 
-    // _onPressCard(index) {
-    //     // Toast.show('This is a long toast.', Toast.LONG)
-    //     const {navigation} = this.props;
-    //     switch (index) {
-    //         case 0:
-    //             sharedQuizService.initTest(QuestionType.part1, 5, 3, 5 * 60 * 1000);
-    //             navigation.navigate('Questions');
-    //             break;
-    //         case 1:
-    //             sharedQuizService.initTest(QuestionType.part2, 10, 3, 8 * 60 * 1000);
-    //             navigation.navigate('Questions');
-    //             break;
-    //         case 2:
-    //             sharedQuizService.initTest(QuestionType.part3, 15, 3, 10 * 60 * 1000);
-    //             navigation.navigate('Questions');
-    //             break;
-    //         case 3:
-    //             sharedQuizService.initTest(QuestionType.part4, 15, 3, 10 * 60 * 1000);
-    //             navigation.navigate('Questions');
-    //             break;
-    //         case 4:
-    //             sharedQuizService.initTest(QuestionType.part5, 15, 3, 10 * 60 * 1000);
-    //             navigation.navigate('Questions');
-    //             break;
-    //         case 5:
-    //             sharedQuizService.initTest(QuestionType.part6, 10, 3, 7 * 60 * 1000);
-    //             navigation.navigate('Questions');
-    //             break;
-    //         case 6:
-    //             sharedQuizService.initTest(QuestionType.part7, 10, 3, 7 * 60 * 1000);
-    //             navigation.navigate('Questions');
-    //             break;
-    //     }
-    // }
+    _onPressCard(index) {
+        // Toast.show('This is a long toast.', Toast.LONG)
+        const {navigation} = this.props;
+        switch (index) {
+            case 0:
+                sharedQuizService.initTest(QuestionType.part1, 5, 3, 5 * 60 * 1000);
+                navigation.navigate('Questions');
+                break;
+            case 1:
+                sharedQuizService.initTest(QuestionType.part2, 10, 3, 8 * 60 * 1000);
+                navigation.navigate('Questions');
+                break;
+            case 2:
+                sharedQuizService.initTest(QuestionType.part3, 15, 3, 10 * 60 * 1000);
+                navigation.navigate('Questions');
+                break;
+            case 3:
+                sharedQuizService.initTest(QuestionType.part4, 15, 3, 10 * 60 * 1000);
+                navigation.navigate('Questions');
+                break;
+            case 4:
+                sharedQuizService.initTest(QuestionType.part5, 15, 3, 10 * 60 * 1000);
+                navigation.navigate('Questions');
+                break;
+            case 5:
+                sharedQuizService.initTest(QuestionType.part6, 10, 3, 7 * 60 * 1000);
+                navigation.navigate('Questions');
+                break;
+            case 6:
+                sharedQuizService.initTest(QuestionType.part7, 10, 3, 7 * 60 * 1000);
+                navigation.navigate('Questions');
+                break;
+        }
+    }
 
     static navigationOptions = {
         header: null, // !!! Hide Header

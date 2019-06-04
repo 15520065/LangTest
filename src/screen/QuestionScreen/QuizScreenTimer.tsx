@@ -52,6 +52,6 @@ export default class QuizScreenTimer extends React.Component<Props, State>{
     render(){
         return(
             <Progress.Bar progress={this.state.percent} {...this.props}/>
-        )
+        );
     }
 }

@@ -1,4 +1,4 @@
-import IQuestion, {QuestionType} from "../entity/Question";
+import IQuestion, {QuestionType} from "../src/entity/Question";
 
 //TODO: Thêm hình Cho Part 1, Part 2, Part 4, Part 5
 
