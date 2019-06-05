@@ -10,6 +10,7 @@ import {
     ScrollView,
     TouchableOpacity
 } from 'react-native';
+
 import {Root} from 'native-base';
 import {AppLoading, Asset, Font, Icon} from 'expo';
 import {Expo} from 'expo';
@@ -36,6 +37,22 @@ import QuizScreen from './screen/QuestionScreen/QuizScreen';
 import TopicScreen from './screen/vocabularySreen/TopicScreen';
 import WordScreen from './screen/vocabularySreen/WordScreen';
 
+import AppNavigator from './navigation/AppNavigator';
+import HomeScreen from './screen/HomeScreen';
+import ChartScreen from './screen/ChartScreen';
+import sharedQuizService from './services/QuizService';
+import ResultScreen from './screen/QuestionScreen/ResultScreen';
+import LeaderBoardScreen from './screen/LeaderBoardScreen';
+import LearnScreen from './screen/vocabularySreen/LearnScreen';
+import ProfileScreen from './screen/ProfileScreen/ProfileScreen';
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import Step1Question from "./screen/Step1/Step1Question";
+import {SERVER_URL} from "./constants";
+import VCS from "./helper/VCS";
+
+import {Audio} from 'expo';
+import {FileSystem} from 'expo';
+import UtilHelper from "./helper/UtilHelper";
 //huy
 // Initialize Firebase
 const firebaseConfig = {
@@ -106,48 +123,91 @@ const CustomDrawerContentComponent = (props) => (
 //     }
 // );
 
-import AppNavigator from './navigation/AppNavigator';
-import HomeScreen from './screen/HomeScreen';
-import ChartScreen from './screen/ChartScreen';
-import sharedQuizService from './services/QuizService';
-import ResultScreen from './screen/QuestionScreen/ResultScreen';
-import LeaderBoardScreen from './screen/LeaderBoardScreen';
-import LearnScreen from './screen/vocabularySreen/LearnScreen';
-import ProfileScreen from './screen/ProfileScreen/ProfileScreen';
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import Step1Question from "./screen/Step1/Step1Question";
+function cacheImages(images) {
+    return images.map(image => {
+        if (typeof image === 'string') {
+            return Image.prefetch(image);
+        } else {
+            return Asset.fromModule(image).downloadAsync();
+        }
+    });
+}
 
-const AppContainer = createAppContainer(AppNavigator);
+function cacheFonts(fonts) {
+    return fonts.map(font => Font.loadAsync(font));
+}
+
+function cacheAudio(audios) {
+    return audios.map(audio => {
+        if (typeof audio === 'string') {
+            return FileSystem.downloadAsync(
+                audio,
+                FileSystem.documentDirectory + UtilHelper._getFileName(audio)
+            )
+                .then(async ({uri}) => {
+                    // this.soundObject = new Audio.Sound();
+                    // try {
+                    //     await this.soundObject.loadAsync({uri: FileSystem.documentDirectory + UtilHelper._getFileName(audio)});
+                    //     this.soundObject.playAsync();
+                    // } catch (e) {
+                    //     console.log('ERROR Loading Audio', e);
+                    // }
+                })
+                .catch(error => {
+                    console.warn(error);
+                });
+        } else {
+            return Asset.fromModule(audio).downloadAsync();
+        }
+    });
+}
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true
+            loading: true,
         };
-        // this.database = firebase.database();
-        // this.writeDB();
+
+        this.loadAudio();
     }
 
-    // writeDB(){
-    //     firebase.database().ref('notes/1').set({
-    //         text: 'Hello wrold!'
-    //     });
-    // }
+    async loadAudio() {
 
-    async componentDidMount() {
-        await Font.loadAsync({
+    }
+
+    _loadAssetsAsync = async () => {
+        const check = await VCS._checkVersionSync();
+
+        const audioAssets = cacheAudio([
+            SERVER_URL + '/voca/word/sound/t1w1.mp3',
+            SERVER_URL + '/voca/word/sound/t1w2.mp3',
+            SERVER_URL + '/voca/word/sound/t1w3.mp3',
+            SERVER_URL + '/voca/word/sound/t1w4.mp3',
+        ]);
+
+        const imageAssets = cacheImages([
+        ]);
+
+        const fontAssets = cacheFonts([FontAwesome.font, {
             'Roboto': require('native-base/Fonts/Roboto.ttf'),
             'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
             // 'Roboto_light': require('./../assets/fonts/Roboto-Light.ttf'),
             'Ionicons': require('@expo/vector-icons/fonts/Ionicons.ttf')
-        });
-        this.setState({loading: false});
-    }
+        }]);
+
+        await Promise.all([...imageAssets, ...fontAssets, ...audioAssets]);
+    };
 
     render() {
         if (this.state.loading) {
-            return (<AppLoading/>);
+            return (
+                <AppLoading
+                    startAsync={this._loadAssetsAsync}
+                    onFinish={() => this.setState({loading: false})}
+                    onError={console.warn}
+                />
+            );
         }
         return (
             // <View style={styles.container}>
@@ -245,6 +305,8 @@ const AppNavigation = createStackNavigator({
     headerMode: 'none',
 });
 
+
+const AppContainer = createAppContainer(AppNavigator);
 const MyApp = createAppContainer(AppNavigation);
 
 const styles = StyleSheet.create({

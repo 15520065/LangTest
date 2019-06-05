@@ -6,36 +6,36 @@ import {
 import UtilHelper from "./UtilHelper";
 
 export default class LocalStoreHelper {
+
+    // Enum Str
     static topicResult = 'topicResult';
-
     static score = 'score';
-
     static profile = 'profile';
-
     static testResult = 'testResult';
+    static version = 'testResult';
 
-    static _storeMapData = async (key, map) => {
+    static _storeMapData = async (keyStr, mapObject) => {
         try {
-            console.log('_storeMapData' + key + ' : ');
-            UtilHelper._printMapConsole(map);
-            const str = JSON.stringify(Array.from(map.entries()));
+            console.log('_storeMapData' + keyStr + ' : ');
+            UtilHelper._printMapConsole(mapObject);
+            const str = JSON.stringify(Array.from(mapObject.entries()));
 
-            await AsyncStorage.setItem(key, str,
+            await AsyncStorage.setItem(keyStr, str,
                 error => {
-                    // console.log('ERROR - _storeMapData - ' + key + ' : ' + error);
+                    // console.log('ERROR - _storeMapData - ' + keyStr + ' : ' + error);
                 });
 
         } catch (error) {
             // Error saving data
-            console.log('ERROR - _storeMapData - ' + key + ' : ' + error);
+            console.log('ERROR - _storeMapData - ' + keyStr + ' : ' + error);
         }
     };
 
-    static _getMapData = async (key) => {
+    static _getMapData = async (keyStr) => {
         try {
-            const str = await AsyncStorage.getItem(key,
+            const str = await AsyncStorage.getItem(keyStr,
                     error => {
-                // console.log('ERROR - _storeMapData - ' + key + ' : ' + error);
+                // console.log('ERROR - _storeMapData - ' + keyStr + ' : ' + error);
             });
             return new Map(JSON.parse(str));
         } catch (error) {
@@ -43,9 +43,9 @@ export default class LocalStoreHelper {
         }
     };
 
-    static _removeData = async (key) => {
+    static _removeData = async (keyStr) => {
         try {
-            await AsyncStorage.removeItem(key);
+            await AsyncStorage.removeItem(keyStr);
         } catch (error) {
             console.log('Chi CS error: ' + error);
         }

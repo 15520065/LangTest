@@ -1,11 +1,13 @@
+import {SERVER_URL} from "../constants";
+
 const topic1 = [
     {
         'id':'t1w1',
         'word': 'Abide by',
         'pronoun': 'əˈbaɪd',
         'translate': 'tuân theo, tuân thủ',
-        'img': require('imgPath/t1w1.jpg'),
-        'sound': require('soundPath/t1w1.mp3'),
+        'img': SERVER_URL + '/voca/word/img/t1w1.jpg' ,
+        'sound': SERVER_URL + '/voca/word/sound/t1w1.mp3',
         'ex': '',
     },
     {
@@ -14,8 +16,8 @@ const topic1 = [
         'pronoun': 'ə’gri:mənt',
         'translate': 'hợp đồng, giao kèo',
         'ex': '',
-        'img': require('imgPath/t1w2.jpg'),
-        'sound': require('soundPath/t1w2.mp3'),
+        'img': SERVER_URL + '/voca/word/img/t1w2.jpg' ,
+        'sound': SERVER_URL + '/voca/word/sound/t1w2.mp3',
     },
     {
         'id':'t1w3',
@@ -23,8 +25,8 @@ const topic1 = [
         'pronoun': 'ə’ʃuərəns',
         'translate': 'sự chắc chắn,sự tin chắc',
         'ex': '',
-        'img': require('imgPath/t1w3.jpg'),
-        'sound': require('soundPath/t1w3.mp3'),
+        'img': SERVER_URL + '/voca/word/img/t1w3.jpg' ,
+        'sound': SERVER_URL + '/voca/word/sound/t1w3.mp3',
     },
     {
         'id':'t1w4',
@@ -32,8 +34,8 @@ const topic1 = [
         'pronoun': 'ˈkæn.səl',
         'translate': 'sự hủy bỏ',
         'ex': '',
-        'img': require('imgPath/t1w4.jpg'),
-        'sound': require('soundPath/t1w4.mp3'),
+        'img': SERVER_URL + '/voca/word/img/t1w4.jpg' ,
+        'sound': SERVER_URL + '/voca/word/sound/t1w4.mp3',
     },
     {
         'id':'t1w5',

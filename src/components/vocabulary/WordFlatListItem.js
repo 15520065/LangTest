@@ -14,6 +14,8 @@ import {
 } from 'react-native-elements';
 import FlipCard from './FlipCard';
 import Highlighter from 'react-native-highlight-words';
+import {Asset, FileSystem} from 'expo';
+import UtilHelper from "../../helper/UtilHelper";
 
 export default class WordFlatListItem extends Component {
     constructor(props) {
@@ -25,7 +27,12 @@ export default class WordFlatListItem extends Component {
     playSound = async () => {
         const soundObject = new Expo.Audio.Sound();
         try {
-            await soundObject.loadAsync(this.props.item.sound);
+            if (typeof this.props.item.sound === 'string') {
+                await soundObject.loadAsync({uri: FileSystem.documentDirectory + UtilHelper._getFileName(this.props.item.sound)});
+
+            } else {
+                await soundObject.loadAsync(this.props.item.sound);
+            }
             await soundObject.playAsync();
             // Your sound is playing!
         } catch (error) {
@@ -42,6 +49,7 @@ export default class WordFlatListItem extends Component {
     };
 
     render() {
+        console.log(this.props.item.img);
         return (
             <View style={styles.ItemContainer}>
                 <FlipCard
@@ -75,26 +83,33 @@ export default class WordFlatListItem extends Component {
                                 </View> */}
                             </View>
                             <View style={styles.vc_topRight}>
-                                <Image style={styles.img}
-                                    // source={{ uri: this.props.item.img }}
-                                       source={this.props.item.img}
-                                />
+
+                                {
+                                    typeof this.props.item.img === 'string' ?
+                                    <Image style={styles.img}
+                                           source={{uri: this.props.item.img}}
+                                    />
+                                    :
+                                    <Image style={styles.img}
+                                           source={this.props.item.img}
+                                    />
+                                }
                             </View>
                         </View>
                         <View style={styles.vc_bottom}>
-                        <Highlighter
-                            highlightStyle={{textDecorationLine: 'underline'}}
-                            searchWords={[this.props.item.word]}
-                            textToHighlight={this.props.item.ex}/>
+                            <Highlighter
+                                highlightStyle={{textDecorationLine: 'underline'}}
+                                searchWords={[this.props.item.word]}
+                                textToHighlight={this.props.item.ex}/>
                         </View>
-                        <View style={{flexDirection:"row", flex: 1, justifyContent: "flex-end"}}>
+                        <View style={{flexDirection: "row", flex: 1, justifyContent: "flex-end"}}>
                             <Icon
-                                        name='arrow-forward'
-                                        type='MaterialIcons'
-                                        size={12}
-                                        color='#517fa4'
-                                        onPress={this.playSound}
-                                    />
+                                name='arrow-forward'
+                                type='MaterialIcons'
+                                size={12}
+                                color='#517fa4'
+                                onPress={this.playSound}
+                            />
                         </View>
                     </Card>
                     {/* Back Side */}
