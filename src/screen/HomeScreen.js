@@ -280,7 +280,7 @@ export default class HomeScreen extends PureComponent {
                                 renderItem={(item, index) => (
                                     <TouchableOpacity
                                         onPress={() => {
-                                            this._openStep1(index);
+                                            this._onPressCard(index);
                                         }}
                                         style={[
                                             styles.viewContainer,
