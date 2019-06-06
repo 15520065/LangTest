@@ -81,7 +81,6 @@ export default class WordFlatListItem extends Component {
                                 </View> */}
                             </View>
                             <View style={styles.vc_topRight}>
-
                                 {
                                     typeof this.props.item.img === 'string' ?
                                     <Image style={styles.img}

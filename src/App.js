@@ -110,55 +110,20 @@ const CustomDrawerContentComponent = (props) => (
 //     }
 // );
 
-function cacheImages(images) {
-    return images.map(image => {
-        if (typeof image === 'string') {
-            return Image.prefetch(image);
-        } else {
-            return Asset.fromModule(image).downloadAsync();
-        }
-    });
-}
-
-function cacheFonts(fonts) {
-    return fonts.map(font => Font.loadAsync(font));
-}
-
-function cacheAudio(audios) {
-    return audios.map(audio => {
-        if (typeof audio === 'string') {
-            return FileSystem.downloadAsync(
-                audio,
-                FileSystem.documentDirectory + UtilHelper._getFileName(audio)
-            )
-                .then(async ({uri}) => {
-                    // this.soundObject = new Audio.Sound();
-                    // try {
-                    //     await this.soundObject.loadAsync({uri: FileSystem.documentDirectory + UtilHelper._getFileName(audio)});
-                    //     this.soundObject.playAsync();
-                    // } catch (e) {
-                    //     console.warn('ERROR Loading Audio', e);
-                    // }
-                })
-                .catch(error => {
-                    console.warn('ERROR Loading Audio' + error);
-                });
-        } else {
-            return Asset.fromModule(audio).downloadAsync();
-        }
-    });
-}
-
 export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: true,
         };
+
+
+
     }
 
     _loadAssetsAsync = async () => {
-        const fontAssets = cacheFonts([FontAwesome.font, {
+
+        const fontAssets = DataSync.cacheFonts([FontAwesome.font, {
             'Roboto': require('native-base/Fonts/Roboto.ttf'),
             'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
             'Ionicons': require('@expo/vector-icons/fonts/Ionicons.ttf')
@@ -174,11 +139,11 @@ export default class App extends React.Component {
             audioAsset = asset.audioAsset;
         }
 
-        let audioAssetPromise = cacheAudio(audioAsset);
-        let imageAssetPromise = cacheImages(imageAsset);
+        let audioAssetPromise = DataSync.cacheAudio(audioAsset);
+        let imageAssetPromise = DataSync.cacheImages(imageAsset);
 
         //TODO: if (!DataSync.getVoca() || !DataSync.getExam()) {
-        if (!DataSync.getVoca() ) {
+        if (DataSync.getVoca() === undefined || DataSync.getVoca() === null || Object.entries(DataSync.getVoca()).length === 0) {
             Alert.alert(
                 'No Internet Access',
                 'Please check your Internet connection',
@@ -197,13 +162,11 @@ export default class App extends React.Component {
                 {cancelable: false}
             );
 
-            await Promise.all([...audioAssetPromise, ...imageAssetPromise, ...fontAssets]);
-        }else {
-            await Promise.all([...fontAssets]);
         }
 
-
-
+        console.log('imageAssetPromise = ' + imageAssetPromise.length);
+        console.log('audioAssetPromise = ' + audioAssetPromise.length);
+        await Promise.all([...audioAssetPromise, ...imageAssetPromise, ...fontAssets]);
     };
 
     render() {
@@ -214,7 +177,7 @@ export default class App extends React.Component {
                     onFinish={() => this.setState({loading: false})}
                     onError={() => {
                         this.setState({loading: false});
-                        console.warn("AppLoading Error")
+                        console.warn("AppLoading Error");
                     }}
                 />
             );

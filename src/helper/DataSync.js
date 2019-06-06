@@ -2,6 +2,8 @@ import React from 'react';
 import {SERVER_URL} from "../constants";
 import LocalHelper from "./LocalHelper";
 import UtilHelper from "./UtilHelper";
+import {Image} from "react-native";
+import {Asset, FileSystem, Font} from "expo";
 
 class DataSync {
     // _checkVersion = async () => {
@@ -79,7 +81,6 @@ class DataSync {
                 // }
 
                 let assetObject = instance._getAssetFromObject(instance.getVoca());
-
                 return assetObject;
             })
             .catch(async (error) => {
@@ -91,9 +92,10 @@ class DataSync {
                 let exam = UtilHelper._mapToObject(await LocalHelper._getMapData(LocalHelper.exam));
                 instance.setExam(exam);
 
-                console.log('voca ' + instance.flatten(voca));
-
                 return undefined;
+                //TODO: NEED THIS FOR LOAD EXAM AUDIO ?
+                // let assetObject = instance._getAssetFromObject(instance.getVoca());
+                // return assetObject;
             });
     };
 
@@ -177,6 +179,46 @@ class DataSync {
     };
 
 
+    cacheImages(images) {
+        return images.map(image => {
+            if (typeof image === 'string') {
+                // Image.abortPrefetch(image);
+                console.log(image);
+                return Image.prefetch(image);
+            } else {
+                return Asset.fromModule(image).downloadAsync();
+            }
+        });
+    }
+
+    cacheFonts(fonts) {
+        return fonts.map(font => Font.loadAsync(font));
+    }
+
+    cacheAudio(audios) {
+        return audios.map(audio => {
+            if (typeof audio === 'string') {
+                return FileSystem.downloadAsync(
+                    audio,
+                    FileSystem.documentDirectory + UtilHelper._getFileName(audio)
+                )
+                    .then(async ({uri}) => {
+                        // this.soundObject = new Audio.Sound();
+                        // try {
+                        //     await this.soundObject.loadAsync({uri: FileSystem.documentDirectory + UtilHelper._getFileName(audio)});
+                        //     this.soundObject.playAsync();
+                        // } catch (e) {
+                        //     console.warn('ERROR Loading Audio', e);
+                        // }
+                    })
+                    .catch(error => {
+                        console.warn('ERROR Loading Audio' + error);
+                    });
+            } else {
+                return Asset.fromModule(audio).downloadAsync();
+            }
+        });
+    }
 }
 
 const instance = new DataSync();
