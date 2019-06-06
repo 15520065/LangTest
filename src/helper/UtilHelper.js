@@ -50,9 +50,10 @@ export default class UtilHelper {
         if (fullPath && typeof fullPath === 'string') {
             let filename = fullPath.replace('https://', '');
             filename = filename.replace('http://', '');
-            filename = filename.replace('/', '-');
+            filename = filename.replace(/[/.]/g, "-");
+            // console.log(filename);
             return filename;
         }
-        return "";
+        return fullPath;
     }
 }

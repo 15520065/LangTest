@@ -25,10 +25,10 @@ import {
 
 import * as Progress from 'react-native-progress';
 
-import wordMap from '../../data/VocabularyList';
 import WordFlatListItem from '../../components/vocabulary/WordFlatListItem';
 import Slider from 'react-native-slider';
 
+import DataSync from "../../helper/DataSync";
 
 export default class LearnScreen extends React.Component {
     static navigationOptions = {
@@ -83,7 +83,7 @@ export default class LearnScreen extends React.Component {
         ]).start(() => {
             this.startTimer();
 
-            if (this.curWordA === wordMap[this.props.navigation.state.params.topic.id].length - 1) {//
+            if (this.curWordA === DataSync.getVoca().wordMap[this.props.navigation.state.params.topic.id].length - 1) {//
                 this.curWordB = 0;
             } else {
                 this.curWordB = this.curWordA + 1;
@@ -107,7 +107,7 @@ export default class LearnScreen extends React.Component {
         ]).start(() => {
             this.startTimer();
 
-            if (this.curWordB === wordMap[this.props.navigation.state.params.topic.id].length - 1) {//
+            if (this.curWordB === DataSync.getVoca().wordMap[this.props.navigation.state.params.topic.id].length - 1) {//
                 this.curWordA = 0;
             } else {
                 this.curWordA = this.curWordB + 1;
@@ -253,7 +253,7 @@ export default class LearnScreen extends React.Component {
                                     ]
                                     }>
                                     <WordFlatListItem
-                                        item={wordMap[topic.id][this.curWordA]}//
+                                        item={DataSync.getVoca().wordMap[topic.id][this.curWordA]}//
                                         ref={component => this.wordComponentA = component} // for perform click
                                     >
 
@@ -271,7 +271,7 @@ export default class LearnScreen extends React.Component {
                                     ]
                                     }>
                                     <WordFlatListItem
-                                        item={wordMap[topic.id][this.curWordB]}//
+                                        item={DataSync.getVoca().wordMap[topic.id][this.curWordB]}//
                                         ref={component => this.wordComponentB = component} // for perform click
                                     >
 

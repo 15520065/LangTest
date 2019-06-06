@@ -2,7 +2,7 @@ import React from 'react';
 import {Constants} from 'expo';
 import * as firebase from "firebase";
 import UtilHelper from "./UtilHelper";
-import LocalStoreHelper from "./LocalStoreHelper";
+import LocalHelper from "./LocalHelper";
 import {TestResultData} from "../entity/ProfileData";
 
 class DataHelper {
@@ -133,11 +133,12 @@ class DataHelper {
         }
         this._testResultData.set(mode, testResult);
 
-        LocalStoreHelper._storeMapData(LocalStoreHelper.testResult, this._testResultData);
+        LocalHelper._storeMapData(LocalHelper.testResult, this._testResultData);
     }
 
     _loadTestResult = async (callback) => {
-        const testResult = await LocalStoreHelper._getMapData(LocalStoreHelper.testResult);
+        const testResult = await LocalHelper._getMapData(LocalHelper.testResult);
+
         if (testResult != null && testResult instanceof Map) {
             // this._testResultData = new Map(testResult);
             for (const [key, value] of testResult.entries()) {
@@ -221,7 +222,7 @@ class DataHelper {
     };
 
     _saveUserProfileLocal = () => {
-        LocalStoreHelper._storeMapData(LocalStoreHelper.profile, this.curUserProfile);
+        LocalHelper._storeMapData(LocalHelper.profile, this.curUserProfile);
     };
 
     isProfileNull = (profile) => {
@@ -244,7 +245,7 @@ class DataHelper {
     _loadUserProfile = async (callback) => {
         if (this.isProfileNull(this.curUserProfile)) {
             // console.log('Chi CS 1:  ');
-            const localUserProfile = await LocalStoreHelper._getMapData(LocalStoreHelper.profile);
+            const localUserProfile = await LocalHelper._getMapData(LocalHelper.profile);
 
             UtilHelper._printMapConsole(localUserProfile);
             if (!this.isProfileNull(localUserProfile)) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container} from 'unstated';
-import LocalStoreHelper from '../helper/LocalStoreHelper';
+import LocalHelper from '../helper/LocalHelper';
 
 export default class WordScreenStore extends Container {
 
@@ -16,7 +16,7 @@ export default class WordScreenStore extends Container {
     };
 
     _updateData = async () => {
-        const topicResult = await LocalStoreHelper._getMapData(LocalStoreHelper.topicResult);
+        const topicResult = await LocalHelper._getMapData(LocalHelper.topicResult);
 
         this.setState(
             {

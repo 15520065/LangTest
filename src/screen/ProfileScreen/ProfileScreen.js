@@ -19,7 +19,7 @@ import {withNavigation} from "react-navigation";
 import {Body, Container, Header, Left, Right, Title} from 'native-base'
 
 import Button from 'react-native-flat-button';
-import LocalStoreHelper from "../../helper/LocalStoreHelper";
+import LocalHelper from "../../helper/LocalHelper";
 import DataHelper from "../../helper/DataHelper";
 import UtilHelper from "../../helper/UtilHelper";
 import {AppLoading} from "expo";

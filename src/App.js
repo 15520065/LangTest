@@ -1,36 +1,27 @@
 import React from 'react';
 import {
-    StyleSheet,
-    Text,
-    View,
+    Alert,
+    BackHandler,
     Image,
-    Platform,
-    StatusBar,
     SafeAreaView,
     ScrollView,
-    TouchableOpacity
+    StyleSheet,
+    TouchableOpacity,
+    View
 } from 'react-native';
+import {AppLoading, Asset, FileSystem, Font} from 'expo';
 
-import {Root} from 'native-base';
-import {AppLoading, Asset, Font, Icon} from 'expo';
-import {Expo} from 'expo';
-
-import {AntDesign, MaterialCommunityIcons} from '@expo/vector-icons';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 import * as firebase from 'firebase';
 
 import {
-    DrawerItems,
+    createAppContainer,
     createDrawerNavigator,
     createStackNavigator,
-    createAppContainer,
-    withNavigation,
     createSwitchNavigator,
+    DrawerItems,
     navigate
 } from 'react-navigation';
-
-import {
-    Container, Header, Body, Content
-} from 'native-base';
 
 
 import QuizScreen from './screen/QuestionScreen/QuizScreen';
@@ -40,19 +31,15 @@ import WordScreen from './screen/vocabularySreen/WordScreen';
 import AppNavigator from './navigation/AppNavigator';
 import HomeScreen from './screen/HomeScreen';
 import ChartScreen from './screen/ChartScreen';
-import sharedQuizService from './services/QuizService';
 import ResultScreen from './screen/QuestionScreen/ResultScreen';
 import LeaderBoardScreen from './screen/LeaderBoardScreen';
 import LearnScreen from './screen/vocabularySreen/LearnScreen';
 import ProfileScreen from './screen/ProfileScreen/ProfileScreen';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Step1Question from "./screen/Step1/Step1Question";
-import {SERVER_URL} from "./constants";
-import VCS from "./helper/VCS";
-
-import {Audio} from 'expo';
-import {FileSystem} from 'expo';
+import DataSync from "./helper/DataSync";
 import UtilHelper from "./helper/UtilHelper";
+
 //huy
 // Initialize Firebase
 const firebaseConfig = {
@@ -150,11 +137,11 @@ function cacheAudio(audios) {
                     //     await this.soundObject.loadAsync({uri: FileSystem.documentDirectory + UtilHelper._getFileName(audio)});
                     //     this.soundObject.playAsync();
                     // } catch (e) {
-                    //     console.log('ERROR Loading Audio', e);
+                    //     console.warn('ERROR Loading Audio', e);
                     // }
                 })
                 .catch(error => {
-                    console.warn(error);
+                    console.warn('ERROR Loading Audio' + error);
                 });
         } else {
             return Asset.fromModule(audio).downloadAsync();
@@ -168,35 +155,55 @@ export default class App extends React.Component {
         this.state = {
             loading: true,
         };
-
-        this.loadAudio();
-    }
-
-    async loadAudio() {
-
     }
 
     _loadAssetsAsync = async () => {
-        const check = await VCS._checkVersionSync();
-
-        const audioAssets = cacheAudio([
-            SERVER_URL + '/voca/word/sound/t1w1.mp3',
-            SERVER_URL + '/voca/word/sound/t1w2.mp3',
-            SERVER_URL + '/voca/word/sound/t1w3.mp3',
-            SERVER_URL + '/voca/word/sound/t1w4.mp3',
-        ]);
-
-        const imageAssets = cacheImages([
-        ]);
-
         const fontAssets = cacheFonts([FontAwesome.font, {
             'Roboto': require('native-base/Fonts/Roboto.ttf'),
             'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-            // 'Roboto_light': require('./../assets/fonts/Roboto-Light.ttf'),
             'Ionicons': require('@expo/vector-icons/fonts/Ionicons.ttf')
         }]);
 
-        await Promise.all([...imageAssets, ...fontAssets, ...audioAssets]);
+        const asset = await DataSync._checkVersion();
+
+        let imageAsset = [];
+        let audioAsset = [];
+
+        if (asset) {
+            imageAsset = asset.imageAsset;
+            audioAsset = asset.audioAsset;
+        }
+
+        let audioAssetPromise = cacheAudio(audioAsset);
+        let imageAssetPromise = cacheImages(imageAsset);
+
+        //TODO: if (!DataSync.getVoca() || !DataSync.getExam()) {
+        if (!DataSync.getVoca() ) {
+            Alert.alert(
+                'No Internet Access',
+                'Please check your Internet connection',
+                [
+                    {
+                        text: 'Cancel', onPress: () => {
+                            BackHandler.exitApp();
+                        }
+                    },
+                    {
+                        text: 'OK', onPress: () => {
+                            Expo.Updates.reload();
+                        }
+                    },
+                ],
+                {cancelable: false}
+            );
+
+            await Promise.all([...audioAssetPromise, ...imageAssetPromise, ...fontAssets]);
+        }else {
+            await Promise.all([...fontAssets]);
+        }
+
+
+
     };
 
     render() {
@@ -205,7 +212,10 @@ export default class App extends React.Component {
                 <AppLoading
                     startAsync={this._loadAssetsAsync}
                     onFinish={() => this.setState({loading: false})}
-                    onError={console.warn}
+                    onError={() => {
+                        this.setState({loading: false});
+                        console.warn("AppLoading Error")
+                    }}
                 />
             );
         }

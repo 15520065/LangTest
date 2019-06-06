@@ -29,7 +29,6 @@ export default class WordFlatListItem extends Component {
         try {
             if (typeof this.props.item.sound === 'string') {
                 await soundObject.loadAsync({uri: FileSystem.documentDirectory + UtilHelper._getFileName(this.props.item.sound)});
-
             } else {
                 await soundObject.loadAsync(this.props.item.sound);
             }
@@ -49,7 +48,6 @@ export default class WordFlatListItem extends Component {
     };
 
     render() {
-        console.log(this.props.item.img);
         return (
             <View style={styles.ItemContainer}>
                 <FlipCard

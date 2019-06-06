@@ -1,30 +1,13 @@
 import React from 'react';
-import {
-    Container,
-    Header,
-    Left,
-    Body,
-    Right,
-    Button,
-    Title,
-    View,
-    Text,
-    Content,
-    Icon
-} from 'native-base';
+import {Body, Button, Container, Content, Header, Left, Right, Title, View} from 'native-base';
 
-import {
-    StyleSheet,
-    TouchableOpacity,
-    Platform, FlatList,
-    AsyncStorage
-} from 'react-native';
+import {FlatList, Platform, StyleSheet} from 'react-native';
 import UserScore from '../../components/vocabulary/UserScore';
-import flatListData from '../../data/TopicData';
 import TopicFlatListItem from '../../components/vocabulary/TopicFlatListItem';
-import LocalStoreHelper from '../../helper/LocalStoreHelper';
+import LocalHelper from '../../helper/LocalHelper';
 import {withNavigation} from 'react-navigation';
-import {AntDesign, MaterialCommunityIcons, Entypo} from '@expo/vector-icons';
+import {Entypo} from '@expo/vector-icons';
+import DataSync from "../../helper/DataSync";
 
 
 class TopicScreen extends React.Component {
@@ -43,8 +26,8 @@ class TopicScreen extends React.Component {
     }
 
     _refreshList = async () => {
-        const topicResult = await LocalStoreHelper._getMapData(LocalStoreHelper.topicResult);
-        const score = await LocalStoreHelper._getMapData(LocalStoreHelper.score);
+        const topicResult = await LocalHelper._getMapData(LocalHelper.topicResult);
+        const score = await LocalHelper._getMapData(LocalHelper.score);
 
         this.setState({
             refresh: !this.state.refresh,
@@ -116,7 +99,8 @@ class TopicScreen extends React.Component {
                     }}>
                         <FlatList
                             ref={component => this.topicFlatListItem = component}
-                            data={flatListData}
+                            // data={flatListData}
+                            data={DataSync.getVoca().topicFlatListData}
                             extraData={this.state.refresh}
                             renderItem={({item, index}) => {
                                 return (

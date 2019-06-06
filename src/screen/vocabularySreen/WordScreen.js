@@ -1,34 +1,15 @@
 import React from 'react';
-import {
-    Container,
-    Header,
-    Left,
-    Body,
-    Right,
-    Button,
-    Icon,
-    Title,
-    View,
-    Text,
-    Content,
-} from 'native-base';
+import {Body, Button, Container, Content, Header, Icon, Left, Right, Text, Title, View,} from 'native-base';
 
-import {
-    StyleSheet,
-    TouchableOpacity,
-    Platform,
-    FlatList,
-    Alert,
-} from 'react-native';
+import {Alert, FlatList, Platform, StyleSheet,} from 'react-native';
 
 import ActionButton from 'react-native-action-button';
-import wordMap from '../../data/VocabularyList';
 import WordFlatListItem from '../../components/vocabulary/WordFlatListItem';
 import sharedQuizService from '../../services/QuizService';
-import {NavigationScreenConfig, withNavigation} from 'react-navigation';
+import {withNavigation} from 'react-navigation';
 import {QuestionType} from '../../entity/Question';
-import LocalStoreHelper from '../../helper/LocalStoreHelper';
-
+import LocalHelper from '../../helper/LocalHelper';
+import DataSync from "../../helper/DataSync";
 
 
 class WordScreen extends React.Component {
@@ -44,7 +25,7 @@ class WordScreen extends React.Component {
         this.state = {};
 
         this.topic = props.navigation.getParam('topic', null);
-        this.topicData = wordMap[this.topic.id];
+        this.topicData = DataSync.getVoca().wordMap[this.topic.id];
     }
 
     //region ------------- TEST SCREEN
@@ -131,14 +112,14 @@ class WordScreen extends React.Component {
 
     _storeVocabularyResult = async (correctAnswer,totalAnswer) => {
         const result = correctAnswer / totalAnswer;
-        let topicResultMap = await LocalStoreHelper._getMapData(LocalStoreHelper.topicResult);
+        let topicResultMap = await LocalHelper._getMapData(LocalHelper.topicResult);
         if (topicResultMap == null) {
             topicResultMap = new Map();
         }
         topicResultMap.set(this.topic.id, result);
 
         // calculate user score
-        let score = await LocalStoreHelper._getMapData(LocalStoreHelper.score);
+        let score = await LocalHelper._getMapData(LocalHelper.score);
         if (score == null) {
             score = new Map();
             score.set('totalAnswer', totalAnswer);
@@ -148,8 +129,8 @@ class WordScreen extends React.Component {
             score.set('correctAnswer', correctAnswer + score.get('correctAnswer'));
         }
 
-        LocalStoreHelper._storeMapData(LocalStoreHelper.topicResult, topicResultMap);
-        LocalStoreHelper._storeMapData(LocalStoreHelper.score, score);
+        LocalHelper._storeMapData(LocalHelper.topicResult, topicResultMap);
+        LocalHelper._storeMapData(LocalHelper.score, score);
     };
 
     quizOver = (quizStore) => {
