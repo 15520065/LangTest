@@ -39,6 +39,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Step1Question from "./screen/Step1/Step1Question";
 import DataSync from "./helper/DataSync";
 import UtilHelper from "./helper/UtilHelper";
+import SampleScreen from "./screen/SampleScreen";
 
 //huy
 // Initialize Firebase
@@ -183,6 +184,8 @@ export default class App extends React.Component {
             );
         }
         return (
+            <MyApp/>
+
             // <View style={styles.container}>
             //     <WordFlatList>
 
@@ -193,9 +196,9 @@ export default class App extends React.Component {
             //     {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
             //     <AppContainer />
             // </View>
-            <MyApp/>
             // {/*<ProfileScreen/>*/}
             //<Step1Question/>
+            //<SampleScreen/>
         );
     }
 }
@@ -273,6 +276,9 @@ const AppNavigation = createStackNavigator({
     },
     Step1: {
         screen: Step1Question,
+    },
+    SampleScreen: {
+        screen: SampleScreen,
     }
 }, {
     headerMode: 'none',

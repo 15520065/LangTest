@@ -10,7 +10,6 @@ import TopicScreen from '../screen/vocabularySreen/TopicScreen';
 import ChartScreen from '../screen/ChartScreen';
 import WordScreen from '../screen/vocabularySreen/WordScreen';
 import ProfileScreen from "../screen/ProfileScreen/ProfileScreen";
-import Step1Question from "../screen/Step1/Step1Question";
 
 const HomeStack = createStackNavigator({
     Home: HomeScreen,

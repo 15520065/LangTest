@@ -83,7 +83,7 @@ export default class HomeScreen extends PureComponent {
         const {navigation} = this.props;
         switch (index) {
             case 0:
-                navigation.navigate('Step1');
+                navigation.navigate('SampleScreen');
                 break;
             case 1:
                 navigation.navigate('ProfileScreen');
@@ -155,11 +155,6 @@ export default class HomeScreen extends PureComponent {
         return (
 
             <Container>
-                {/*<Header>*/}
-                {/*<Left>*/}
-                {/*<Icon name="menu" onPress={() => this.props.navigation.openDrawer()}/>*/}
-                {/*</Left>*/}
-                {/*</Header>*/}
                 <Header androidStatusBarColor="#0076BF"
                         style={{backgroundColor: Platform.OS === 'android' ? '#019AE8' : '#FFFFFF'}}>
                     <Left>
@@ -179,14 +174,13 @@ export default class HomeScreen extends PureComponent {
                         }
                     </Left>
                     <Body>
-                        <Title>Home</Title>
+                    <Title>Home</Title>
                     </Body>
                     <Right>
 
                     </Right>
                 </Header>
                 <ScrollView style={styles.container}>
-
                     <ImageBackground
                         style={styles.headerBackgroundImage}
                         blurRadius={0}
@@ -271,7 +265,7 @@ export default class HomeScreen extends PureComponent {
                         </View>
                     </View>
 
-                    <View style={{flex: 1, backgroundColor: '#e7e7e7'}}>
+                    <View style={{flex: 1}}>
                         <ScrollView style={{flex: 1}}>
                             <GridView
                                 itemDimension={180}
@@ -412,147 +406,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 200,
     },
-
-    // viewCard: {
-    //     // flex: 1
-    //     width: ItemWidth,
-    //     height: ItemHeight,
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    //     backgroundColor: 'white'
-    // },
-    // container: {
-    //     // flex: 1,
-    //     // backgroundColor: '#fff',
-    //     flex: 1,
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    //     paddingTop: 50,
-    //     backgroundColor: '#ecf0f1',
-    // },
-    // developmentModeText: {
-    //     marginBottom: 20,
-    //     color: 'rgba(0,0,0,0.4)',
-    //     fontSize: 14,
-    //     lineHeight: 19,
-    //     textAlign: 'center',
-    // },
-    // contentContainer: {
-    //     paddingTop: 30,
-    // },
-    // welcomeContainer: {
-    //     alignItems: 'center',
-    //     marginTop: 10,
-    //     marginBottom: 20,
-    // },
-    // welcomeImage: {
-    //     width: 100,
-    //     height: 80,
-    //     resizeMode: 'contain',
-    //     marginTop: 3,
-    //     marginLeft: -10,
-    // }, 
-    // getStartedContainer: {
-    //     alignItems: 'center',
-    //     marginHorizontal: 50,
-    // },
-    // homeScreenFilename: {
-    //     marginVertical: 7,
-    // },
-    // codeHighlightText: {
-    //     color: 'rgba(96,100,109, 0.8)',
-    // },
-    // codeHighlightContainer: {
-    //     backgroundColor: 'rgba(0,0,0,0.05)',
-    //     borderRadius: 3,
-    //     paddingHorizontal: 4,
-    // },
-    // getStartedText: {
-    //     fontSize: 17,
-    //     color: 'rgba(96,100,109, 1)',
-    //     lineHeight: 24,
-    //     textAlign: 'center',
-    // },
-    // tabBarInfoContainer: {
-    //     position: 'absolute',
-    //     bottom: 0,
-    //     left: 0,
-    //     right: 0,
-    //     ...Platform.select({
-    //         ios: {
-    //             shadowColor: 'black',
-    //             shadowOffset: { height: -3 },
-    //             shadowOpacity: 0.1,
-    //             shadowRadius: 3,
-    //         },
-    //         android: {
-    //             elevation: 20,
-    //         },
-    //     }),
-    //     alignItems: 'center',
-    //     backgroundColor: '#fbfbfb',
-    //     paddingVertical: 20,
-    // },
-    // tabBarInfoText: {
-    //     fontSize: 17,
-    //     color: 'rgba(96,100,109, 1)',
-    //     textAlign: 'center',
-    // },
-    // navigationFilename: {
-    //     marginTop: 5,
-    // },
-    // helpContainer: {
-    //     marginTop: 15,
-    //     alignItems: 'center',
-    // },
-    // helpLink: {
-    //     paddingVertical: 15,
-    // },
-    // helpLinkText: {
-    //     fontSize: 14,
-    //     color: '#2e78b7',
-    // },
-    // parent: {
-    //     width: '100%', 
-    //     flexDirection: 'row', 
-    //     flexWrap: 'wrap',
-    //     marginTop: 50,
-    // },
-    // child: {
-    //     width: '48%', 
-    //     margin: '1%', 
-    //     aspectRatio: 1,
-    //     borderRadius:20,
-    //     borderWidth: 1,
-    //     borderColor: '#fff',
-    // },
-    // gridView: {
-    //     paddingTop: 25,
-    //     flex: 1,
-    // },
-    // itemContainer: {
-    //     justifyContent: 'flex-end',
-    //     borderRadius: 5,
-    //     padding: 10,
-    //     height: 200,
-    // },
-    // itemName: {
-    //     fontSize: 16,
-    //     color: '#fff',
-    //     fontWeight: '600',
-    // },
-    // itemCode: {
-    //     fontWeight: '600',
-    //     fontSize: 12,
-    //     color: '#fff',
-    // },
-    // drawImage:{
-    //     height:100,
-    //     width: 100,
-    //     borderRadius:75,
-    // },
-    // navBar:{
-    //     height:100,
-    //     width: 100,
-    // },
 });
