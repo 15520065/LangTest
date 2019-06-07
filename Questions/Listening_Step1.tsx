@@ -3,6 +3,7 @@ import IQuestion, {QuestionType} from "../src/entity/Question";
 //TODO: Thêm hình Cho Part 1, Part 2, Part 4, Part 5
 
 const path = ""
+//26
 
 const QUESTION_PHASE: string = 'Listen and circle the correct answers.'
 const QuestionListeningDataPart1: IQuestion[] = [{
@@ -61,7 +62,37 @@ const QuestionListeningDataPart1: IQuestion[] = [{
         imageAsset: require('../assets/images/step1/imagelistening/book1part1/2_3.png'),
         audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/030.mp3'),
         difficultLevel: 3
-    }
+    },
+    //Unit 3
+    {
+        id: 'step1_1_054',
+        type: QuestionType.part2,
+        question: QUESTION_PHASE,
+        answer: ['A', 'B', 'C'],
+        correctAnswer: 0,
+        imageAsset: require('../assets/images/step1/imagelistening/book1part1/3_1.png'),
+        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/035.mp3'),
+        difficultLevel: 3
+    }, {
+        id: 'step1_1_054',
+        type: QuestionType.part2,
+        question: QUESTION_PHASE,
+        answer: ['A', 'B', 'C'],
+        correctAnswer: 1,
+        imageAsset: require('../assets/images/step1/imagelistening/book1part1/3_2.png'),
+        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/054.mp3'),
+        difficultLevel: 3
+    }, {
+        id: 'step1_1_056',
+        type: QuestionType.part2,
+        question: QUESTION_PHASE,
+        answer: ['A', 'B', 'C'],
+        correctAnswer: 2,
+        imageAsset: require('../assets/images/step1/imagelistening/book1part1/3_3.png'),
+        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/056.mp3'),
+        difficultLevel: 3
+    },
+
 
 ];
 
@@ -125,10 +156,42 @@ const QuestionDataPart2: IQuestion[] = [{
             'Q. What is the man going to do?\n',
         answer: ['A', 'B', 'C'],
         correctAnswer: 1,
-        imageAsset: require('../assets/images/step1/imagelistening/book1part2/2_2.png'),
+        imageAsset: require('../assets/images/step1/imagelistening/book1part2/2_3.png'),
         audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/033.mp3'),
         difficultLevel: 3
-    }
+    },
+    //Unit 3
+    {
+        id: 'step1_1_057',
+        type: QuestionType.part2,
+        question: 'Listen to the librarian\n' +
+            'Q. What did the librarian tell the students NOT to do?\n',
+        answer: ['A', 'B', 'C'],
+        correctAnswer: 1,
+        imageAsset: require('../assets/images/step1/imagelistening/book1part2/3_1.png'),
+        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/057.mp3'),
+        difficultLevel: 3
+    }, {
+        id: 'step1_1_058',
+        type: QuestionType.part2,
+        question: 'Listen to the librarian\n' +
+            'Q. What did the librarian tell the boy to do?\n',
+        answer: ['A', 'B', 'C'],
+        correctAnswer: 2,
+        imageAsset: require('../assets/images/step1/imagelistening/book1part2/3_2.png'),
+        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/058.mp3'),
+        difficultLevel: 3
+    }, {
+        id: 'step1_1_059',
+        type: QuestionType.part2,
+        question: 'Listen to the girl\n' +
+            'Q. What will the girl do next?\n',
+        answer: ['A', 'B', 'C'],
+        correctAnswer: 1,
+        imageAsset: require('../assets/images/step1/imagelistening/book1part2/3_3.png'),
+        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/059.mp3'),
+        difficultLevel: 3
+    },
 ];
 
 const QuestionDataPart3: IQuestion[] = [{
@@ -180,6 +243,32 @@ const QuestionDataPart3: IQuestion[] = [{
         answer: ['A', 'B', 'C'],
         correctAnswer: 1,
         audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/036.mp3'),
+        difficultLevel: 3
+    },
+    //Unit 3
+    {
+        id: 'step1_1_060',
+        type: QuestionType.part2,
+        question: 'Q. What time does the library open?',
+        answer: ['A', 'B', 'C'],
+        correctAnswer: 2,
+        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/060.mp3'),
+        difficultLevel: 3
+    }, {
+        id: 'step1_1_061',
+        type: QuestionType.part2,
+        question: 'Q. May I see your library card, please?',
+        answer: ['A', 'B', 'C'],
+        correctAnswer: 0,
+        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/061.mp3'),
+        difficultLevel: 3
+    }, {
+        id: 'step1_1_062',
+        type: QuestionType.part2,
+        question: 'Q. When is the due date?',
+        answer: ['A', 'B', 'C'],
+        correctAnswer: 1,
+        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/062.mp3'),
         difficultLevel: 3
     },
 ];
@@ -238,6 +327,34 @@ const QuestionDataPart4: IQuestion[] = [{
         audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/038.mp3'),
         difficultLevel: 3
     },
+    //Unit 3
+    {
+        id: 'step1_1_063',
+        type: QuestionType.part2,
+        question: 'Listen to the conversation between a student and a librarian.\n' +
+            'Q. What will the student do next?\n',
+        answer: [
+            'Pick out a book',
+            'Buy a book',
+            'Write a book'
+        ],
+        correctAnswer: 0,
+        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/063.mp3'),
+        difficultLevel: 3
+    }, {
+        id: 'step1_1_064',
+        type: QuestionType.part2,
+        question: 'Listen to the conversation between a student and a librarian\n' +
+            'Q. What will the librarian do next?\n',
+        answer: [
+            'Read the Scarlet Letter',
+            'Check other libraries',
+            'Return the book'
+        ],
+        correctAnswer: 1,
+        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/064.mp3'),
+        difficultLevel: 3
+    },
 ];
 
 const QuestionDataPart5: IQuestion[] = [{
@@ -289,6 +406,32 @@ const QuestionDataPart5: IQuestion[] = [{
             'Her family'],
         correctAnswer: 2,
         audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/040.mp3'),
+        difficultLevel: 3
+    },
+    //Unit 3
+    {
+        id: 'step1_1_065',
+        type: QuestionType.part2,
+        question: 'Listen to the phone message\n' +
+            'Q. Why did Nick call?\n',
+        answer: [
+            'To ask Jack to get the book for him',
+            'To ask Jack to return the book for him',
+            'To tell Jack to read the book'],
+        correctAnswer: 1,
+        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/065.mp3'),
+        difficultLevel: 3
+    }, {
+        id: 'step1_1_066',
+        type: QuestionType.part2,
+        question: 'Listen to the librarian giving a talk\n' +
+            'What is the librarian doing?\n',
+        answer: [
+            'Introducing the library',
+            'Introducing City Hall',
+            'Working in the media room '],
+        correctAnswer: 2,
+        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/066.mp3'),
         difficultLevel: 3
     },
 ];

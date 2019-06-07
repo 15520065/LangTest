@@ -1,6 +1,7 @@
 import IQuestion, {QuestionType} from "../src/entity/Question";
 
 //TODO: Edit imageAsset for Part 1
+//36
 const QUESTION_PHASE_PART1_123: string = 'Choose the word that goes best with each picture'
 const QUESTION_PHASE_PART1_456: string = 'What does the arrow show?'
 const QUESTION_PHASE_PART1_789: string = 'Choose the sentence that goes best with each picture'
