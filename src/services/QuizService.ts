@@ -14,43 +14,47 @@ import UtilHelper from '../helper/UtilHelper';
 //For this app, we assume that 
 
 class QuizService implements IQuizService{
+
     _questionList : IQuestion[] = null;
+
+    _testId = null;
+
     _srcQuestionList: IQuestion[] = null;
+    _lastSrcQuestionList = null;
+
     _lastMode: number = 0;
-    _lastDifficult: number = 0;
-    _lastTimer: number = 0;
-    _lastNumberOfQuestion: number = 0;
+
+    getMode(): number {
+        return this._lastMode;
+    }
+
+    _difficult: number = 0;
+    _timer: number = 0;
+    _numberOfQuestion: number = 0;
 
     readonly _typePercent: number[] = [3, 12.5, 19.5, 15, 15, 8, 27];
     readonly _chanceOfHigher1Difficult:  number = 30;
     readonly _chanceOfHigher2Difficult: number = 5;
     readonly _chanceOfHigher1Lower: number = 20;
     readonly _chanceOfHigher2Lower: number = 5;
-    readonly _dataQuestion  : IQuestion[][] = [
-        QuestionDataPart1.slice(),
-        QuestionDataPart2.slice(),
-        QuestionDataPart3.slice(),
-        QuestionDataPart4.slice(),
-        QuestionDataPart5.slice(),
-        QuestionDataPart6.slice(),
-        QuestionDataPart7.slice()
-    ];
+
+
+    reset(): void {
+        this._questionList = null;
+    }
 
     getQuestion(): IQuestion[] {
         return this._questionList;
-    }    
-    reset(): void {
-        this._questionList = null;
     }
 
     //Calculator the number of question for each type by percent
     //Because of the rounding, the total number of question may not true, so we trim down or scale random type of question
     //Then scan for the number of question of each type, the number of difficult level may increase by one two but not over
     async initQuickTest(numberOfQuestion: number = 5, difficultLevel: number = 3, timer: number): Promise<void> {
-        this._lastTimer = timer;
+        this._timer = timer;
         this._lastMode = 0;
-        this._lastDifficult = difficultLevel;
-        this._lastNumberOfQuestion = numberOfQuestion;
+        this._difficult = difficultLevel;
+        this._numberOfQuestion = numberOfQuestion;
 
         this.reset();
 
@@ -105,108 +109,89 @@ class QuizService implements IQuizService{
         this._questionList = resQuestionList;
     }
 
-    async initTest(type: QuestionType, numberOfQuestion: number, difficultLevel: number, timer: number): Promise<void> {
-        this._lastTimer = timer;
-        switch(type){
-            case QuestionType.part1: 
-                this._lastMode = 1;
-                break;
-            case QuestionType.part2: 
-                this._lastMode = 2;
-                break;
-            case QuestionType.part3: 
-                this._lastMode = 3;
-                break;
-            case QuestionType.part4: 
-                this._lastMode = 4;
-                break;
-            case QuestionType.part5: 
-                this._lastMode = 5;
-                break;
-            case QuestionType.part6: 
-                this._lastMode = 6;
-                break;
-            case QuestionType.part7: 
-                this._lastMode = 7;
-                break;
-        }
-        this._lastDifficult = difficultLevel;
-        this._lastNumberOfQuestion = numberOfQuestion;
+    // async initTestOld(type: QuestionType, numberOfQuestion: number, difficultLevel: number, timer: number): Promise<void> {
+    //     this._timer = timer;
+    //     switch(type){
+    //         case QuestionType.part1:
+    //             this._lastMode = 1;
+    //             break;
+    //         case QuestionType.part2:
+    //             this._lastMode = 2;
+    //             break;
+    //         case QuestionType.part3:
+    //             this._lastMode = 3;
+    //             break;
+    //         case QuestionType.part4:
+    //             this._lastMode = 4;
+    //             break;
+    //         case QuestionType.part5:
+    //             this._lastMode = 5;
+    //             break;
+    //         case QuestionType.part6:
+    //             this._lastMode = 6;
+    //             break;
+    //         case QuestionType.part7:
+    //             this._lastMode = 7;
+    //             break;
+    //     }
+    //     this._difficult = difficultLevel;
+    //     this._numberOfQuestion = numberOfQuestion;
+    //
+    //     //Let crawling the question
+    //     const resQuestionList: IQuestion[] = this.crawlingQuestion(type, numberOfQuestion, difficultLevel);
+    //
+    //
+    //     //Let trim the question so that it can fix the number of question
+    //     if(resQuestionList.length > numberOfQuestion){
+    //         while(resQuestionList.length > numberOfQuestion){
+    //             resQuestionList.pop();
+    //         }
+    //     } else {
+    //         //just add part5 cause it easy to do
+    //
+    //     }
+    //
+    //     this._questionList = resQuestionList;
+    // }
+
+    async initTest(testId, questionData, numberOfQuestion: number, difficultLevel: number, timer: number): Promise<void> {
+        this._testId = testId;
 
         //Let crawling the question
-        const resQuestionList: IQuestion[] = this.crawlingQuestion(type, numberOfQuestion, difficultLevel);
-
-
+        const resQuestionList: IQuestion[] = this.crawlingQuestion(questionData, numberOfQuestion, difficultLevel);
         //Let trim the question so that it can fix the number of question
         if(resQuestionList.length > numberOfQuestion){
             while(resQuestionList.length > numberOfQuestion){
                 resQuestionList.pop();
             }
         } else {
-            //just add part5 cause it easy to do 
+            //just add part5 cause it easy to do
 
         }
+
+        this._timer = timer;
+
+        this._difficult = difficultLevel;
+        this._numberOfQuestion = numberOfQuestion;
 
         this._questionList = resQuestionList;
     }
 
     initLastTest(): Promise<void> {
-        switch(this._lastMode){
-            case 0:
-                return this.initQuickTest(this._lastNumberOfQuestion, this._lastDifficult, this._lastTimer);
-            case 1:
-                return this.initTest(QuestionType.part1 ,this._lastNumberOfQuestion, this._lastDifficult, this._lastTimer);
-            case 2:
-                return this.initTest(QuestionType.part2 ,this._lastNumberOfQuestion, this._lastDifficult, this._lastTimer);
-            case 3:
-                return this.initTest(QuestionType.part3 ,this._lastNumberOfQuestion, this._lastDifficult, this._lastTimer);
-            case 4:
-                return this.initTest(QuestionType.part4 ,this._lastNumberOfQuestion, this._lastDifficult, this._lastTimer);
-            case 5:
-                return this.initTest(QuestionType.part5 ,this._lastNumberOfQuestion, this._lastDifficult, this._lastTimer);
-            case 6:
-                return this.initTest(QuestionType.part6 ,this._lastNumberOfQuestion, this._lastDifficult, this._lastTimer);
-            case 7:
-                return this.initTest(QuestionType.part7 ,this._lastNumberOfQuestion, this._lastDifficult, this._lastTimer);
+        if (this._lastSrcQuestionList && this._lastSrcQuestionList.length > 0) {
+            return this.initQuickTest(this._numberOfQuestion, this._difficult, this._timer);
         }
         return new Promise<void>(null);
     }
 
-    getMode(): number {
-        return this._lastMode;
-    }
+    private crawlingQuestion(questionData, numberOfQuestion: number, difficult: number): IQuestion[] {
+        this._srcQuestionList = this._lastSrcQuestionList = questionData;
 
-
-    private crawlingQuestion(type: QuestionType, numberOfQuestion: number, difficult: number): IQuestion[] {
-        switch(type){
-            case QuestionType.part1:
-                this._srcQuestionList = this._dataQuestion[0];
-                break;
-            case QuestionType.part2:
-                this._srcQuestionList = this._dataQuestion[1];
-                break;
-            case QuestionType.part3:
-                this._srcQuestionList = this._dataQuestion[2];
-                break;
-            case QuestionType.part4:
-                this._srcQuestionList = this._dataQuestion[3];
-                break;
-            case QuestionType.part5:
-                this._srcQuestionList = this._dataQuestion[4];
-                break;
-            case QuestionType.part6:
-                this._srcQuestionList = this._dataQuestion[5];
-                break;
-            case QuestionType.part7:
-                this._srcQuestionList = this._dataQuestion[6];
-                break;
-        }
-        //
         // //TODO
-        // let data = UtilHelper._objectToMap(DataSync.getExam().exams[1].step1.listening);
-        // console.log("data ---------- ");
-        // UtilHelper._printMapConsole(data)
-        // console.log("data ---------- ");
+        // let questionData = UtilHelper._objectToMap(DataSync.getExam().exams[1].step1.listening);
+        // console.log("questionData ---------- ");
+        // UtilHelper._printMapConsole(questionData)
+        // console.log("questionData ---------- ");
         // UtilHelper._printMapConsole(UtilHelper._objectToMap(this._srcQuestionList));
         //
         // this._srcQuestionList = DataSync.getExam().exams[1].step1.listening;

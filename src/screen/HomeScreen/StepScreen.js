@@ -19,7 +19,7 @@ import GridView from "react-native-super-grid";
 import DataHelper from "../../helper/DataHelper";
 
 
-import FlatButton from 'react-native-flat-button'
+import FlatButton from 'react-native-flat-button';
 import {heightPercentageToDP, widthPercentageToDP} from "../../helper/ratioHelper";
 
 class StepScreen extends React.Component {
@@ -41,7 +41,7 @@ class StepScreen extends React.Component {
         this.step = {
             name: name,
             index: index,
-            stepData : stepData
+            stepData: stepData
         };
     }
 
@@ -49,10 +49,16 @@ class StepScreen extends React.Component {
         const {navigation} = this.props;
 
         if (item.name === 'Listening') {
-            sharedQuizService.initTest(QuestionType.part1, 5, 3, 5 * 60 * 1000);
+
+            sharedQuizService.initTest("listening", this.step.stepData.listening,
+                5, 3, 5 * 60 * 1000);
             navigation.navigate('QuizScreen');
+
         } else {
 
+            sharedQuizService.initTest("reading", this.step.stepData.reading,
+                5, 3, 5 * 60 * 1000);
+            navigation.navigate('QuizScreen');
         }
     }
 
@@ -257,7 +263,7 @@ class StepScreen extends React.Component {
                                             }
                                         ]}>
                                         <ImageBackground source={item.icon}
-                                                         resizeMode= 'stretch'
+                                                         resizeMode='stretch'
                                                          style={[
                                                              sampleStyles.viewContainer,
                                                              {resizeMode: 'stretch', width: '100%', height: '100%'}
@@ -297,7 +303,7 @@ class StepScreen extends React.Component {
                                 borderRadius={10}
                                 shadowHeight={5}
                                 containerStyle={{
-                                    flex:1,
+                                    flex: 1,
                                     height: 50,
                                 }}
                                 contentStyle={{

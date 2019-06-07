@@ -27,6 +27,23 @@ export default class UtilHelper {
         }
     };
 
+    static _printObjectConsole = (object) => {
+        if (object) {
+            let map = UtilHelper._objectToMap(object);
+            if (map != null) {
+                if (map instanceof Map) {
+                    console.log('Chi CS _printMapConsole: ' +
+                        JSON.stringify(Array.from(map.entries())));
+                } else {
+                    console.log('Chi CS _printMapConsole: ' + map);
+                }
+            } else {
+                console.log('Chi CS _printMapConsole: ' + 'null');
+            }
+        }
+
+    };
+
     // Random Name
     static capFirst(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);

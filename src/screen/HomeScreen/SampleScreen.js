@@ -2,7 +2,7 @@ import React from 'react';
 import {Body, Button, Container, Content, Header, Icon, Left, Right, Text, Title, View,} from 'native-base';
 
 import {
-    Alert,
+    Alert, BackHandler,
     Image,
     ImageBackground,
     Platform,
@@ -21,6 +21,7 @@ import DataHelper from "../../helper/DataHelper";
 
 import FlatButton from 'react-native-flat-button'
 import {heightPercentageToDP, widthPercentageToDP} from "../../helper/ratioHelper";
+import UtilHelper from "../../helper/UtilHelper";
 
 class SampleScreen extends React.Component {
     exam = null;
@@ -42,9 +43,9 @@ class SampleScreen extends React.Component {
 
         let stepData;
         if (index === 0) {
-            stepData = this.props.step1;
+            stepData = this.exam.step1;
         } else {
-            stepData = this.props.step2;
+            stepData = this.exam.step2;
         }
 
         navigation.navigate('StepScreen', {
@@ -57,8 +58,32 @@ class SampleScreen extends React.Component {
     _testAll = () => {
         const {navigation} = this.props;
 
-        sharedQuizService.initTest(QuestionType.part1, 5, 3, 5 * 60 * 1000);
-        navigation.navigate('QuizScreen');
+        const step1 = this.exam.step1;
+        const step2 = this.exam.step2;
+        console.log("concat + step1");
+        UtilHelper._printObjectConsole(step1)
+        console.log("concat + step1.listening" );
+        UtilHelper._printObjectConsole(step1.listening)
+        console.log("concat + step2" );
+        UtilHelper._printObjectConsole(step2)
+        let questionData = [];
+
+        if (step1)
+            questionData = questionData.concat(step1.listening, step1.reading);
+
+        if (step2)
+            questionData = questionData.concat(step2.listening, step2.reading);
+
+        console.log("concat -----" );
+        UtilHelper._printObjectConsole(questionData)
+
+        if (questionData.length === 0) {
+            Alert.alert('No question Data');
+        } else {
+            const id = "sample1";
+            sharedQuizService.initTest(id,questionData, questionData.length, 3, questionData.length * 60 * 1000);
+            navigation.navigate('QuizScreen');
+        }
     };
 
     //region ------------- TEST SCREEN
@@ -229,7 +254,7 @@ class SampleScreen extends React.Component {
                         }
                     </Left>
                     <Body>
-                    <Title>{this.exam.name}</Title>
+                    <Title>{this.exam.title}</Title>
                     </Body>
                     <Right>
 

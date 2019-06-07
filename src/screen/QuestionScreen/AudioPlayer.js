@@ -1,19 +1,10 @@
-import React, {Component, PureComponent} from 'react';
-import {
-    Dimensions,
-    Image,
-    StyleSheet,
-    Text,
-    TouchableHighlight,
-    View,
-    TouchableOpacity,
-} from 'react-native';
+import React, {PureComponent} from 'react';
+import {Dimensions, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import Slider from 'react-native-slider';
-import {Asset, Audio, FileSystem, Font} from 'expo';
+import {Audio, FileSystem} from 'expo';
 import {MaterialIcons} from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import {heightPercentageToDP} from '../../helper/ratioHelper';
-import {Button} from 'native-base';
 import UtilHelper from "../../helper/UtilHelper";
 
 const {width: DEVICE_WIDTH, height: DEVICE_HEIGHT} = Dimensions.get('window');
@@ -82,7 +73,7 @@ export default class AudioPlayer extends PureComponent {
         await this.playbackInstance.unloadAsync();
 
         if (typeof source === 'string') {
-            console.log('play' + source);
+            console.log('play - ' + source);
             await this.playbackInstance.loadAsync(
                 {
                     uri: FileSystem.documentDirectory + UtilHelper._getFileName( source )

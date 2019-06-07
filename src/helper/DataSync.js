@@ -82,7 +82,7 @@ class DataSync {
                 };
             })
             .catch(async (error) => {
-                console.warn('_checkVersion Error' + error);
+                console.warn('_checkVersion Error - ' + error);
 
                 let voca = UtilHelper._mapToObject(await LocalHelper._getMapData(LocalHelper.voca));
                 instance.setVoca(voca);

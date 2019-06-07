@@ -43,7 +43,7 @@ export default class LocalHelper {
                     error ? console.log('ERROR - _getMapData - ' + keyStr + ' : ' + error) : undefined;
                 });
             let consoleOut = typeof str === "string" ? "string" : "not string";
-            console.log('_getMapData ' + keyStr + ' : ' + consoleOut);
+            console.log('_getMapData - ' + keyStr + ' : ' + consoleOut);
             return new Map(JSON.parse(str));
         } catch (error) {
             console.log('Chi CS error: ' + error);
