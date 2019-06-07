@@ -14,7 +14,7 @@ const QuestionReadingPart1: IQuestion[] = [{
         'Grandfather',
         'Aunt'],
     correctAnswer: 1,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part1/1_1.png'),
     difficultLevel: 3
 }, {
     id: 'r_s1_b1_u1_p1_2',
@@ -25,7 +25,7 @@ const QuestionReadingPart1: IQuestion[] = [{
         'Younger brother',
         'Older brother'],
     correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part1/1_2.png'),
     difficultLevel: 3
 }, {
     id: 'r_s1_b1_u1_p1_3',
@@ -36,7 +36,7 @@ const QuestionReadingPart1: IQuestion[] = [{
         'Separated',
         'Married'],
     correctAnswer: 2,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part1/1_3.png'),
     difficultLevel: 3
 }, {
     id: 'r_s1_b1_u1_p1_4',
@@ -47,7 +47,7 @@ const QuestionReadingPart1: IQuestion[] = [{
         'Friends',
         'Co-workers'],
     correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part1/1_4.png'),
     difficultLevel: 3
 }, {
     id: 'r_s1_b1_u1_p1_5',
@@ -58,7 +58,7 @@ const QuestionReadingPart1: IQuestion[] = [{
         'Sisters',
         'Brothers '],
     correctAnswer: 1,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part1/1_5.png'),
     difficultLevel: 3
 }, {
     id: 'r_s1_b1_u1_p1_6',
@@ -69,7 +69,7 @@ const QuestionReadingPart1: IQuestion[] = [{
         'He is my little brother.',
         'He is my big brother.  '],
     correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part1/1_6.png'),
     difficultLevel: 3
 }, {
     id: 'r_s1_b1_u1_p1_7',
@@ -80,7 +80,7 @@ const QuestionReadingPart1: IQuestion[] = [{
         'There are six people in my family.',
         'There are four people in my family'],
     correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part1/1_7.png'),
     difficultLevel: 3
 }, {
     id: 'r_s1_b1_u1_p1_8',
@@ -91,7 +91,7 @@ const QuestionReadingPart1: IQuestion[] = [{
         'A boy is with his grandmother.',
         'A boy is with his dad'],
     correctAnswer: 1,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part1/1_8.png'),
     difficultLevel: 3
 }, {
     id: 'r_s1_b1_u1_p1_9',
@@ -102,7 +102,7 @@ const QuestionReadingPart1: IQuestion[] = [{
         'An old man is looking at his granddaughter',
         'An old woman is talking to her grandson'],
     correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part1/1_9.png'),
     difficultLevel: 3
 },
     //Unit 2
@@ -115,7 +115,7 @@ const QuestionReadingPart1: IQuestion[] = [{
             'Hand',
             'Feed'],
         correctAnswer: 0,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part1/2_1.png'),
         difficultLevel: 3
     }, {
         id: 'r_s1_b1_u2_p1_2',
@@ -126,7 +126,7 @@ const QuestionReadingPart1: IQuestion[] = [{
             'Glasses',
             'Glassy'],
         correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part1/2_2.png'),
         difficultLevel: 3
     }, {
         id: 'r_s1_b1_u2_p1_3',
@@ -137,7 +137,7 @@ const QuestionReadingPart1: IQuestion[] = [{
             'Pigtail',
             'Ponytail'],
         correctAnswer: 2,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part1/2_3.png'),
         difficultLevel: 3
     }, {
         id: 'r_s1_b1_u2_p1_4',
@@ -148,7 +148,7 @@ const QuestionReadingPart1: IQuestion[] = [{
             'Tall',
             'Small'],
         correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part1/2_4.png'),
         difficultLevel: 3
     }, {
         id: 'r_s1_b1_u2_p1_5',
@@ -159,7 +159,7 @@ const QuestionReadingPart1: IQuestion[] = [{
             'Mustache',
             'Curly hair'],
         correctAnswer: 2,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part1/2_5.png'),
         difficultLevel: 3
     }, {
         id: 'r_s1_b1_u2_p1_6',
@@ -170,7 +170,7 @@ const QuestionReadingPart1: IQuestion[] = [{
             'She has long hair',
             'She has a ponytail'],
         correctAnswer: 0,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part1/2_6.png'),
         difficultLevel: 3
     }, {
         id: 'r_s1_b1_u2_p1_7',
@@ -181,7 +181,7 @@ const QuestionReadingPart1: IQuestion[] = [{
             'He has a beard',
             'He has a mustache'],
         correctAnswer: 2,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part1/2_7.png'),
         difficultLevel: 3
     }, {
         id: 'r_s1_b1_u2_p1_8',
@@ -192,7 +192,7 @@ const QuestionReadingPart1: IQuestion[] = [{
             'My grandmother has long blond hair.',
             'My grandfather has short white hair.'],
         correctAnswer: 2,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part1/2_8.png'),
         difficultLevel: 3
     }, {
         id: 'r_s1_b1_u2_p1_9',
@@ -203,7 +203,7 @@ const QuestionReadingPart1: IQuestion[] = [{
             'My sister wears glasses.',
             'My sister has a glass.'],
         correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part1/2_9.png'),
         difficultLevel: 3
     }];
 
@@ -309,7 +309,7 @@ const QuestionReadingPart3: IQuestion[] = [{
         'Five',
         'Three'],
     correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part3/1_123.png'),
     difficultLevel: 3,
     comeWith: ['r_s1_b1_u1_p3_1', 'r_s1_b1_u1_p3_2', 'r_s1_b1_u1_p3_3']
 }, {
@@ -321,7 +321,7 @@ const QuestionReadingPart3: IQuestion[] = [{
         'Watching TV',
         'Listening to music'],
     correctAnswer: 1,
-    imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part3/1_123.png'),
     difficultLevel: 3,
     comeWith: ['r_s1_b1_u1_p3_1', 'r_s1_b1_u1_p3_2', 'r_s1_b1_u1_p3_3']
 }, {
@@ -333,7 +333,7 @@ const QuestionReadingPart3: IQuestion[] = [{
         'She makes yummy food.',
         'She enjoys eating out'],
     correctAnswer: 1,
-    imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part3/1_123.png'),
     difficultLevel: 3,
     comeWith: ['r_s1_b1_u1_p3_1', 'r_s1_b1_u1_p3_2', 'r_s1_b1_u1_p3_3']
 }, {
@@ -345,7 +345,7 @@ const QuestionReadingPart3: IQuestion[] = [{
         'He is going to visit his grandfather next Friday',
         'He is going fishing this weekend'],
     correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part3/1_45.png'),
     difficultLevel: 3,
     comeWith: ['r_s1_b1_u1_p3_4', 'r_s1_b1_u1_p3_5']
 }, {
@@ -357,7 +357,7 @@ const QuestionReadingPart3: IQuestion[] = [{
         'He wrote a letter',
         'He caught some fish'],
     correctAnswer: 2,
-    imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
+    imageAsset: require('../assets/images/step1/imagereading/r_part3/1_45.png'),
     difficultLevel: 3,
     comeWith: ['r_s1_b1_u1_p3_4', 'r_s1_b1_u1_p3_5']
 },
@@ -371,7 +371,7 @@ const QuestionReadingPart3: IQuestion[] = [{
             '90 pounds',
             '5 feet'],
         correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part3/2_123.png'),
         difficultLevel: 3,
         comeWith: ['r_s1_b1_u2_p3_1', 'r_s1_b1_u2_p3_2', 'r_s1_b1_u2_p3_3']
     }, {
@@ -383,7 +383,7 @@ const QuestionReadingPart3: IQuestion[] = [{
             'Brown',
             'Blond'],
         correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part3/2_123.png'),
         difficultLevel: 3,
         comeWith: ['r_s1_b1_u2_p3_1', 'r_s1_b1_u2_p3_2', 'r_s1_b1_u2_p3_3']
     }, {
@@ -395,7 +395,7 @@ const QuestionReadingPart3: IQuestion[] = [{
             'Straight',
             'Wavy'],
         correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part3/2_123.png'),
         difficultLevel: 3,
         comeWith: ['r_s1_b1_u2_p3_1', 'r_s1_b1_u2_p3_2', 'r_s1_b1_u2_p3_3']
     }, {
@@ -407,7 +407,7 @@ const QuestionReadingPart3: IQuestion[] = [{
             'She had her hair cut',
             'She called a hair salon'],
         correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part3/2_45.png'),
         difficultLevel: 3,
         comeWith: ['r_s1_b1_u2_p3_4', 'r_s1_b1_u2_p3_5']
     }, {
@@ -419,7 +419,7 @@ const QuestionReadingPart3: IQuestion[] = [{
             'Get new glasses',
             'Meet Lucy'],
         correctAnswer: 2,
-        imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
+        imageAsset: require('../assets/images/step1/imagereading/r_part3/2_45.png'),
         difficultLevel: 3,
         comeWith: ['r_s1_b1_u2_p3_4', 'r_s1_b1_u2_p3_5']
     }
