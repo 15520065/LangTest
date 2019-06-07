@@ -199,7 +199,7 @@ class DataSync {
         return images.map(image => {
             if (typeof image === 'string') {
                 // Image.abortPrefetch(image);
-                console.log(image);
+                // console.log(image);
                 return Image.prefetch(image);
             } else {
                 return Asset.fromModule(image).downloadAsync();
@@ -219,7 +219,7 @@ class DataSync {
                     FileSystem.documentDirectory + UtilHelper._getFileName(audio)
                 )
                     .then(async ({uri}) => {
-                        console.log("cacheAudio - " + uri)
+                        // console.log("cacheAudio - " + uri)
                     })
                     .catch(error => {
                         console.log('ERROR Loading Audio - ' + audio + " : " + error);

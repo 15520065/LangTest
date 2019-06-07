@@ -174,7 +174,7 @@ export default class QuizScreenContainer extends React.Component<QuizScreenConta
             quizStore.state.currentQuestion,
             quizStore.state.uncorrectedAnswer,
             Math.ceil(quizStore.state.doingTimer / 60000));
-    }
+    };
 
     quizOver = () => {
         this.saveQuizResult();

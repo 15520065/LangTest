@@ -42,6 +42,7 @@ class QuizService implements IQuizService{
     reset(): void {
         this._questionList = null;
     }
+
     //Calculator the number of question for each type by percent
     //Because of the rounding, the total number of question may not true, so we trim down or scale random type of question
     //Then scan for the number of question of each type, the number of difficult level may increase by one two but not over
@@ -103,6 +104,7 @@ class QuizService implements IQuizService{
 
         this._questionList = resQuestionList;
     }
+
     async initTest(type: QuestionType, numberOfQuestion: number, difficultLevel: number, timer: number): Promise<void> {
         this._lastTimer = timer;
         switch(type){
@@ -199,15 +201,15 @@ class QuizService implements IQuizService{
                 this._srcQuestionList = this._dataQuestion[6];
                 break;
         }
-
-        //TODO
-        let data = UtilHelper._objectToMap(DataSync.getExam().exams[1].step1.listening);
-        console.log("data ---------- ");
-        UtilHelper._printMapConsole(data)
-        console.log("data ---------- ");
-        UtilHelper._printMapConsole(UtilHelper._objectToMap(this._srcQuestionList));
-
-        this._srcQuestionList = DataSync.getExam().exams[1].step1.listening;
+        //
+        // //TODO
+        // let data = UtilHelper._objectToMap(DataSync.getExam().exams[1].step1.listening);
+        // console.log("data ---------- ");
+        // UtilHelper._printMapConsole(data)
+        // console.log("data ---------- ");
+        // UtilHelper._printMapConsole(UtilHelper._objectToMap(this._srcQuestionList));
+        //
+        // this._srcQuestionList = DataSync.getExam().exams[1].step1.listening;
 
         var resQuestionList : IQuestion[] = new Array();
         //Suffer question 
