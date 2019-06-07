@@ -23,8 +23,7 @@ import FlatButton from 'react-native-flat-button'
 import {heightPercentageToDP, widthPercentageToDP} from "../../helper/ratioHelper";
 
 class SampleScreen extends React.Component {
-    topic = null;
-    topicData = null;
+    exam = null;
 
     static navigationOptions = {
         header: null // !!! Hide Header
@@ -34,20 +33,24 @@ class SampleScreen extends React.Component {
         super(props);
         this.state = {};
 
-        // this.topic = props.navigation.getParam('topic', null);
-        this.topic = {
-            id: 2,
-            name: 'Sample 1'
-        };
+        this.exam = props.navigation.getParam('exam', null);
     }
 
     _openStep = (index, name) => {
         // Toast.show('This is a long toast.', Toast.LONG);
         const {navigation} = this.props;
 
+        let stepData;
+        if (index === 0) {
+            stepData = this.props.step1;
+        } else {
+            stepData = this.props.step2;
+        }
+
         navigation.navigate('StepScreen', {
             name: name,
-            index: index
+            index: index,
+            stepData: stepData
         });
     };
 
@@ -226,7 +229,7 @@ class SampleScreen extends React.Component {
                         }
                     </Left>
                     <Body>
-                    <Title>{this.topic.name}</Title>
+                    <Title>{this.exam.name}</Title>
                     </Body>
                     <Right>
 

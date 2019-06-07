@@ -5,19 +5,12 @@ import styles from './SliderEntry.style';
 
 export default class SliderEntry extends Component {
 
-    // static propTypes = {
-    //     data: PropTypes.object.isRequired,
-    //     even: PropTypes.bool,
-    //     parallax: PropTypes.bool,
-    //     parallaxProps: PropTypes.object
-    // };
-
     get image () {
-        const { data: { illustration }, parallax, parallaxProps, even } = this.props;
+        const { data: { img }, parallax, parallaxProps, even } = this.props;
 
         return parallax ? (
             <ParallaxImage
-              source={{ uri: illustration }}
+              source={{ uri: img }}
               containerStyle={[styles.imageContainer, even ? styles.imageContainerEven : {}]}
               style={styles.image}
               parallaxFactor={0.4}
@@ -27,14 +20,22 @@ export default class SliderEntry extends Component {
             />
         ) : (
             <Image
-              source={{ uri: illustration }}
+              source={{ uri: img }}
               style={styles.image}
             />
         );
     }
 
+
+    _openStep = (index) => {
+        const {navigation, data} = this.props;
+        navigation.navigate('SampleScreen', {
+            exam: data
+        });
+    };
+
     render () {
-        const { data: { title, subtitle }, even } = this.props;
+        const { data: { id, diff,img, title,step1,step2 }, even } = this.props;
 
         const uppercaseTitle = title ? (
             <Text
@@ -49,7 +50,7 @@ export default class SliderEntry extends Component {
             <TouchableOpacity
               activeOpacity={1}
               style={styles.slideInnerContainer}
-              onPress={() => { alert(`You've clicked '${title}'`); }}
+              onPress={this._openStep}
               >
                 <View style={styles.shadow} />
                 <View style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}>

@@ -35,10 +35,25 @@ class StepScreen extends React.Component {
         this.state = {};
 
         let name = props.navigation.getParam('name', null);
+        let index = props.navigation.getParam('index', null);
+        let stepData = props.navigation.getParam('stepData', null);
+
         this.step = {
             name: name,
-            index: 1
+            index: index,
+            stepData : stepData
         };
+    }
+
+    _readingOrListeningClick(item, index) {
+        const {navigation} = this.props;
+
+        if (item.name === 'Listening') {
+            sharedQuizService.initTest(QuestionType.part1, 5, 3, 5 * 60 * 1000);
+            navigation.navigate('QuizScreen');
+        } else {
+
+        }
     }
 
     //region ------------- TEST SCREEN
@@ -175,16 +190,16 @@ class StepScreen extends React.Component {
     render() {
         const items = [
             {
-                name: 'Step 1',
+                name: 'Listening',
                 code: DataHelper._getPercent(1),
-                icon: require('../../../assets/images/home/bg/bgs10.png'),
-                iconText: require('../../../assets/images/home/text/reading-1.png')
-            },
-            {
-                name: 'Step 2',
-                code: DataHelper._getPercent(2),
                 icon: require('../../../assets/images/home/bg/bgs5.png'),
                 iconText: require('../../../assets/images/home/text/listening-1.png')
+            },
+            {
+                name: 'Reading',
+                code: DataHelper._getPercent(),
+                icon: require('../../../assets/images/home/bg/bgs10.png'),
+                iconText: require('../../../assets/images/home/text/reading-1.png')
             },
         ];
 
@@ -229,9 +244,7 @@ class StepScreen extends React.Component {
                                 style={sampleStyles.gridView}
                                 renderItem={(item, index) => (
                                     <TouchableOpacity
-                                        onPress={() => {
-                                            // this._openStep1(index);
-                                        }}
+                                        onPress={() => this._readingOrListeningClick(item, index)}
                                         style={[
                                             sampleStyles.viewContainer,
                                             {
@@ -291,7 +304,7 @@ class StepScreen extends React.Component {
                                     fontSize: 22
                                 }}
                             >
-                                Test
+                                Test All
                             </FlatButton>
                         </View>
                     </View>

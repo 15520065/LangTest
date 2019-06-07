@@ -22,6 +22,7 @@ import Carousel from 'react-native-snap-carousel';
 import SliderEntry from "../../components/SliderEntry";
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import {widthPercentageToDP} from "../../helper/ratioHelper";
+import DataSync from "../../helper/DataSync";
 
 const NumItems = 6;
 const Items = [];
@@ -30,39 +31,6 @@ for (let i = 0; i < NumItems; i++) {
 }
 
 const {width: viewportWidth, height: viewportHeight} = Dimensions.get('window');
-
-const ENTRIES1 = [
-    {
-        title: 'Beautiful and dramatic Antelope Canyon',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/UYiroysl.jpg'
-    },
-    {
-        title: 'Earlier this morning, NYC',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/UPrs1EWl.jpg'
-    },
-    {
-        title: 'White Pocket Sunset',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-        illustration: 'https://i.imgur.com/MABUbpDl.jpg'
-    },
-    {
-        title: 'Acrocorinth, Greece',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/KZsmUi2l.jpg'
-    },
-    {
-        title: 'The lone tree, majestic landscape of New Zealand',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/2nCt3Sbl.jpg'
-    },
-    {
-        title: 'Middle Earth, Germany',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/lceHsT6l.jpg'
-    }
-];
 
 export default class HomeScreen extends PureComponent {
 
@@ -103,19 +71,6 @@ export default class HomeScreen extends PureComponent {
     _openProfileScreen() {
         const {navigation} = this.props;
         navigation.navigate('ProfileScreen');
-    }
-
-    _openStep1(index) {
-        // Toast.show('This is a long toast.', Toast.LONG);
-        const {navigation} = this.props;
-        switch (index) {
-            case 0:
-                navigation.navigate('SampleScreen');
-                break;
-            case 1:
-                navigation.navigate('ProfileScreen');
-                break;
-        }
     }
 
     _onPressCard(index) {
@@ -168,15 +123,7 @@ export default class HomeScreen extends PureComponent {
     };
 
     render() {
-        const items = [
-            {name: 'Step 1', code: DataHelper._getPercent(1), icon: require('../../../assets/icon/i1.png')},
-            {name: 'Step 2', code: DataHelper._getPercent(2), icon: require('../../../assets/icon/i2.png')},
-            // {name: 'Conversations', code: DataHelper._getPercent(3), icon: require('../../assets/icon/i3.png')},
-            // {name: 'Talks', code: DataHelper._getPercent(4), icon: require('../../assets/icon/i4.png')},
-            // {name: 'Incomplete Sentences', code: DataHelper._getPercent(5), icon: require('../../assets/icon/i5.png')},
-            // {name: 'Text Completion', code: DataHelper._getPercent(6), icon: require('../../assets/icon/i6.png')},
-            // {name: 'Passages', code: DataHelper._getPercent(7), icon: require('../../assets/icon/i7.png')},
-        ];
+        const CarouselData = DataSync.getExam()?DataSync.getExam().exams:[];
         const {navigation} = this.props;
         return (
 
@@ -223,13 +170,6 @@ export default class HomeScreen extends PureComponent {
                             color: '#ffffff', fontWeight: 'bold',
                             marginTop: 10, fontSize: 16,
                         }}>{this.state.name}</Text>
-                        {/* <View style={{flexDirection: 'row',}}>
-                            <Image style={{marginTop: 10,}} source={require('../../assets/images/location_on.png')}/>
-                            <Text style={{color: '#ffffff', marginTop: 10, fontSize: 14, marginLeft: 5}}>Craiova</Text>
-                            <Image style={{marginTop: 10, marginLeft: 15}}
-                                   source={require('../../assets/images/work.png')}/>
-                            <Text style={{color: '#ffffff', marginTop: 10, marginLeft: 5}}>Desiger</Text>
-                        </View> */}
                     </ImageBackground>
 
                     <View style={styles.positionAbsolute}>
@@ -295,9 +235,9 @@ export default class HomeScreen extends PureComponent {
                         marginTop: widthPercentageToDP(19)}}>
                         <Carousel
                             ref={c => this._slider1Ref = c}
-                            data={ENTRIES1}
+                            data={CarouselData}
                             renderItem={({item, index}) => {
-                                return <SliderEntry data={item} even={false} />;
+                                return <SliderEntry navigation={this.props.navigation}  data={item} even={false} />;
                             }}
                             sliderWidth={viewportWidth}
                             itemWidth={widthPercentageToDP(75) + widthPercentageToDP(1) * 2}

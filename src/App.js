@@ -120,7 +120,6 @@ export default class App extends React.Component {
         };
 
 
-
     }
 
     _loadAssetsAsync = async () => {
@@ -141,11 +140,14 @@ export default class App extends React.Component {
             audioAsset = asset.audioAsset;
         }
 
-        let audioAssetPromise = DataSync.cacheAudio(audioAsset);
-        let imageAssetPromise = DataSync.cacheImages(imageAsset);
+        let audioAssetPromise = audioAsset ? DataSync.cacheAudio(audioAsset) : [];
+        let imageAssetPromise = imageAsset ? DataSync.cacheImages(imageAsset) : [];
 
         //TODO: if (!DataSync.getVoca() || !DataSync.getExam()) {
-        if (DataSync.getVoca() === undefined || DataSync.getVoca() === null || Object.entries(DataSync.getVoca()).length === 0) {
+        let voca = DataSync.getVoca();
+        let exam = DataSync.getExam();
+        if ((voca === undefined || voca === null || Object.entries(voca).length === 0)
+            || (exam === undefined || exam === null || Object.entries(exam).length === 0)) {
             Alert.alert(
                 'No Internet Access',
                 'Please check your Internet connection',
@@ -177,9 +179,8 @@ export default class App extends React.Component {
                 <AppLoading
                     startAsync={this._loadAssetsAsync}
                     onFinish={() => this.setState({loading: false})}
-                    onError={() => {
-                        this.setState({loading: false});
-                        console.warn("AppLoading Error");
+                    onError={(error) => {
+                        console.warn("AppLoading Error + " + error);
                     }}
                 />
             );

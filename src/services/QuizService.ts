@@ -7,6 +7,8 @@ import QuestionDataPart4 from '../data/QuestionDataPart4';
 import QuestionDataPart5 from '../data/QuestionDataPart5';
 import QuestionDataPart7 from '../data/QuestionDataPart7';
 import QuestionDataPart6 from '../data/QuestionDataPart6';
+import DataSync from '../helper/DataSync';
+import UtilHelper from '../helper/UtilHelper';
 
 
 //For this app, we assume that 
@@ -197,6 +199,15 @@ class QuizService implements IQuizService{
                 this._srcQuestionList = this._dataQuestion[6];
                 break;
         }
+
+        //TODO
+        let data = UtilHelper._objectToMap(DataSync.getExam().exams[1].step1.listening);
+        console.log("data ---------- ");
+        UtilHelper._printMapConsole(data)
+        console.log("data ---------- ");
+        UtilHelper._printMapConsole(UtilHelper._objectToMap(this._srcQuestionList));
+
+        this._srcQuestionList = DataSync.getExam().exams[1].step1.listening;
 
         var resQuestionList : IQuestion[] = new Array();
         //Suffer question 

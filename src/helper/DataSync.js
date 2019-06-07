@@ -6,19 +6,6 @@ import {Image} from "react-native";
 import {Asset, FileSystem, Font} from "expo";
 
 class DataSync {
-    // _checkVersion = async () => {
-    //
-    //     const response = await fetch(SERVER_URL + '/version.json');
-    //     if (!response)
-    //         return false;
-    //     const json = await response.json();
-    //
-    //     if (json.exam === 1 || json.voca === 1) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
 
     constructor() {
         if (!DataSync.instance) {
@@ -52,36 +39,47 @@ class DataSync {
             .then(response => response.json())
             .then(async (versionServer) => {
                 // Fetch Version
+                let imageAsset = [];
+                let audioAsset = [];
+
                 let version = UtilHelper._mapToObject(await LocalHelper._getMapData(LocalHelper.version));
-                LocalHelper._storeMapData(LocalHelper.version, UtilHelper._objectToMap(versionServer));
-                let notInit = false;
-                if ((version.exam === undefined || version.voca === undefined)) {
-                    notInit = true;
-                }
 
                 // Fetch Vocabulary
-                if (version.voca !== versionServer.voca || notInit) {
-                    console.log('Fetch Voca From Server');
+                if (version.voca === undefined || version.voca !== versionServer.voca) {
+                    console.log('Fetch Voca From Server ' + version.voca);
                     await this._syncVocaData();
                     LocalHelper._storeMapData(LocalHelper.voca, UtilHelper._objectToMap(instance.getVoca()));
+
+                    audioAsset = [...audioAsset,
+                        ...instance._getAudioAssetFromObject(instance.getVoca())];
                 } else {
                     let voca = UtilHelper._mapToObject(await LocalHelper._getMapData(LocalHelper.voca));
                     instance.setVoca(voca);
                 }
 
                 // Fetch Exam
-                // if (version.exam !== versionServer.exam || notInit) {
-                //     console.log('Fetch Exam From Server')
-                //     await this._syncExamData();
-                //     LocalHelper._storeMapData(LocalHelper.exam, UtilHelper._objectToMap(instance.getExam()))
-                //
-                // }else {
-                //     let exam = UtilHelper._mapToObject(await LocalHelper._getMapData(LocalHelper.exam))
-                //     instance.setExam(exam);
-                // }
+                if (version.exam === undefined || version.exam !== versionServer.exam) {
+                    console.log('Fetch Exam From Server ' + version.exam + " " + versionServer.exam);
+                    await this._syncExamData();
+                    LocalHelper._storeMapData(LocalHelper.exam, UtilHelper._objectToMap(instance.getExam()))
 
-                let assetObject = instance._getAssetFromObject(instance.getVoca());
-                return assetObject;
+                    audioAsset = [...audioAsset,
+                        ...instance._getAudioAssetFromObject(instance.getExam())];
+                }else {
+                    let exam = UtilHelper._mapToObject(await LocalHelper._getMapData(LocalHelper.exam))
+                    instance.setExam(exam);
+                }
+
+
+                imageAsset = [...imageAsset,
+                    ...instance._getImageAssetFromObject(instance.getVoca(), instance.getExam())];
+
+                LocalHelper._storeMapData(LocalHelper.version, UtilHelper._objectToMap(versionServer));
+
+                return {
+                    imageAsset:imageAsset,
+                    audioAsset:audioAsset
+                };
             })
             .catch(async (error) => {
                 console.warn('_checkVersion Error' + error);
@@ -124,21 +122,19 @@ class DataSync {
             });
     };
 
-    _getAssetFromObject(...objects) {
+    _getImageAssetFromObject(...objects) {
         let imageAsset = [];
-        let audioAsset = [];
 
         if (objects) {
             objects.forEach(object => {
                 if (object) {
                     Object.values(this.flatten(object)).forEach(value => {
-                        if (value.includes('http')) {
-                            if (value.includes('.mp3') || value.includes('.mp4') || value.includes('.wav')) {
-                                audioAsset.push(value);
-                            }
+                        if (value && typeof value === "string" && value.includes('http')) {
                             if (value.includes('.png') || value.includes('.jpg')) {
                                 imageAsset.push(value);
                             }
+                        } else if (value === undefined) {
+                            console.log("Error _getAudioAssetFromObject : undefined" );
                         }
                     });
                 }
@@ -146,10 +142,30 @@ class DataSync {
         }
 
 
-        return {
-            imageAsset: imageAsset,
-            audioAsset: audioAsset,
-        };
+        return imageAsset;
+    }
+
+    _getAudioAssetFromObject(...objects) {
+        let audioAsset = [];
+
+        if (objects) {
+            objects.forEach(object => {
+                if (object) {
+                    Object.values(this.flatten(object)).forEach(value => {
+                        if (value && typeof value === "string" && value.includes('http')) {
+                            if (value.includes('.mp3') || value.includes('.mp4') || value.includes('.wav')) {
+                                audioAsset.push(value);
+                            }
+                        } else if (value === undefined) {
+                            console.log("Error _getAudioAssetFromObject : undefined" );
+                        }
+                    });
+                }
+            });
+        }
+
+
+        return audioAsset;
     }
 
     flatten = (data) => {
@@ -203,16 +219,10 @@ class DataSync {
                     FileSystem.documentDirectory + UtilHelper._getFileName(audio)
                 )
                     .then(async ({uri}) => {
-                        // this.soundObject = new Audio.Sound();
-                        // try {
-                        //     await this.soundObject.loadAsync({uri: FileSystem.documentDirectory + UtilHelper._getFileName(audio)});
-                        //     this.soundObject.playAsync();
-                        // } catch (e) {
-                        //     console.warn('ERROR Loading Audio', e);
-                        // }
+                        console.log("cacheAudio - " + uri)
                     })
                     .catch(error => {
-                        console.warn('ERROR Loading Audio' + error);
+                        console.log('ERROR Loading Audio - ' + audio + " : " + error);
                     });
             } else {
                 return Asset.fromModule(audio).downloadAsync();

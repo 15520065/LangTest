@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react';
+import React, {Component, PureComponent} from 'react';
 import {
     Dimensions,
     Image,
@@ -6,15 +6,17 @@ import {
     Text,
     TouchableHighlight,
     View,
-	TouchableOpacity,
+    TouchableOpacity,
 } from 'react-native';
 import Slider from 'react-native-slider';
-import { Asset, Audio, Font } from 'expo';
-import { MaterialIcons } from '@expo/vector-icons';
+import {Asset, Audio, FileSystem, Font} from 'expo';
+import {MaterialIcons} from '@expo/vector-icons';
 import PropTypes from 'prop-types';
-import { heightPercentageToDP } from '../../helper/ratioHelper';
-import { Button } from 'native-base';
-const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
+import {heightPercentageToDP} from '../../helper/ratioHelper';
+import {Button} from 'native-base';
+import UtilHelper from "../../helper/UtilHelper";
+
+const {width: DEVICE_WIDTH, height: DEVICE_HEIGHT} = Dimensions.get('window');
 const BACKGROUND_COLOR = '#FFFFFF';
 const DISABLED_OPACITY = 0.5;
 const FONT_SIZE = 12;
@@ -27,8 +29,8 @@ export default class AudioPlayer extends PureComponent {
         super(props);
         this.index = 0;
         this.isSeeking = false;
-		this.shouldPlayAtEndOfSeek = false;
-		this.playbackInstance = new Audio.Sound();
+        this.shouldPlayAtEndOfSeek = false;
+        this.playbackInstance = new Audio.Sound();
         this.state = {
             playbackInstanceName: LOADING_STRING,
             playbackInstancePosition: null,
@@ -39,217 +41,228 @@ export default class AudioPlayer extends PureComponent {
             isLoading: true,
             volume: 1.0,
             rate: 1.0,
-		};
+        };
 
 
     }
-	
+
     componentDidMount() {
-	    Audio.setAudioModeAsync({
-	        allowsRecordingIOS: false,
-	        interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-	        playsInSilentModeIOS: true,
-	        shouldDuckAndroid: true,
-	        interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-	        playThroughEarpieceAndroid: false
-		});
-		
-		this.playbackInstance.setOnPlaybackStatusUpdate(this._onPlaybackStatusUpdate);
-		this._loadNewSound();
-	}
-	
-	async componentDidUpdate(prevProps, prevState, snapshot){
-		if(prevProps.uri !== this.props.uri){
-			await this._loadNewSound();
-		}
-	}
-	componentWillUnmount() {
-		if (this.playbackInstance != null) {
-			this.playbackInstance.stopAsync();
-	        this.playbackInstance.unloadAsync();
-	        this.playbackInstance.setOnPlaybackStatusUpdate(null);
-	        this.playbackInstance = null;
-	    }
-	}
-	
-	
+        Audio.setAudioModeAsync({
+            allowsRecordingIOS: false,
+            interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+            playsInSilentModeIOS: true,
+            shouldDuckAndroid: true,
+            interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+            playThroughEarpieceAndroid: false
+        });
+
+        this.playbackInstance.setOnPlaybackStatusUpdate(this._onPlaybackStatusUpdate);
+        this._loadNewSound();
+    }
+
+    async componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.uri !== this.props.uri) {
+            await this._loadNewSound();
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.playbackInstance != null) {
+            this.playbackInstance.stopAsync();
+            this.playbackInstance.unloadAsync();
+            this.playbackInstance.setOnPlaybackStatusUpdate(null);
+            this.playbackInstance = null;
+        }
+    }
+
+
     async _loadNewSound() {
-		const source = this.props.uri;
-		this._updateScreenForLoading(true);
-		await this.playbackInstance.unloadAsync();
-		await this.playbackInstance.loadAsync(source);
+        const source = this.props.uri;
+        this._updateScreenForLoading(true);
+        await this.playbackInstance.unloadAsync();
+
+        if (typeof source === 'string') {
+            console.log('play' + source);
+            await this.playbackInstance.loadAsync(
+                {
+                    uri: FileSystem.documentDirectory + UtilHelper._getFileName( source )
+                });
+        } else {
+            await this.playbackInstance.loadAsync(source);
+        }
+
         // await soundObject.loadAsync(source, initialStatus, downloadFirst);
-		await this.playbackInstance.playAsync();
-		this._updateScreenForLoading(false);
+        await this.playbackInstance.playAsync();
+        this._updateScreenForLoading(false);
     }
 
     _updateScreenForLoading(isLoading) {
-	    if (isLoading) {
-	        this.setState({
-	            isPlaying: false,
-	            playbackInstanceName: LOADING_STRING,
-	            playbackInstanceDuration: null,
-	            playbackInstancePosition: null,
-	            isLoading: true,
-	        });
-	    } else {
-	        this.setState({
-	            playbackInstanceName: this.props.name,
-	            isLoading: false,
-	        });
-	    }
+        if (isLoading) {
+            this.setState({
+                isPlaying: false,
+                playbackInstanceName: LOADING_STRING,
+                playbackInstanceDuration: null,
+                playbackInstancePosition: null,
+                isLoading: true,
+            });
+        } else {
+            this.setState({
+                playbackInstanceName: this.props.name,
+                isLoading: false,
+            });
+        }
     }
 
-	_onPlaybackStatusUpdate = status => {
-	    if (status.isLoaded) {
-	        this.setState({
-	            playbackInstancePosition: status.positionMillis,
-	            playbackInstanceDuration: status.durationMillis,
-	            shouldPlay: status.shouldPlay,
-	            isPlaying: status.isPlaying,
-	            isBuffering: status.isBuffering,
-	            rate: status.rate,
-	            volume: status.volume,
-	        });
-	        if (status.didJustFinish) {
-				this._onStopPressed();
-	            // this._advanceIndex(true);
-	            // this._updatePlaybackInstanceForIndex(true);
-	        }
-	    } else {
-	        if (status.error) {
-	            console.log(`FATAL PLAYER ERROR: ${status.error}`);
-	        }
-	    }
-	};
+    _onPlaybackStatusUpdate = status => {
+        if (status.isLoaded) {
+            this.setState({
+                playbackInstancePosition: status.positionMillis,
+                playbackInstanceDuration: status.durationMillis,
+                shouldPlay: status.shouldPlay,
+                isPlaying: status.isPlaying,
+                isBuffering: status.isBuffering,
+                rate: status.rate,
+                volume: status.volume,
+            });
+            if (status.didJustFinish) {
+                this._onStopPressed();
+                // this._advanceIndex(true);
+                // this._updatePlaybackInstanceForIndex(true);
+            }
+        } else {
+            if (status.error) {
+                console.log(`FATAL PLAYER ERROR: ${status.error}`);
+            }
+        }
+    };
 
-	_advanceIndex(forward) {
-	    this.playbackInstance.stopAsync();
-	}
+    _advanceIndex(forward) {
+        this.playbackInstance.stopAsync();
+    }
 
-	async _updatePlaybackInstanceForIndex(playing) {
-	    this._updateScreenForLoading(true);
-	    this._loadNewPlaybackInstance(playing);
-	}
+    async _updatePlaybackInstanceForIndex(playing) {
+        this._updateScreenForLoading(true);
+        this._loadNewPlaybackInstance(playing);
+    }
 
-	_onPlayPausePressed = () => {
-	    if (this.playbackInstance != null) {
-	        if (this.state.isPlaying) {
-	            this.playbackInstance.pauseAsync();
-	        } else {
-	            this.playbackInstance.playAsync();
-	        }
-	    }
-	};
+    _onPlayPausePressed = () => {
+        if (this.playbackInstance != null) {
+            if (this.state.isPlaying) {
+                this.playbackInstance.pauseAsync();
+            } else {
+                this.playbackInstance.playAsync();
+            }
+        }
+    };
 
-	_onStopPressed = () => {
-	    if (this.playbackInstance != null) {
-			this.playbackInstance.stopAsync();
-	    }
-	};
+    _onStopPressed = () => {
+        if (this.playbackInstance != null) {
+            this.playbackInstance.stopAsync();
+        }
+    };
 
-	_onForwardPressed = () => {
-	    if (this.playbackInstance != null) {
-	        this._advanceIndex(true);
-	        this._updatePlaybackInstanceForIndex(this.state.shouldPlay);
-	    }
-	};
+    _onForwardPressed = () => {
+        if (this.playbackInstance != null) {
+            this._advanceIndex(true);
+            this._updatePlaybackInstanceForIndex(this.state.shouldPlay);
+        }
+    };
 
-	_onBackPressed = () => {
-	    if (this.playbackInstance != null) {
-	        this._advanceIndex(false);
-	        this._updatePlaybackInstanceForIndex(this.state.shouldPlay);
-	    }
-	};
+    _onBackPressed = () => {
+        if (this.playbackInstance != null) {
+            this._advanceIndex(false);
+            this._updatePlaybackInstanceForIndex(this.state.shouldPlay);
+        }
+    };
 
-	_onVolumeSliderValueChange = value => {
-	    if (this.playbackInstance != null) {
-	        this.playbackInstance.setVolumeAsync(value);
-	    }
-	};
+    _onVolumeSliderValueChange = value => {
+        if (this.playbackInstance != null) {
+            this.playbackInstance.setVolumeAsync(value);
+        }
+    };
 
-	_trySetRate = async rate => {
-	    if (this.playbackInstance != null) {
-	        try {
-	            await this.playbackInstance.setRateAsync(rate);
-	        } catch (error) {
-	            // Rate changing could not be performed, possibly because the client's Android API is too old.
-	        }
-	    }
-	};
+    _trySetRate = async rate => {
+        if (this.playbackInstance != null) {
+            try {
+                await this.playbackInstance.setRateAsync(rate);
+            } catch (error) {
+                // Rate changing could not be performed, possibly because the client's Android API is too old.
+            }
+        }
+    };
 
-	_onRateSliderSlidingComplete = async value => {
-	    this._trySetRate(value * RATE_SCALE);
-	};
+    _onRateSliderSlidingComplete = async value => {
+        this._trySetRate(value * RATE_SCALE);
+    };
 
-	_onSeekSliderValueChange = value => {
-	    if (this.playbackInstance != null && !this.isSeeking) {
-	        this.isSeeking = true;
-	        this.shouldPlayAtEndOfSeek = this.state.shouldPlay;
-	        this.playbackInstance.pauseAsync();
-	    }
-	};
+    _onSeekSliderValueChange = value => {
+        if (this.playbackInstance != null && !this.isSeeking) {
+            this.isSeeking = true;
+            this.shouldPlayAtEndOfSeek = this.state.shouldPlay;
+            this.playbackInstance.pauseAsync();
+        }
+    };
 
-	_onSeekSliderSlidingComplete = async value => {
-	    if (this.playbackInstance != null) {
-	        this.isSeeking = false;
-	        const seekPosition = value * this.state.playbackInstanceDuration;
-	        if (this.shouldPlayAtEndOfSeek) {
-	            this.playbackInstance.playFromPositionAsync(seekPosition);
-	        } else {
-	            this.playbackInstance.setPositionAsync(seekPosition);
-	        }
-	    }
-	};
+    _onSeekSliderSlidingComplete = async value => {
+        if (this.playbackInstance != null) {
+            this.isSeeking = false;
+            const seekPosition = value * this.state.playbackInstanceDuration;
+            if (this.shouldPlayAtEndOfSeek) {
+                this.playbackInstance.playFromPositionAsync(seekPosition);
+            } else {
+                this.playbackInstance.setPositionAsync(seekPosition);
+            }
+        }
+    };
 
-	_getSeekSliderPosition() {
-	    if (
-	        this.playbackInstance != null &&
-			this.state.playbackInstancePosition != null &&
-			this.state.playbackInstanceDuration != null
-	    ) {
-	        return (
-	            this.state.playbackInstancePosition /
-				this.state.playbackInstanceDuration
-	        );
-	    }
-	    return 0;
-	}
+    _getSeekSliderPosition() {
+        if (
+            this.playbackInstance != null &&
+            this.state.playbackInstancePosition != null &&
+            this.state.playbackInstanceDuration != null
+        ) {
+            return (
+                this.state.playbackInstancePosition /
+                this.state.playbackInstanceDuration
+            );
+        }
+        return 0;
+    }
 
-	_getMMSSFromMillis(millis) {
-	    const totalSeconds = millis / 1000;
-	    const seconds = Math.floor(totalSeconds % 60);
-	    const minutes = Math.floor(totalSeconds / 60);
+    _getMMSSFromMillis(millis) {
+        const totalSeconds = millis / 1000;
+        const seconds = Math.floor(totalSeconds % 60);
+        const minutes = Math.floor(totalSeconds / 60);
 
-	    const padWithZero = number => {
-	        const string = number.toString();
-	        if (number < 10) {
-	            return '0' + string;
-	        }
-	        return string;
-	    };
-	    return padWithZero(minutes) + ':' + padWithZero(seconds);
-	}
+        const padWithZero = number => {
+            const string = number.toString();
+            if (number < 10) {
+                return '0' + string;
+            }
+            return string;
+        };
+        return padWithZero(minutes) + ':' + padWithZero(seconds);
+    }
 
-	_getTimestamp() {
-	    if (
-	        this.playbackInstance != null &&
-			this.state.playbackInstancePosition != null &&
-			this.state.playbackInstanceDuration != null
-	    ) {
-	        return `${this._getMMSSFromMillis(
-	            this.state.playbackInstancePosition
-	        )} / ${this._getMMSSFromMillis(
-	            this.state.playbackInstanceDuration
-	        )}`;
-	    }
-	    return '';
-	}
+    _getTimestamp() {
+        if (
+            this.playbackInstance != null &&
+            this.state.playbackInstancePosition != null &&
+            this.state.playbackInstanceDuration != null
+        ) {
+            return `${this._getMMSSFromMillis(
+                this.state.playbackInstancePosition
+            )} / ${this._getMMSSFromMillis(
+                this.state.playbackInstanceDuration
+            )}`;
+        }
+        return '';
+    }
 
-	render() {
-	    return(
-	        <View style={[styles.container, this.props.style]}>
-				{/* <View
+    render() {
+        return (
+            <View style={[styles.container, this.props.style]}>
+                {/* <View
 	                style={[
 	                    {
 	                        opacity: this.state.isLoading
@@ -258,59 +271,61 @@ export default class AudioPlayer extends PureComponent {
 	                    },
 	                ]}
 	            > */}
-				<View style={{flex: 1, 
-								flexDirection: 'row',
-								alignItems: 'center',
-								alignContent: 'center',
-								opacity: this.state.isLoading
-	                            ? DISABLED_OPACITY
-	                            : 1.0,}}>
-						<TouchableOpacity
-							style={[styles.buttonsContainerBase, styles.buttonsContainerTopRow]}
-	                        onPress={this._onPlayPausePressed}>
-	                            {this.state.isPlaying ? (
-	                                <MaterialIcons
-	                                    name="pause"
-	                                    size={40}
-	                                    color="#56D5FA"
-	                                />
-	                            ) : (
-	                                <MaterialIcons
-	                                    name="play-arrow"
-	                                    size={40}
-	                                    color="#56D5FA"
-	                                />
-	                            )}
-	                    </TouchableOpacity>
-					<Slider
-							style={styles.playbackSlider}
-							value={this._getSeekSliderPosition()}
-							onValueChange={this._onSeekSliderValueChange}
-							onSlidingComplete={this._onSeekSliderSlidingComplete}
-							thumbTintColor="#000000"
-							minimumTrackTintColor="#4CCFF9"
-							disabled={this.state.isLoading}
-					/>
-	
+                <View style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    alignContent: 'center',
+                    opacity: this.state.isLoading
+                        ? DISABLED_OPACITY
+                        : 1.0,
+                }}>
+                    <TouchableOpacity
+                        style={[styles.buttonsContainerBase, styles.buttonsContainerTopRow]}
+                        onPress={this._onPlayPausePressed}>
+                        {this.state.isPlaying ? (
+                            <MaterialIcons
+                                name="pause"
+                                size={40}
+                                color="#56D5FA"
+                            />
+                        ) : (
+                            <MaterialIcons
+                                name="play-arrow"
+                                size={40}
+                                color="#56D5FA"
+                            />
+                        )}
+                    </TouchableOpacity>
+                    <Slider
+                        style={styles.playbackSlider}
+                        value={this._getSeekSliderPosition()}
+                        onValueChange={this._onSeekSliderValueChange}
+                        onSlidingComplete={this._onSeekSliderSlidingComplete}
+                        thumbTintColor="#000000"
+                        minimumTrackTintColor="#4CCFF9"
+                        disabled={this.state.isLoading}
+                    />
 
-				</View>
-{/* 
+
+                </View>
+                {/*
 	            </View> */}
-	            <View style={styles.infoContainer}>
-	                    <Text style={[styles.text]}>
-	                        {this.state.isBuffering ? (
-	                            BUFFERING_STRING
-	                        ) : (
-	                            this._getTimestamp()
-	                        )}
-	                    </Text>
-						<Text style={[styles.textSmall]}>
-	                        {this.state.playbackInstanceName}
-	                    </Text>
-	            </View>
-	        </View>
-	    );
-	}
+                <View style={styles.infoContainer}>
+                    <Text style={[styles.text]}>
+                        {this.state.isBuffering ? (
+                            BUFFERING_STRING
+                        ) : (
+                            this._getTimestamp()
+                        )}
+                    </Text>
+                    <Text style={[styles.textSmall]}>
+                        {this.state.playbackInstanceName}
+                    </Text>
+                </View>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -321,10 +336,10 @@ const styles = StyleSheet.create({
     },
     infoContainer: {
         flex: 1,
-		flexDirection: 'column',
-		alignContent: 'center',
-		justifyContent: 'center',
-		marginTop: -heightPercentageToDP(2)
+        flexDirection: 'column',
+        alignContent: 'center',
+        justifyContent: 'center',
+        marginTop: -heightPercentageToDP(2)
     },
     detailsContainer: {
         height: heightPercentageToDP(6.25),
@@ -338,7 +353,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     playbackSlider: {
-		flex: 1,
+        flex: 1,
         marginLeft: 4,
         marginRight: 10,
     },
@@ -346,18 +361,18 @@ const styles = StyleSheet.create({
         fontSize: FONT_SIZE,
         minHeight: FONT_SIZE,
         textAlign: 'center'
-	},
-	textSmall: {
+    },
+    textSmall: {
         fontSize: 10,
         minHeight: 10,
-		textAlign: 'center',
-		color: '#9f9f9f'
+        textAlign: 'center',
+        color: '#9f9f9f'
     },
     buttonsContainerBase: {
         flex: 1,
-		flexDirection: 'row',
-		alignItems: 'center',
-		alignContent: 'center'
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignContent: 'center'
     },
     buttonsContainerTopRow: {
         maxHeight: 40,
