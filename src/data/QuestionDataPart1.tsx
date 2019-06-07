@@ -10,8 +10,8 @@ const QuestionDataPart1: IQuestion[] = [
         question: QUESTION_PHASE,
         answer: ['A', 'B', 'C'],
         correctAnswer: 1,
-        imageAsset: require('../../assets/images/step1/imagelistening/book1part1/1_1.png'),
-        audioAsset: require('../../assets/audio/Step1/Audio_Step1_Book1/002.mp3'),
+        imageAsset: require('../../assets/images/step1/imagelistening/book1part1/1q1.png'),
+        audioAsset: require('../../assets/audio/step1/audiostep1book1/002.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_003',
@@ -19,8 +19,8 @@ const QuestionDataPart1: IQuestion[] = [
         question: QUESTION_PHASE,
         answer: ['A', 'B', 'C'],
         correctAnswer: 2,
-        imageAsset: require('../../assets/images/step1/imagelistening/book1part1/1_2.png'),
-        audioAsset: require('../../assets/audio/Step1/Audio_Step1_Book1/003.mp3'),
+        imageAsset: require('../../assets/images/step1/imagelistening/book1part1/1q2.png'),
+        audioAsset: require('../../assets/audio/step1/audiostep1book1/003.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_004',
@@ -28,8 +28,8 @@ const QuestionDataPart1: IQuestion[] = [
         question: QUESTION_PHASE,
         answer: ['A', 'B', 'C'],
         correctAnswer: 0,
-        imageAsset: require('../../assets/images/step1/imagelistening/book1part1/1_3.png'),
-        audioAsset: require('../../assets/audio/Step1/Audio_Step1_Book1/004.mp3'),
+        imageAsset: require('../../assets/images/step1/imagelistening/book1part1/1q3.png'),
+        audioAsset: require('../../assets/audio/step1/audiostep1book1/004.mp3'),
         difficultLevel: 3
     },
     //Unit 2
@@ -39,8 +39,8 @@ const QuestionDataPart1: IQuestion[] = [
         question: QUESTION_PHASE,
         answer: ['A', 'B', 'C'],
         correctAnswer: 0,
-        imageAsset: require('../../assets/images/step1/imagelistening/book1part1/2_1.png'),
-        audioAsset: require('../../assets/audio/Step1/Audio_Step1_Book1/028.mp3'),
+        imageAsset: require('../../assets/images/step1/imagelistening/book1part1/2q1.png'),
+        audioAsset: require('../../assets/audio/step1/audiostep1book1/028.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_029',
@@ -48,8 +48,8 @@ const QuestionDataPart1: IQuestion[] = [
         question: QUESTION_PHASE,
         answer: ['A', 'B', 'C'],
         correctAnswer: 1,
-        imageAsset: require('../../assets/images/step1/imagelistening/book1part1/2_2.png'),
-        audioAsset: require('../../assets/audio/Step1/Audio_Step1_Book1/029.mp3'),
+        imageAsset: require('../../assets/images/step1/imagelistening/book1part1/2q2.png'),
+        audioAsset: require('../../assets/audio/step1/audiostep1book1/029.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_030',
@@ -57,8 +57,8 @@ const QuestionDataPart1: IQuestion[] = [
         question: QUESTION_PHASE,
         answer: ['A', 'B', 'C'],
         correctAnswer: 2,
-        imageAsset: require('../../assets/images/step1/imagelistening/book1part1/2_3.png'),
-        audioAsset: require('../../assets/audio/Step1/Audio_Step1_Book1/030.mp3'),
+        imageAsset: require('../../assets/images/step1/imagelistening/book1part1/2q3.png'),
+        audioAsset: require('../../assets/audio/step1/audiostep1book1/030.mp3'),
         difficultLevel: 3
     }
 ];

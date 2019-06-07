@@ -12,8 +12,8 @@ const QuestionListeningDataPart1: IQuestion[] = [{
     question: QUESTION_PHASE,
     answer: ['A', 'B', 'C'],
     correctAnswer: 1,
-    imageAsset: require('../assets/images/step1/imagelistening/book1part1/1_1.png'),
-    audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/002.mp3'),
+    imageAsset: require('../assets/images/step1/imagelistening/book1part1/1q1.png'),
+    audioAsset: require('../assets/audio/step1/audiostep1book1/002.mp3'),
     difficultLevel: 3
 }, {
     id: 'step1_1_003',
@@ -21,8 +21,8 @@ const QuestionListeningDataPart1: IQuestion[] = [{
     question: QUESTION_PHASE,
     answer: ['A', 'B', 'C'],
     correctAnswer: 2,
-    imageAsset: require('../assets/images/step1/imagelistening/book1part1/1_2.png'),
-    audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/003.mp3'),
+    imageAsset: require('../assets/images/step1/imagelistening/book1part1/1q2.png'),
+    audioAsset: require('../assets/audio/step1/audiostep1book1/003.mp3'),
     difficultLevel: 3
 }, {
     id: 'step1_1_004',
@@ -30,8 +30,8 @@ const QuestionListeningDataPart1: IQuestion[] = [{
     question: QUESTION_PHASE,
     answer: ['A', 'B', 'C'],
     correctAnswer: 0,
-    imageAsset: require('../assets/images/step1/imagelistening/book1part1/1_3.png'),
-    audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/004.mp3'),
+    imageAsset: require('../assets/images/step1/imagelistening/book1part1/1q3.png'),
+    audioAsset: require('../assets/audio/step1/audiostep1book1/004.mp3'),
     difficultLevel: 3
 },
     //Unit 2
@@ -41,8 +41,8 @@ const QuestionListeningDataPart1: IQuestion[] = [{
         question: QUESTION_PHASE,
         answer: ['A', 'B', 'C'],
         correctAnswer: 0,
-        imageAsset: require('../assets/images/step1/imagelistening/book1part1/2_1.png'),
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/028.mp3'),
+        imageAsset: require('../assets/images/step1/imagelistening/book1part1/2q1.png'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/028.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_029',
@@ -50,8 +50,8 @@ const QuestionListeningDataPart1: IQuestion[] = [{
         question: QUESTION_PHASE,
         answer: ['A', 'B', 'C'],
         correctAnswer: 1,
-        imageAsset: require('../assets/images/step1/imagelistening/book1part1/2_2.png'),
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/004.mp3'),
+        imageAsset: require('../assets/images/step1/imagelistening/book1part1/2q2.png'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/004.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_030',
@@ -59,8 +59,8 @@ const QuestionListeningDataPart1: IQuestion[] = [{
         question: QUESTION_PHASE,
         answer: ['A', 'B', 'C'],
         correctAnswer: 2,
-        imageAsset: require('../assets/images/step1/imagelistening/book1part1/2_3.png'),
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/030.mp3'),
+        imageAsset: require('../assets/images/step1/imagelistening/book1part1/2q3.png'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/030.mp3'),
         difficultLevel: 3
     },
     //Unit 3
@@ -70,8 +70,8 @@ const QuestionListeningDataPart1: IQuestion[] = [{
         question: QUESTION_PHASE,
         answer: ['A', 'B', 'C'],
         correctAnswer: 0,
-        imageAsset: require('../assets/images/step1/imagelistening/book1part1/3_1.png'),
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/035.mp3'),
+        imageAsset: require('../assets/images/step1/imagelistening/book1part1/3q1.png'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/035.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_054',
@@ -79,8 +79,8 @@ const QuestionListeningDataPart1: IQuestion[] = [{
         question: QUESTION_PHASE,
         answer: ['A', 'B', 'C'],
         correctAnswer: 1,
-        imageAsset: require('../assets/images/step1/imagelistening/book1part1/3_2.png'),
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/054.mp3'),
+        imageAsset: require('../assets/images/step1/imagelistening/book1part1/3q2.png'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/054.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_056',
@@ -88,8 +88,8 @@ const QuestionListeningDataPart1: IQuestion[] = [{
         question: QUESTION_PHASE,
         answer: ['A', 'B', 'C'],
         correctAnswer: 2,
-        imageAsset: require('../assets/images/step1/imagelistening/book1part1/3_3.png'),
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/056.mp3'),
+        imageAsset: require('../assets/images/step1/imagelistening/book1part1/3q3.png'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/056.mp3'),
         difficultLevel: 3
     },
 
@@ -104,8 +104,8 @@ const QuestionDataPart2: IQuestion[] = [{
         'Q. What is the girl going to do?\n',
     answer: ['A', 'B', 'C'],
     correctAnswer: 0,
-    imageAsset: require('../assets/images/step1/imagelistening/book1part2/1_1.png'),
-    audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/005.mp3'),
+    imageAsset: require('../assets/images/step1/imagelistening/book1part2/1q1.png'),
+    audioAsset: require('../assets/audio/step1/audiostep1book1/005.mp3'),
     difficultLevel: 3
 }, {
     id: 'step1_1_006',
@@ -114,8 +114,8 @@ const QuestionDataPart2: IQuestion[] = [{
         'Q. Where is the man going to be this weekend?\n',
     answer: ['A', 'B', 'C'],
     correctAnswer: 1,
-    imageAsset: require('../assets/images/step1/imagelistening/book1part2/1_2.png'),
-    audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/006.mp3'),
+    imageAsset: require('../assets/images/step1/imagelistening/book1part2/1q2.png'),
+    audioAsset: require('../assets/audio/step1/audiostep1book1/006.mp3'),
     difficultLevel: 3
 }, {
     id: 'step1_1_007',
@@ -124,8 +124,8 @@ const QuestionDataPart2: IQuestion[] = [{
         'Q. What does the boy usually do after school?\n',
     answer: ['A', 'B', 'C'],
     correctAnswer: 2,
-    imageAsset: require('../assets/images/step1/imagelistening/book1part2/1_3.png'),
-    audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/007.mp3'),
+    imageAsset: require('../assets/images/step1/imagelistening/book1part2/1q3.png'),
+    audioAsset: require('../assets/audio/step1/audiostep1book1/007.mp3'),
     difficultLevel: 3
 },
     //Unit 2
@@ -136,8 +136,8 @@ const QuestionDataPart2: IQuestion[] = [{
             'Q. What is the girl going to do?\n',
         answer: ['A', 'B', 'C'],
         correctAnswer: 1,
-        imageAsset: require('../assets/images/step1/imagelistening/book1part2/2_1.png'),
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/031.mp3'),
+        imageAsset: require('../assets/images/step1/imagelistening/book1part2/2q1.png'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/031.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_032',
@@ -146,8 +146,8 @@ const QuestionDataPart2: IQuestion[] = [{
             'Q. What does the boy do every morning?\n',
         answer: ['A', 'B', 'C'],
         correctAnswer: 2,
-        imageAsset: require('../assets/images/step1/imagelistening/book1part2/2_2.png'),
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/032.mp3'),
+        imageAsset: require('../assets/images/step1/imagelistening/book1part2/2q2.png'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/032.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_033',
@@ -156,8 +156,8 @@ const QuestionDataPart2: IQuestion[] = [{
             'Q. What is the man going to do?\n',
         answer: ['A', 'B', 'C'],
         correctAnswer: 1,
-        imageAsset: require('../assets/images/step1/imagelistening/book1part2/2_3.png'),
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/033.mp3'),
+        imageAsset: require('../assets/images/step1/imagelistening/book1part2/2q3.png'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/033.mp3'),
         difficultLevel: 3
     },
     //Unit 3
@@ -168,8 +168,8 @@ const QuestionDataPart2: IQuestion[] = [{
             'Q. What did the librarian tell the students NOT to do?\n',
         answer: ['A', 'B', 'C'],
         correctAnswer: 1,
-        imageAsset: require('../assets/images/step1/imagelistening/book1part2/3_1.png'),
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/057.mp3'),
+        imageAsset: require('../assets/images/step1/imagelistening/book1part2/3q1.png'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/057.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_058',
@@ -178,8 +178,8 @@ const QuestionDataPart2: IQuestion[] = [{
             'Q. What did the librarian tell the boy to do?\n',
         answer: ['A', 'B', 'C'],
         correctAnswer: 2,
-        imageAsset: require('../assets/images/step1/imagelistening/book1part2/3_2.png'),
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/058.mp3'),
+        imageAsset: require('../assets/images/step1/imagelistening/book1part2/3q2.png'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/058.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_059',
@@ -188,8 +188,8 @@ const QuestionDataPart2: IQuestion[] = [{
             'Q. What will the girl do next?\n',
         answer: ['A', 'B', 'C'],
         correctAnswer: 1,
-        imageAsset: require('../assets/images/step1/imagelistening/book1part2/3_3.png'),
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/059.mp3'),
+        imageAsset: require('../assets/images/step1/imagelistening/book1part2/3q3.png'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/059.mp3'),
         difficultLevel: 3
     },
 ];
@@ -200,7 +200,7 @@ const QuestionDataPart3: IQuestion[] = [{
     question: 'Do you have any brothers or sisters?',
     answer: ['A', 'B', 'C'],
     correctAnswer: 1,
-    audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/008.mp3'),
+    audioAsset: require('../assets/audio/step1/audiostep1book1/008.mp3'),
     difficultLevel: 3
 }, {
     id: 'step1_1_009',
@@ -208,7 +208,7 @@ const QuestionDataPart3: IQuestion[] = [{
     question: 'Do you live with your grandparents?',
     answer: ['A', 'B', 'C'],
     correctAnswer: 1,
-    audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/009.mp3'),
+    audioAsset: require('../assets/audio/step1/audiostep1book1/009.mp3'),
     difficultLevel: 3
 }, {
     id: 'step1_1_0010',
@@ -216,7 +216,7 @@ const QuestionDataPart3: IQuestion[] = [{
     question: 'How many people are there in your family?',
     answer: ['A', 'B', 'C'],
     correctAnswer: 0,
-    audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/010.mp3'),
+    audioAsset: require('../assets/audio/step1/audiostep1book1/010.mp3'),
     difficultLevel: 3
 },
     //Unit 2
@@ -226,7 +226,7 @@ const QuestionDataPart3: IQuestion[] = [{
         question: 'Q. What hairstyle does she have?',
         answer: ['A', 'B', 'C'],
         correctAnswer: 2,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/034.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/034.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_035',
@@ -234,7 +234,7 @@ const QuestionDataPart3: IQuestion[] = [{
         question: 'Q. What can I do for you?',
         answer: ['A', 'B', 'C'],
         correctAnswer: 0,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/035.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/035.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_036',
@@ -242,7 +242,7 @@ const QuestionDataPart3: IQuestion[] = [{
         question: 'Q. How does your brother look?',
         answer: ['A', 'B', 'C'],
         correctAnswer: 1,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/036.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/036.mp3'),
         difficultLevel: 3
     },
     //Unit 3
@@ -252,7 +252,7 @@ const QuestionDataPart3: IQuestion[] = [{
         question: 'Q. What time does the library open?',
         answer: ['A', 'B', 'C'],
         correctAnswer: 2,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/060.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/060.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_061',
@@ -260,7 +260,7 @@ const QuestionDataPart3: IQuestion[] = [{
         question: 'Q. May I see your library card, please?',
         answer: ['A', 'B', 'C'],
         correctAnswer: 0,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/061.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/061.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_062',
@@ -268,7 +268,7 @@ const QuestionDataPart3: IQuestion[] = [{
         question: 'Q. When is the due date?',
         answer: ['A', 'B', 'C'],
         correctAnswer: 1,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/062.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/062.mp3'),
         difficultLevel: 3
     },
 ];
@@ -283,7 +283,7 @@ const QuestionDataPart4: IQuestion[] = [{
         'Hide his toys',
         'Buy new toys'],
     correctAnswer: 1,
-    audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/011.mp3'),
+    audioAsset: require('../assets/audio/step1/audiostep1book1/011.mp3'),
     difficultLevel: 3
 }, {
     id: 'step1_1_0012',
@@ -296,7 +296,7 @@ const QuestionDataPart4: IQuestion[] = [{
         'A little brother'
     ],
     correctAnswer: 1,
-    audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/012.mp3'),
+    audioAsset: require('../assets/audio/step1/audiostep1book1/012.mp3'),
     difficultLevel: 3
 },
     //Unit 2
@@ -311,7 +311,7 @@ const QuestionDataPart4: IQuestion[] = [{
             'Cut the hairdresser’s hair'
         ],
         correctAnswer: 0,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/037.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/037.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_038',
@@ -324,7 +324,7 @@ const QuestionDataPart4: IQuestion[] = [{
             'The boy’s friend'
         ],
         correctAnswer: 1,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/038.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/038.mp3'),
         difficultLevel: 3
     },
     //Unit 3
@@ -339,7 +339,7 @@ const QuestionDataPart4: IQuestion[] = [{
             'Write a book'
         ],
         correctAnswer: 0,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/063.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/063.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_064',
@@ -352,7 +352,7 @@ const QuestionDataPart4: IQuestion[] = [{
             'Return the book'
         ],
         correctAnswer: 1,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/064.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/064.mp3'),
         difficultLevel: 3
     },
 ];
@@ -367,7 +367,7 @@ const QuestionDataPart5: IQuestion[] = [{
         'To tell Maya not to eat dinner',
         'To tell Maya that she will be home late'],
     correctAnswer: 2,
-    audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/013.mp3'),
+    audioAsset: require('../assets/audio/step1/audiostep1book1/013.mp3'),
     difficultLevel: 3
 }, {
     id: 'step1_1_0014',
@@ -379,7 +379,7 @@ const QuestionDataPart5: IQuestion[] = [{
         'His mother',
         'His grandmother'],
     correctAnswer: 2,
-    audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/014.mp3'),
+    audioAsset: require('../assets/audio/step1/audiostep1book1/014.mp3'),
     difficultLevel: 3
 },
     //Unit 2
@@ -393,7 +393,7 @@ const QuestionDataPart5: IQuestion[] = [{
             'To ask Robert to pick up his business partner',
             'To ask Robert to double-check James’s arrival time'],
         correctAnswer: 1,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/039.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/039.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_040',
@@ -405,7 +405,7 @@ const QuestionDataPart5: IQuestion[] = [{
             'Her younger brother',
             'Her family'],
         correctAnswer: 2,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/040.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/040.mp3'),
         difficultLevel: 3
     },
     //Unit 3
@@ -419,7 +419,7 @@ const QuestionDataPart5: IQuestion[] = [{
             'To ask Jack to return the book for him',
             'To tell Jack to read the book'],
         correctAnswer: 1,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/065.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/065.mp3'),
         difficultLevel: 3
     }, {
         id: 'step1_1_066',
@@ -431,7 +431,7 @@ const QuestionDataPart5: IQuestion[] = [{
             'Introducing City Hall',
             'Working in the media room '],
         correctAnswer: 2,
-        audioAsset: require('../assets/audio/Step1/Audio_Step1_Book1/066.mp3'),
+        audioAsset: require('../assets/audio/step1/audiostep1book1/066.mp3'),
         difficultLevel: 3
     },
 ];

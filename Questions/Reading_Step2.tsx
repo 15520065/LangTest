@@ -61,7 +61,7 @@ const QuestionReadingPart2: IQuestion[] = [{
         '(B)\tHer best friend',
         '(C)\tHer best sister'],
     correctAnswer: 1,
-    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_123.png'),
+    imageAsset: require('../assets/images/step2/imagereading/rpart2/1q123.png'),
     difficultLevel: 3,
     comeWith: ['r_s2_b1_u1_p2_1', 'r_s2_b1_u1_p2_2', 'r_s2_b1_u1_p2_3']
 }, {
@@ -73,7 +73,7 @@ const QuestionReadingPart2: IQuestion[] = [{
         '(B)\tThat she knows funny jokes',
         '(C)\tThat she only thinks about herself'],
     correctAnswer: 1,
-    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_123.png'),
+    imageAsset: require('../assets/images/step2/imagereading/rpart2/1q123.png'),
     difficultLevel: 3,
     comeWith: ['r_s2_b1_u1_p2_1', 'r_s2_b1_u1_p2_2', 'r_s2_b1_u1_p2_3']
 }, {
@@ -85,7 +85,7 @@ const QuestionReadingPart2: IQuestion[] = [{
         '(B)\tChocolate milk.',
         '(C)\tStrawberry milk'],
     correctAnswer: 2,
-    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_123.png'),
+    imageAsset: require('../assets/images/step2/imagereading/rpart2/1q123.png'),
     difficultLevel: 3,
     comeWith: ['r_s2_b1_u1_p2_1', 'r_s2_b1_u1_p2_2', 'r_s2_b1_u1_p2_3']
 }, {
@@ -97,7 +97,7 @@ const QuestionReadingPart2: IQuestion[] = [{
         '(B)\tHe moved to a new city',
         '(C)\tHe doesn’t know how to play basketball'],
     correctAnswer: 1,
-    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_45.png'),
+    imageAsset: require('../assets/images/step2/imagereading/rpart2/1q45.png'),
     difficultLevel: 3,
     comeWith: ['r_s2_b1_u1_p2_4', 'r_s2_b1_u1_p2_5']
 }, {
@@ -109,7 +109,7 @@ const QuestionReadingPart2: IQuestion[] = [{
         'To ask how he is doing',
         'To tell him that he is moving, too'],
     correctAnswer: 1,
-    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_45.png'),
+    imageAsset: require('../assets/images/step2/imagereading/rpart2/1q45.png'),
     difficultLevel: 3,
     comeWith: ['r_s2_b1_u1_p2_4', 'r_s2_b1_u1_p2_5']
 }, {
@@ -121,7 +121,7 @@ const QuestionReadingPart2: IQuestion[] = [{
         'Going to the movies',
         'Having friends'],
     correctAnswer: 2,
-    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_678.png'),
+    imageAsset: require('../assets/images/step2/imagereading/rpart2/1q678.png'),
     difficultLevel: 3,
     comeWith: ['r_s2_b1_u1_p2_6', 'r_s2_b1_u1_p2_7', 'r_s2_b1_u1_p2_8']
 }, {
@@ -133,7 +133,7 @@ const QuestionReadingPart2: IQuestion[] = [{
         '(B)\tExcitement',
         '(C)\tStress'],
     correctAnswer: 2,
-    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_678.png'),
+    imageAsset: require('../assets/images/step2/imagereading/rpart2/1q678.png'),
     difficultLevel: 3,
     comeWith: ['r_s2_b1_u1_p2_6', 'r_s2_b1_u1_p2_7', 'r_s2_b1_u1_p2_8']
 }, {
@@ -145,7 +145,7 @@ const QuestionReadingPart2: IQuestion[] = [{
         '(B)\tIt makes our lives more enjoyable',
         '(C)\tIt makes our lives more difficult'],
     correctAnswer: 1,
-    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_678.png'),
+    imageAsset: require('../assets/images/step2/imagereading/rpart2/1q678.png'),
     difficultLevel: 3,
     comeWith: ['r_s2_b1_u1_p2_6', 'r_s2_b1_u1_p2_7', 'r_s2_b1_u1_p2_8']
 }, {
@@ -157,7 +157,7 @@ const QuestionReadingPart2: IQuestion[] = [{
         '(B)\tShe is Christine’s cousin',
         '(C)\tShe is Angela’s cousin'],
     correctAnswer: 2,
-    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_9101112.png'),
+    imageAsset: require('../assets/images/step2/imagereading/rpart2/1q9101112.png'),
     difficultLevel: 3,
     comeWith: ['r_s2_b1_u1_p2_9', 'r_s2_b1_u1_p2_10', 'r_s2_b1_u1_p2_11', 'r_s2_b1_u1_p2_12']
 }, {
@@ -169,7 +169,7 @@ const QuestionReadingPart2: IQuestion[] = [{
         '(B)\tShe became a student there',
         '(C)\tShe wanted to help Angela with her science project'],
     correctAnswer: 1,
-    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_9101112.png'),
+    imageAsset: require('../assets/images/step2/imagereading/rpart2/1q9101112.png'),
     difficultLevel: 3,
     comeWith: ['r_s2_b1_u1_p2_9', 'r_s2_b1_u1_p2_10', 'r_s2_b1_u1_p2_11', 'r_s2_b1_u1_p2_12']
 }, {
@@ -181,7 +181,7 @@ const QuestionReadingPart2: IQuestion[] = [{
         '(B)\tShe had to help her mom move to their new home',
         '(C)\tShe thought Angela didn’t want to be friends with her'],
     correctAnswer: 2,
-    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_9101112.png'),
+    imageAsset: require('../assets/images/step2/imagereading/rpart2/1q9101112.png'),
     difficultLevel: 3,
     comeWith: ['r_s2_b1_u1_p2_9', 'r_s2_b1_u1_p2_10', 'r_s2_b1_u1_p2_11', 'r_s2_b1_u1_p2_12']
 }, {
@@ -193,7 +193,7 @@ const QuestionReadingPart2: IQuestion[] = [{
         '(B)\tA jewelry box',
         '(C)\tA book'],
     correctAnswer: 1,
-    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_9101112.png'),
+    imageAsset: require('../assets/images/step2/imagereading/rpart2/1q9101112.png'),
     difficultLevel: 3,
     comeWith: ['r_s2_b1_u1_p2_9', 'r_s2_b1_u1_p2_10', 'r_s2_b1_u1_p2_11', 'r_s2_b1_u1_p2_12']
 },];
