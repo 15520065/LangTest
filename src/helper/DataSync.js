@@ -210,7 +210,7 @@ class DataSync {
             if (typeof image === 'string') {
                 // Image.abortPrefetch(image);
                 // console.log(image);
-                return Image.prefetch({uri: image} );
+                return Image.prefetch(image);
             } else {
                 return Asset.fromModule(image).downloadAsync();
             }

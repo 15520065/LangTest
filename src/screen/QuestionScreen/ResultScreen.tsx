@@ -1,11 +1,11 @@
-import * as React from 'react'
+import * as React from 'react';
 import {View, Text, Button} from 'native-base';
 import {StyleSheet, ViewStyle, AsyncStorage} from 'react-native';
-import * as Progress from 'react-native-progress';
 import {heightPercentageToDP, widthPercentageToDP} from '../../helper/ratioHelper';
 import {systemWeights, human} from 'react-native-typography';
 import {NavigationScreenProps, NavigationParams} from 'react-navigation';
-import {Rating, AirbnbRating} from 'react-native-ratings';
+import {Rating} from 'react-native-ratings';
+import StarRating from 'react-native-star-rating';
 
 export interface ResultScreenProps extends NavigationScreenProps<NavigationParams, any> {
     totalAnswer: number,
@@ -20,9 +20,11 @@ export interface ResultScreenProps extends NavigationScreenProps<NavigationParam
 }
 
 interface ResultScreenState {
-    progress: number
+    word,
+    score,
 }
 
+const wordContainer = ["Bad", "OK", "Good", "Very Good", "Amazing"];
 
 class ResultScreen extends React.Component<ResultScreenProps, ResultScreenState> {
     static defaultProps: ResultScreenProps = {
@@ -33,11 +35,7 @@ class ResultScreen extends React.Component<ResultScreenProps, ResultScreenState>
         leftButtonText: "Click me",
         rightButtonText: "Home",
         navigation: null
-    }
-
-    ratingCompleted(rating) {
-        console.log("Rating is: " + rating)
-    }
+    };
 
     constructor(props: ResultScreenProps) {
         super(props);
@@ -45,39 +43,39 @@ class ResultScreen extends React.Component<ResultScreenProps, ResultScreenState>
         const correctedAnswer: number = this.props.navigation.getParam('correctedAnswer', props.correctAnswer);
         if (correctedAnswer === 0) {
             this.state = {
-                progress: 1
-            }
+                word: wordContainer[5],
+                score: 5
+            };
         } else {
             this.state = {
-                progress: 0
-            }
+                word: wordContainer[5],
+                score: 5
+            };
         }
     }
 
-    showStart() {
+    showStart = () => {
+        let word = "Good";
+
         const correctedAnswer: number = this.props.navigation.getParam('correctedAnswer', this.props.correctAnswer);
         const totalAnswer: number = this.props.navigation.getParam('totalAnswer', this.props.correctAnswer);
-        if (correctedAnswer / totalAnswer <= 0.2) {
-            return 1;
-        } else if (correctedAnswer / totalAnswer > 0.2 && correctedAnswer / totalAnswer <= 0.4) {
-            return 2;
-        } else if (correctedAnswer / totalAnswer > 0.4 && correctedAnswer / totalAnswer <= 0.6) {
-            return 3;
-        } else if (correctedAnswer / totalAnswer > 0.6 && correctedAnswer / totalAnswer <= 0.8) {
-            return 4;
-        } else if (correctedAnswer / totalAnswer > 0.8 && correctedAnswer / totalAnswer <= 1) {
-            return 5;
-        }
-        return 0;
-    }
+
+        let score = (correctedAnswer / totalAnswer) * 5;
+
+        score = Math.ceil(score * 2) / 2;
+        console.log(Math.ceil(score));
+
+        this.setState({
+            word: wordContainer[Math.ceil(score)],
+            score: score
+        });
+    };
 
     componentDidMount() {
         const onResultScreenOpen: (correctAnswer: number, totalAnswer: number) => void = this.props.navigation.getParam('onResultScreenOpen', this.props.onResultScreenOpen);
         const correctedAnswer: number = this.props.navigation.getParam('correctedAnswer', this.props.correctAnswer);
         const totalAnswer: number = this.props.navigation.getParam('totalAnswer', this.props.correctAnswer);
-        this.setState({
-            progress: correctedAnswer / totalAnswer
-        })
+        this.showStart();
         if (onResultScreenOpen) {
             onResultScreenOpen(correctedAnswer, totalAnswer);
         }
@@ -96,20 +94,23 @@ class ResultScreen extends React.Component<ResultScreenProps, ResultScreenState>
         return (
             <View style={styles.container}>
                 <View style={styles.title}>
-                    <Text style={[human.largeTitle, {textAlign: 'center'}]}>Your result</Text>
+                    <Text style={[
+                        {
+                            fontWeight: '400',
+                            textAlign: 'center',
+                            color: '#f1c40f',
+                            fontStyle: 'italic',
+                            fontSize: 56
+                        }
+                    ]}
+                    >{this.state.word}</Text>
                 </View>
 
-                <View style={{paddingVertical: 10}}>
-                    {/*<AirbnbRating*/}
-                    {/*    count={5}*/}
-                    {/*    reviews={["Terrible", "Bad", "Okay", "Good", "Great"]}*/}
-                    {/*    defaultRating={1}*/}
-                    {/*    size={40}*/}
-                    {/*/>*/}
+                <View style={{paddingBottom: 10}}>
                     <Rating
-                        showRating
-                        startingValue={this.showStart()}
-                        onFinishRating={this.ratingCompleted}
+                        type="star"
+                        readonly={true}
+                        startingValue={this.state.score}
                     />
                 </View>
 
@@ -224,5 +225,5 @@ const styles = StyleSheet.create({
     }
 
 
-})
+});
 export default ResultScreen;

@@ -199,13 +199,13 @@ class StepScreen extends React.Component {
                 name: 'Listening',
                 code: DataHelper._getPercent(1),
                 icon: require('../../../assets/images/home/bg/bgs5.png'),
-                iconText: require('../../../assets/images/home/text/listening-1.png')
+                iconText: require('../../../assets/images/home/text/listening1.png')
             },
             {
                 name: 'Reading',
                 code: DataHelper._getPercent(),
                 icon: require('../../../assets/images/home/bg/bgs10.png'),
-                iconText: require('../../../assets/images/home/text/reading-1.png')
+                iconText: require('../../../assets/images/home/text/reading1.png')
             },
         ];
 

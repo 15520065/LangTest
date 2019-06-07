@@ -21,8 +21,8 @@ export default class LocalHelper {
         try {
             // if (typeof mapObject === 'Map {}')
 
-            console.log('_storeMapData ' + keyStr + ' : ' + mapObject);
-            UtilHelper._printMapConsole(mapObject);
+            console.log('_storeMapData ' + keyStr + ' : ');
+            // UtilHelper._printMapConsole(mapObject);
             const str = JSON.stringify(Array.from(mapObject.entries()));
 
             await AsyncStorage.setItem(keyStr, str,

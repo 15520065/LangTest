@@ -144,7 +144,6 @@ export default class App extends React.Component {
         let audioAssetPromise = audioAsset ? DataSync.cacheAudio(audioAsset) : [];
         let imageAssetPromise = imageAsset ? DataSync.cacheImages(imageAsset) : [];
 
-        //TODO: if (!DataSync.getVoca() || !DataSync.getExam()) {
         let voca = DataSync.getVoca();
         let exam = DataSync.getExam();
         if ((voca === undefined || voca === null || Object.entries(voca).length === 0)
@@ -169,21 +168,27 @@ export default class App extends React.Component {
 
         }
 
-        console.log('imageAssetPromise = ' + imageAssetPromise.length);
-        console.log('audioAssetPromise = ' + audioAssetPromise.length);
 
         let imageStaticAssetPromise = Asset.loadAsync([
             require('../assets/images/home/bg/bgs6.png'),
-            require('../assets/images/home/text/step1-2.png'),
+            require('../assets/images/home/text/step12.png'),
             require('../assets/images/home/bg/bgs4.png'),
-            require('../assets/images/home/text/step2-2.png'),
+            require('../assets/images/home/text/step22.png'),
 
             require('../assets/images/home/bg/bgs5.png'),
-            require('../assets/images/home/text/listening-1.png'),
+            require('../assets/images/home/text/listening1.png'),
             require('../assets/images/home/bg/bgs10.png'),
-            require('../assets/images/home/text/reading-1.png')
+            require('../assets/images/home/text/reading1.png'),
+
+            require('../assets/images/background.jpg'),
+
+            require('../assets/icon/avatar1.jpg'),
+            require('../assets/icon/avatar2.jpg'),
+            require('../assets/icon/avatar3.jpg'),
+            require('../assets/icon/avatar4.jpg')
         ]);
-        await Promise.all([...audioAssetPromise, ...imageAssetPromise,...imageStaticAssetPromise, ...fontAssets]);
+
+        await Promise.all([].concat(audioAssetPromise, imageAssetPromise,imageStaticAssetPromise, fontAssets));
     };
 
     render() {
@@ -192,8 +197,8 @@ export default class App extends React.Component {
                 <AppLoading
                     startAsync={this._loadAssetsAsync}
                     onFinish={() => {
-                        this.setState({loading: false});
                         DataSync.saveVersionServer();
+                        this.setState({loading: false});
                     }}
                     onError={(error) => {
                         console.warn("AppLoading Error + " + error);

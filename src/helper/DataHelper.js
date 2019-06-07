@@ -247,10 +247,10 @@ class DataHelper {
             // console.log('Chi CS 1:  ');
             const localUserProfile = await LocalHelper._getMapData(LocalHelper.profile);
 
-            UtilHelper._printMapConsole(localUserProfile);
+            // UtilHelper._printMapConsole(localUserProfile);
             if (!this.isProfileNull(localUserProfile)) {
                 // console.log('Chi CS 2: ');
-                UtilHelper._printMapConsole(localUserProfile);
+                // UtilHelper._printMapConsole(localUserProfile);
 
                 this._initUserProfile(localUserProfile.get('name'),
                     localUserProfile.get('avatar'),
@@ -267,7 +267,7 @@ class DataHelper {
             }
         }
         // console.log('Chi CS 0:  ');
-        UtilHelper._printMapConsole(this.curUserProfile);
+        // UtilHelper._printMapConsole(this.curUserProfile);
         callback(this.curUserProfile);
     }
 

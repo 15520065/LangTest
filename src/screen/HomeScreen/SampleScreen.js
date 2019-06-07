@@ -60,12 +60,6 @@ class SampleScreen extends React.Component {
 
         const step1 = this.exam.step1;
         const step2 = this.exam.step2;
-        console.log("concat + step1");
-        UtilHelper._printObjectConsole(step1)
-        console.log("concat + step1.listening" );
-        UtilHelper._printObjectConsole(step1.listening)
-        console.log("concat + step2" );
-        UtilHelper._printObjectConsole(step2)
         let questionData = [];
 
         if (step1)
@@ -74,8 +68,6 @@ class SampleScreen extends React.Component {
         if (step2)
             questionData = questionData.concat(step2.listening, step2.reading);
 
-        console.log("concat -----" );
-        UtilHelper._printObjectConsole(questionData)
 
         if (questionData.length === 0) {
             Alert.alert('No question Data');
@@ -223,13 +215,13 @@ class SampleScreen extends React.Component {
                 name: 'Step 1',
                 code: DataHelper._getPercent(1),
                 icon: require('../../../assets/images/home/bg/bgs6.png'),
-                iconText: require('../../../assets/images/home/text/step1-2.png')
+                iconText: require('../../../assets/images/home/text/step12.png')
             },
             {
                 name: 'Step 2',
                 code: DataHelper._getPercent(2),
                 icon: require('../../../assets/images/home/bg/bgs4.png'),
-                iconText: require('../../../assets/images/home/text/step2-2.png')
+                iconText: require('../../../assets/images/home/text/step22.png')
             },
         ];
 
