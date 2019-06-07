@@ -6,424 +6,197 @@ const QUESTION_PHASE_PART1_456: string = 'What does the arrow show?'
 const QUESTION_PHASE_PART1_789: string = 'Choose the sentence that goes best with each picture'
 
 const QuestionReadingPart1: IQuestion[] = [{
-    id: 'r_s1_b1_u1_p1_1',
-    type: QuestionType.part4,
-    question: QUESTION_PHASE_PART1_123,
+    id: 'r_s2_b1_u1_p1_1',
+    type: QuestionType.part3,
+    question: '1.\tThis person is someone who you know and like very much. You enjoy spending time with this person' +
+        'Q. Who is it?',
     answer: [
-        'Grandmother',
-        'Grandfather',
-        'Aunt'],
+        '(A)\tA co-worker',
+        '(B)\tA friend',
+        '(C)\tA pet'],
     correctAnswer: 1,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-    difficultLevel: 3
+    difficultLevel: 3,
 }, {
-    id: 'r_s1_b1_u1_p1_2',
-    type: QuestionType.part4,
-    question: QUESTION_PHASE_PART1_123,
+    id: 'r_s2_b1_u1_p1_2',
+    type: QuestionType.part3,
+    question: '2.\tThis is a relationship between friends' +
+        'Q. What is it?',
     answer: [
-        'Younger sister',
-        'Younger brother',
-        'Older brother'],
-    correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-    difficultLevel: 3
-}, {
-    id: 'r_s1_b1_u1_p1_3',
-    type: QuestionType.part4,
-    question: QUESTION_PHASE_PART1_123,
-    answer: [
-        'Divorced',
-        'Separated',
-        'Married'],
+        '(A)\tFamily',
+        '(B)\tCo-workers',
+        '(C)\tFriendship'],
     correctAnswer: 2,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-    difficultLevel: 3
+    difficultLevel: 3,
 }, {
-    id: 'r_s1_b1_u1_p1_4',
-    type: QuestionType.part4,
-    question: QUESTION_PHASE_PART1_123,
+    id: 'r_s2_b1_u1_p1_3',
+    type: QuestionType.part3,
+    question: '3.\tThis is something you want to keep to yourself and not tell other people.' +
+        'Q. What is it?',
     answer: [
-        'Family',
-        'Friends',
-        'Co-workers'],
+        '(A)\tNews',
+        '(B)\tAn announcement',
+        '(C)\tA secret'],
+    correctAnswer: 2,
+    difficultLevel: 3,
+}, {
+    id: 'r_s2_b1_u1_p1_4',
+    type: QuestionType.part3,
+    question: '4.\tThis is what you call someone who you do a particular activity with' +
+        'Q. Who is it?',
+    answer: [
+        '(A)\tA partner',
+        '(B)\tA part',
+        '(C)\tPartially'],
     correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-    difficultLevel: 3
-}, {
-    id: 'r_s1_b1_u1_p1_5',
-    type: QuestionType.part4,
-    question: QUESTION_PHASE_PART1_123,
-    answer: [
-        'Parents',
-        'Sisters',
-        'Brothers '],
-    correctAnswer: 1,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-    difficultLevel: 3
-}, {
-    id: 'r_s1_b1_u1_p1_6',
-    type: QuestionType.part4,
-    question: QUESTION_PHASE_PART1_123,
-    answer: [
-        'She is my big sister',
-        'He is my little brother.',
-        'He is my big brother.  '],
-    correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-    difficultLevel: 3
-}, {
-    id: 'r_s1_b1_u1_p1_7',
-    type: QuestionType.part4,
-    question: QUESTION_PHASE_PART1_123,
-    answer: [
-        'There are five people in my family',
-        'There are six people in my family.',
-        'There are four people in my family'],
-    correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-    difficultLevel: 3
-}, {
-    id: 'r_s1_b1_u1_p1_8',
-    type: QuestionType.part4,
-    question: QUESTION_PHASE_PART1_123,
-    answer: [
-        'A boy is with his brother.',
-        'A boy is with his grandmother.',
-        'A boy is with his dad'],
-    correctAnswer: 1,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-    difficultLevel: 3
-}, {
-    id: 'r_s1_b1_u1_p1_9',
-    type: QuestionType.part4,
-    question: QUESTION_PHASE_PART1_123,
-    answer: [
-        'An old man is hugging his grandson',
-        'An old man is looking at his granddaughter',
-        'An old woman is talking to her grandson'],
-    correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-    difficultLevel: 3
-},
-    //Unit 2
-    {
-        id: 'r_s1_b1_u2_p1_1',
-        type: QuestionType.part4,
-        question: QUESTION_PHASE_PART1_123,
-        answer: [
-            'Face',
-            'Hand',
-            'Feed'],
-        correctAnswer: 0,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-        difficultLevel: 3
-    }, {
-        id: 'r_s1_b1_u2_p1_2',
-        type: QuestionType.part4,
-        question: QUESTION_PHASE_PART1_123,
-        answer: [
-            'Glass',
-            'Glasses',
-            'Glassy'],
-        correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-        difficultLevel: 3
-    }, {
-        id: 'r_s1_b1_u2_p1_3',
-        type: QuestionType.part4,
-        question: QUESTION_PHASE_PART1_123,
-        answer: [
-            'Bangs',
-            'Pigtail',
-            'Ponytail'],
-        correctAnswer: 2,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-        difficultLevel: 3
-    }, {
-        id: 'r_s1_b1_u2_p1_4',
-        type: QuestionType.part4,
-        question: QUESTION_PHASE_PART1_456,
-        answer: [
-            'Short',
-            'Tall',
-            'Small'],
-        correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-        difficultLevel: 3
-    }, {
-        id: 'r_s1_b1_u2_p1_5',
-        type: QuestionType.part4,
-        question: QUESTION_PHASE_PART1_456,
-        answer: [
-            'Straight hair',
-            'Mustache',
-            'Curly hair'],
-        correctAnswer: 2,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-        difficultLevel: 3
-    }, {
-        id: 'r_s1_b1_u2_p1_6',
-        type: QuestionType.part4,
-        question: QUESTION_PHASE_PART1_456,
-        answer: [
-            'He has short hair',
-            'She has long hair',
-            'She has a ponytail'],
-        correctAnswer: 0,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-        difficultLevel: 3
-    }, {
-        id: 'r_s1_b1_u2_p1_7',
-        type: QuestionType.part4,
-        question: QUESTION_PHASE_PART1_789,
-        answer: [
-            'He has a scar on his face',
-            'He has a beard',
-            'He has a mustache'],
-        correctAnswer: 2,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-        difficultLevel: 3
-    }, {
-        id: 'r_s1_b1_u2_p1_8',
-        type: QuestionType.part4,
-        question: QUESTION_PHASE_PART1_789,
-        answer: [
-            'My grandfather has short blond hair.',
-            'My grandmother has long blond hair.',
-            'My grandfather has short white hair.'],
-        correctAnswer: 2,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-        difficultLevel: 3
-    }, {
-        id: 'r_s1_b1_u2_p1_9',
-        type: QuestionType.part4,
-        question: QUESTION_PHASE_PART1_789,
-        answer: [
-            'My sister wears a yellow hat.',
-            'My sister wears glasses.',
-            'My sister has a glass.'],
-        correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p1_1_001.png'),
-        difficultLevel: 3
-    }];
+    difficultLevel: 3,
+}];
 
 //
 const QuestionReadingPart2: IQuestion[] = [{
-    id: 'r_s1_b1_u1_p2_1',
+    id: 'r_s2_b1_u1_p2_1',
     type: QuestionType.part3,
-    question: 'This is a group of people. They are related to each other. The members can be people such as grandparents, parents, sisters, brothers, and cousins.\n' +
-        'Q. Who are they?\n',
+    question: '1.\tWhat does Michelle think of Jennifer as?',
     answer: [
-        'Classmates',
-        'Co-workers',
-        'Family'],
-    correctAnswer: 2,
-    difficultLevel: 3,
-}, {
-    id: 'r_s1_b1_u1_p2_2',
-    type: QuestionType.part3,
-    question: 'This person is the mother of your mother or father. \n' +
-        'Q. Who is she? \n',
-    answer: [
-        'My grandfather',
-        'My mother',
-        'My grandmother'],
-    correctAnswer: 2,
-    difficultLevel: 3,
-}, {
-    id: 'r_s1_b1_u1_p2_3',
-    type: QuestionType.part3,
-    question: 'This person is the brother of your mother or father.\n' +
-        'Q. Who is he?\n',
-    answer: [
-        'My brother',
-        'My uncle',
-        'My nephew'],
+        '(A)\tHer best student',
+        '(B)\tHer best friend',
+        '(C)\tHer best sister'],
     correctAnswer: 1,
+    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_123.png'),
     difficultLevel: 3,
+    comeWith: ['r_s2_b1_u1_p2_1', 'r_s2_b1_u1_p2_2', 'r_s2_b1_u1_p2_3']
 }, {
-    id: 'r_s1_b1_u1_p2_4',
+    id: 'r_s2_b1_u1_p2_2',
     type: QuestionType.part3,
-    question: 'This person is the daughter of your brother or sister.\n' +
-        'Q. Who is she?\n',
+    question: '2.\tWhat does Michelle like about Jennifer?',
     answer: [
-        'My aunt',
-        'My daughter',
-        'My niece '],
-    correctAnswer: 2,
+        '(A)\tThat she spreads rumors',
+        '(B)\tThat she knows funny jokes',
+        '(C)\tThat she only thinks about herself'],
+    correctAnswer: 1,
+    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_123.png'),
     difficultLevel: 3,
-},
-    // Unit 2
-    {
-        id: 'r_s1_b1_u2_p2_1',
-        type: QuestionType.part3,
-        question: '1.\tIt is a small brown spot on someone’s face.\n' +
-            'Q. What is it?\n',
-        answer: [
-            'A freckle',
-            'Glasses',
-            'A mustache'],
-        correctAnswer: 0,
-        difficultLevel: 3,
-    }, {
-        id: 'r_s1_b1_u2_p2_2',
-        type: QuestionType.part3,
-        question: '2.\tIt is a line on your face. You get this when you get old.\n' +
-            'Q. What is it?\n',
-        answer: [
-            'A scar',
-            'A beard',
-            'A wrinkle'],
-        correctAnswer: 2,
-        difficultLevel: 3
-    }, {
-        id: 'r_s1_b1_u2_p2_3',
-        type: QuestionType.part3,
-        question: 'Some people show a small hollow area on their cheek or chin when they smile.\n' +
-            'Q. What is it?\n',
-        answer: [
-            'Curly hair',
-            'A dimple',
-            'A ponytail'],
-        correctAnswer: 1,
-        difficultLevel: 3
-    }, {
-        id: 'r_s1_b1_u2_p2_4',
-        type: QuestionType.part3,
-        question: 'For this hairstyle, you cut the front part of your hair short.\n' +
-            'Q. What is it?\n',
-        answer: [
-            'A pigtail',
-            'Bangs',
-            'Bald '],
-        correctAnswer: 1,
-        difficultLevel: 3
-    }];
+    comeWith: ['r_s2_b1_u1_p2_1', 'r_s2_b1_u1_p2_2', 'r_s2_b1_u1_p2_3']
+}, {
+    id: 'r_s2_b1_u1_p2_3',
+    type: QuestionType.part3,
+    question: 'What does Michelle like?',
+    answer: [
+        '(A)\tMath',
+        '(B)\tChocolate milk.',
+        '(C)\tStrawberry milk'],
+    correctAnswer: 2,
+    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_123.png'),
+    difficultLevel: 3,
+    comeWith: ['r_s2_b1_u1_p2_1', 'r_s2_b1_u1_p2_2', 'r_s2_b1_u1_p2_3']
+}, {
+    id: 'r_s2_b1_u1_p2_4',
+    type: QuestionType.part3,
+    question: '4.\tWhat is true about Alex?',
+    answer: [
+        '(A)\tHe likes soccer',
+        '(B)\tHe moved to a new city',
+        '(C)\tHe doesn’t know how to play basketball'],
+    correctAnswer: 1,
+    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_45.png'),
+    difficultLevel: 3,
+    comeWith: ['r_s2_b1_u1_p2_4', 'r_s2_b1_u1_p2_5']
+}, {
+    id: 'r_s2_b1_u1_p2_5',
+    type: QuestionType.part3,
+    question: '5.\tWhy did Michael write a letter to Alex?',
+    answer: [
+        'To blame him for the game',
+        'To ask how he is doing',
+        'To tell him that he is moving, too'],
+    correctAnswer: 1,
+    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_45.png'),
+    difficultLevel: 3,
+    comeWith: ['r_s2_b1_u1_p2_4', 'r_s2_b1_u1_p2_5']
+}, {
+    id: 'r_s2_b1_u1_p2_6',
+    type: QuestionType.part3,
+    question: '6.\tWhat is the text about?',
+    answer: [
+        'Going to college',
+        'Going to the movies',
+        'Having friends'],
+    correctAnswer: 2,
+    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_678.png'),
+    difficultLevel: 3,
+    comeWith: ['r_s2_b1_u1_p2_6', 'r_s2_b1_u1_p2_7', 'r_s2_b1_u1_p2_8']
+}, {
+    id: 'r_s2_b1_u1_p2_7',
+    type: QuestionType.part3,
+    question: '7.\tWhat decreases when you have someone to share things with?',
+    answer: [
+        '(A)\tHappiness',
+        '(B)\tExcitement',
+        '(C)\tStress'],
+    correctAnswer: 2,
+    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_678.png'),
+    difficultLevel: 3,
+    comeWith: ['r_s2_b1_u1_p2_6', 'r_s2_b1_u1_p2_7', 'r_s2_b1_u1_p2_8']
+}, {
+    id: 'r_s2_b1_u1_p2_8',
+    type: QuestionType.part3,
+    question: '5.\tAccording to the text, how does having friends affect our lives?',
+    answer: [
+        '(A)\tIt makes our lives more depressed',
+        '(B)\tIt makes our lives more enjoyable',
+        '(C)\tIt makes our lives more difficult'],
+    correctAnswer: 1,
+    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_678.png'),
+    difficultLevel: 3,
+    comeWith: ['r_s2_b1_u1_p2_6', 'r_s2_b1_u1_p2_7', 'r_s2_b1_u1_p2_8']
+}, {
+    id: 'r_s2_b1_u1_p2_9',
+    type: QuestionType.part3,
+    question: '9.\tWho is Sonia?',
+    answer: [
+        '(A)\tShe is Angela’s sister',
+        '(B)\tShe is Christine’s cousin',
+        '(C)\tShe is Angela’s cousin'],
+    correctAnswer: 2,
+    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_9101112.png'),
+    difficultLevel: 3,
+    comeWith: ['r_s2_b1_u1_p2_9', 'r_s2_b1_u1_p2_10', 'r_s2_b1_u1_p2_11', 'r_s2_b1_u1_p2_12']
+}, {
+    id: 'r_s2_b1_u1_p2_10',
+    type: QuestionType.part3,
+    question: '10.\tWhy did Sonia come to Angela’s school?',
+    answer: [
+        '(A)\tShe came to visit Christine',
+        '(B)\tShe became a student there',
+        '(C)\tShe wanted to help Angela with her science project'],
+    correctAnswer: 1,
+    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_9101112.png'),
+    difficultLevel: 3,
+    comeWith: ['r_s2_b1_u1_p2_9', 'r_s2_b1_u1_p2_10', 'r_s2_b1_u1_p2_11', 'r_s2_b1_u1_p2_12']
+}, {
+    id: 'r_s2_b1_u1_p2_11',
+    type: QuestionType.part3,
+    question: '11.\tWhy was Christine upset?',
+    answer: [
+        '(A)\tShe had to take care of her baby sister after school',
+        '(B)\tShe had to help her mom move to their new home',
+        '(C)\tShe thought Angela didn’t want to be friends with her'],
+    correctAnswer: 2,
+    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_9101112.png'),
+    difficultLevel: 3,
+    comeWith: ['r_s2_b1_u1_p2_9', 'r_s2_b1_u1_p2_10', 'r_s2_b1_u1_p2_11', 'r_s2_b1_u1_p2_12']
+}, {
+    id: 'r_s2_b1_u1_p2_12',
+    type: QuestionType.part3,
+    question: '12.\tWhat did Angela get for Christine?',
+    answer: [
+        '(A)\tA necklace',
+        '(B)\tA jewelry box',
+        '(C)\tA book'],
+    correctAnswer: 1,
+    imageAsset: require('../assets/images/step2/imagereading/r_part2/1_9101112.png'),
+    difficultLevel: 3,
+    comeWith: ['r_s2_b1_u1_p2_9', 'r_s2_b1_u1_p2_10', 'r_s2_b1_u1_p2_11', 'r_s2_b1_u1_p2_12']
+},];
 
-const QuestionReadingPart3: IQuestion[] = [{
-    id: 'r_s1_b1_u1_p3_1',
-    type: QuestionType.part3,
-    question: 'How many family members are there in Mark’s family, including him?',
-    answer: [
-        'Four',
-        'Five',
-        'Three'],
-    correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
-    difficultLevel: 3,
-    comeWith: ['r_s1_b1_u1_p3_1', 'r_s1_b1_u1_p3_2', 'r_s1_b1_u1_p3_3']
-}, {
-    id: 'r_s1_b1_u1_p3_2',
-    type: QuestionType.part3,
-    question: 'What does Mark’s dad like?',
-    answer: [
-        'Cooking',
-        'Watching TV',
-        'Listening to music'],
-    correctAnswer: 1,
-    imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
-    difficultLevel: 3,
-    comeWith: ['r_s1_b1_u1_p3_1', 'r_s1_b1_u1_p3_2', 'r_s1_b1_u1_p3_3']
-}, {
-    id: 'r_s1_b1_u1_p3_3',
-    type: QuestionType.part3,
-    question: 'What does Mark think about his mom?',
-    answer: [
-        'She likes dolls',
-        'She makes yummy food.',
-        'She enjoys eating out'],
-    correctAnswer: 1,
-    imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
-    difficultLevel: 3,
-    comeWith: ['r_s1_b1_u1_p3_1', 'r_s1_b1_u1_p3_2', 'r_s1_b1_u1_p3_3']
-}, {
-    id: 'r_s1_b1_u1_p3_4',
-    type: QuestionType.part3,
-    question: 'Why is Raymond excited?',
-    answer: [
-        'His summer vacation starts soon.',
-        'He is going to visit his grandfather next Friday',
-        'He is going fishing this weekend'],
-    correctAnswer: 0,
-    imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
-    difficultLevel: 3,
-    comeWith: ['r_s1_b1_u1_p3_4', 'r_s1_b1_u1_p3_5']
-}, {
-    id: 'r_s1_b1_u1_p3_5',
-    type: QuestionType.part3,
-    question: 'What did Raymond do last summer?',
-    answer: [
-        'He went camping from school',
-        'He wrote a letter',
-        'He caught some fish'],
-    correctAnswer: 2,
-    imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
-    difficultLevel: 3,
-    comeWith: ['r_s1_b1_u1_p3_4', 'r_s1_b1_u1_p3_5']
-},
-    // Unit 2
-    {
-        id: 'r_s1_b1_u2_p3_1',
-        type: QuestionType.part3,
-        question: 'What is Joy’s weight?',
-        answer: [
-            '90 kilograms',
-            '90 pounds',
-            '5 feet'],
-        correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
-        difficultLevel: 3,
-        comeWith: ['r_s1_b1_u2_p3_1', 'r_s1_b1_u2_p3_2', 'r_s1_b1_u2_p3_3']
-    }, {
-        id: 'r_s1_b1_u2_p3_2',
-        type: QuestionType.part3,
-        question: 'What is Joy’s eye color?',
-        answer: [
-            'Black',
-            'Brown',
-            'Blond'],
-        correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
-        difficultLevel: 3,
-        comeWith: ['r_s1_b1_u2_p3_1', 'r_s1_b1_u2_p3_2', 'r_s1_b1_u2_p3_3']
-    }, {
-        id: 'r_s1_b1_u2_p3_3',
-        type: QuestionType.part3,
-        question: 'What type of hair does Joy have?',
-        answer: [
-            'Curly',
-            'Straight',
-            'Wavy'],
-        correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
-        difficultLevel: 3,
-        comeWith: ['r_s1_b1_u2_p3_1', 'r_s1_b1_u2_p3_2', 'r_s1_b1_u2_p3_3']
-    }, {
-        id: 'r_s1_b1_u2_p3_4',
-        type: QuestionType.part3,
-        question: 'What did Katie do yesterday?',
-        answer: [
-            'She went shopping',
-            'She had her hair cut',
-            'She called a hair salon'],
-        correctAnswer: 1,
-        imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
-        difficultLevel: 3,
-        comeWith: ['r_s1_b1_u2_p3_4', 'r_s1_b1_u2_p3_5']
-    }, {
-        id: 'r_s1_b1_u2_p3_5',
-        type: QuestionType.part3,
-        question: 'What is Katie going to do next weekend?',
-        answer: [
-            'Get a haircut',
-            'Get new glasses',
-            'Meet Lucy'],
-        correctAnswer: 2,
-        imageAsset: require('./../../assets/images/test1/p3_1_063.png'),
-        difficultLevel: 3,
-        comeWith: ['r_s1_b1_u2_p3_4', 'r_s1_b1_u2_p3_5']
-    }
-
-];
 
 export default QuestionReadingPart1;
