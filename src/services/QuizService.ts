@@ -94,7 +94,7 @@ class QuizService implements IQuizService{
 
 
         //So concat the question and return them
-        var resQuestionList : IQuestion[] = new Array();
+        let resQuestionList: IQuestion[] = new Array();
         for(let i = 0; i < 7; i++){
             resQuestionList =  resQuestionList.concat(questionListPart[i]);
         }
@@ -130,7 +130,7 @@ class QuizService implements IQuizService{
         this._lastNumberOfQuestion = numberOfQuestion;
 
         //Let crawling the question
-        var resQuestionList : IQuestion[] = this.crawlingQuestion(type, numberOfQuestion, difficultLevel);
+        const resQuestionList: IQuestion[] = this.crawlingQuestion(type, numberOfQuestion, difficultLevel);
 
 
         //Let trim the question so that it can fix the number of question

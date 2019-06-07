@@ -1,17 +1,29 @@
 import React from 'react';
 import {Body, Button, Container, Content, Header, Icon, Left, Right, Text, Title, View,} from 'native-base';
 
-import {Alert, ImageBackground, Platform, ScrollView, StyleSheet, TouchableOpacity,} from 'react-native';
-import sharedQuizService from '../services/QuizService';
+import {
+    Alert,
+    Image,
+    ImageBackground,
+    Platform,
+    ScrollView,
+    StyleSheet,
+    TouchableOpacity,
+    ViewStyle,
+} from 'react-native';
+import sharedQuizService from '../../services/QuizService';
 import {withNavigation} from 'react-navigation';
-import {QuestionType} from '../entity/Question';
-import LocalHelper from '../helper/LocalHelper';
+import {QuestionType} from '../../entity/Question';
+import LocalHelper from '../../helper/LocalHelper';
 import GridView from "react-native-super-grid";
-import DataHelper from "../helper/DataHelper";
+import DataHelper from "../../helper/DataHelper";
 
 
-class SampleScreen extends React.Component {
-    topic = null;
+import FlatButton from 'react-native-flat-button'
+import {heightPercentageToDP, widthPercentageToDP} from "../../helper/ratioHelper";
+
+class StepScreen extends React.Component {
+    step = null;
     topicData = null;
 
     static navigationOptions = {
@@ -22,10 +34,10 @@ class SampleScreen extends React.Component {
         super(props);
         this.state = {};
 
-        // this.topic = props.navigation.getParam('topic', null);
-        this.topic = {
-            id: 2,
-            name: 'Sample 1'
+        let name = props.navigation.getParam('name', null);
+        this.step = {
+            name: name,
+            index: 1
         };
     }
 
@@ -165,22 +177,14 @@ class SampleScreen extends React.Component {
             {
                 name: 'Step 1',
                 code: DataHelper._getPercent(1),
-                icon: require('../../assets/images/home/bg1.jpg')
+                icon: require('../../../assets/images/home/bg/bgs10.png'),
+                iconText: require('../../../assets/images/home/text/reading-1.png')
             },
             {
                 name: 'Step 2',
                 code: DataHelper._getPercent(2),
-                icon: require('../../assets/images/home/bg2.png')
-            },
-            {
-                name: 'Step 3',
-                code: DataHelper._getPercent(2),
-                icon: require('../../assets/images/home/bg3.png')
-            },
-            {
-                name: 'Step 4',
-                code: DataHelper._getPercent(2),
-                icon: require('../../assets/images/home/bg4.png')
+                icon: require('../../../assets/images/home/bg/bgs5.png'),
+                iconText: require('../../../assets/images/home/text/listening-1.png')
             },
         ];
 
@@ -205,7 +209,7 @@ class SampleScreen extends React.Component {
                         }
                     </Left>
                     <Body>
-                    <Title>{this.topic.name}</Title>
+                    <Title>{this.step.name}</Title>
                     </Body>
                     <Right>
 
@@ -215,59 +219,81 @@ class SampleScreen extends React.Component {
                     contentContainerStyle={{flexGrow: 1}}>
                     <View style={{
                         flex: 1,
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
                     }}>
-                        <ScrollView style={sampleStyles.container}>
-                            <View style={{flex: 1}}>
-                                <ScrollView style={{flex: 1}}>
-                                    <GridView
-                                        itemDimension={180}
-                                        items={items}
-                                        style={sampleStyles.gridView}
-                                        renderItem={(item, index) => (
-                                            <TouchableOpacity
-                                                onPress={() => {
-                                                    // this._openStep1(index);
-                                                }}
-                                                style={[
-                                                    sampleStyles.viewContainer,
-                                                    {
-                                                        marginTop: 10,
-                                                        backgroundColor: '#ffffff',
-                                                        shadowOffset: {width: 1, height: 2},
-                                                        shadowOpacity: 0.12,
-                                                        shadowRadius: 4,
-                                                        elevation: 1,
-                                                    }
-                                                ]}>
-                                                <ImageBackground source={item.icon}
-                                                                 resizeMode= 'stretch'
-                                                                 style={[
-                                                                     sampleStyles.viewContainer,
-                                                                     {resizeMode: 'stretch', width: '100%', height: '100%'}
-                                                                 ]}
-                                                                 imageStyle={{
-                                                                     borderRadius: 7,
-                                                                     height: 150,
-                                                                     flex: 1
-                                                                 }}
-                                                >
-                                                    <View style={sampleStyles.itemContainer}>
-                                                        <Text style={sampleStyles.itemName}>{item.name}</Text>
-                                                        {/*<Text style={{*/}
-                                                        {/*    fontSize: 16,*/}
-                                                        {/*    color: '#5B5B5B',*/}
-                                                        {/*    fontWeight: '600',*/}
-                                                        {/*    fontStyle: 'italic'*/}
-                                                        {/*}}>Reading</Text>*/}
-                                                    </View>
-                                                </ImageBackground>
-
-                                            </TouchableOpacity>
-                                        )}
-                                    />
-                                </ScrollView>
-                            </View>
+                        <ScrollView style={{flex: 1}}>
+                            <GridView
+                                itemDimension={180}
+                                items={items}
+                                style={sampleStyles.gridView}
+                                renderItem={(item, index) => (
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            // this._openStep1(index);
+                                        }}
+                                        style={[
+                                            sampleStyles.viewContainer,
+                                            {
+                                                marginTop: 10,
+                                                backgroundColor: '#ffffff',
+                                                shadowOffset: {width: 1, height: 2},
+                                                shadowOpacity: 0.12,
+                                                shadowRadius: 4,
+                                                elevation: 1,
+                                            }
+                                        ]}>
+                                        <ImageBackground source={item.icon}
+                                                         resizeMode= 'stretch'
+                                                         style={[
+                                                             sampleStyles.viewContainer,
+                                                             {resizeMode: 'stretch', width: '100%', height: '100%'}
+                                                         ]}
+                                                         imageStyle={{
+                                                             borderRadius: 10,
+                                                             height: 150,
+                                                             flex: 1
+                                                         }}
+                                        >
+                                            <View style={sampleStyles.itemContainer}>
+                                                {/*<Text style={{*/}
+                                                {/*fontSize: 16,*/}
+                                                {/*color: '#5B5B5B',*/}
+                                                {/*fontWeight: '600',*/}
+                                                {/*fontStyle: 'italic'*/}
+                                                {/*}}>{item.name}</Text>*/}
+                                                <Image
+                                                    style={{
+                                                        resizeMode: 'contain', width: '58%', height: '58%'
+                                                    }}
+                                                    source={item.iconText}
+                                                />
+                                            </View>
+                                        </ImageBackground>
+                                    </TouchableOpacity>
+                                )}
+                            />
                         </ScrollView>
+
+                        <View style={styles.buttonContainer}>
+                            <FlatButton
+                                type="custom"
+                                onPress={() => Alert.alert('Custom Button #1')}
+                                backgroundColor={"#1abc9c"}
+                                borderColor={"#16a085"}
+                                borderRadius={10}
+                                shadowHeight={5}
+                                containerStyle={{
+                                    flex:1,
+                                    height: 50,
+                                }}
+                                contentStyle={{
+                                    fontSize: 22
+                                }}
+                            >
+                                Test
+                            </FlatButton>
+                        </View>
                     </View>
 
                 </Content>
@@ -276,9 +302,25 @@ class SampleScreen extends React.Component {
     }
 }
 
-export default withNavigation(SampleScreen);
+export default withNavigation(StepScreen);
 
 const styles = StyleSheet.create({
+    buttonContainer: {
+        marginHorizontal: widthPercentageToDP(8),
+        marginTop: heightPercentageToDP(2),
+        marginBottom: heightPercentageToDP(5),
+        height: heightPercentageToDP(7),
+        maxHeight: heightPercentageToDP(7),
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    button: {
+        borderRadius: 10,
+        width: widthPercentageToDP(37),
+        justifyContent: 'center',
+    },
+
     vc_floatingButton: {
         position: 'absolute',
         width: 100,
@@ -331,10 +373,9 @@ const sampleStyles = StyleSheet.create({
         backgroundColor: '#ecf5fd',
     },
     gridView: {
-        marginTop: 15,
+        marginTop: heightPercentageToDP(2),
+        marginHorizontal: widthPercentageToDP(4),
         flex: 1,
-        marginLeft: 15,
-        marginRight: 15,
         flexDirection: 'column',
     },
     itemContainer: {

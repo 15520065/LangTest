@@ -29,7 +29,7 @@ import TopicScreen from './screen/vocabularySreen/TopicScreen';
 import WordScreen from './screen/vocabularySreen/WordScreen';
 
 import AppNavigator from './navigation/AppNavigator';
-import HomeScreen from './screen/HomeScreen';
+import HomeScreen from './screen/HomeScreen/HomeScreen';
 import ChartScreen from './screen/ChartScreen';
 import ResultScreen from './screen/QuestionScreen/ResultScreen';
 import LeaderBoardScreen from './screen/LeaderBoardScreen';
@@ -39,7 +39,8 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Step1Question from "./screen/Step1/Step1Question";
 import DataSync from "./helper/DataSync";
 import UtilHelper from "./helper/UtilHelper";
-import SampleScreen from "./screen/SampleScreen";
+import SampleScreen from "./screen/HomeScreen/SampleScreen";
+import StepScreen from "./screen/HomeScreen/StepScreen";
 
 //huy
 // Initialize Firebase
@@ -279,6 +280,9 @@ const AppNavigation = createStackNavigator({
     },
     SampleScreen: {
         screen: SampleScreen,
+    },
+    StepScreen: {
+        screen: StepScreen,
     }
 }, {
     headerMode: 'none',

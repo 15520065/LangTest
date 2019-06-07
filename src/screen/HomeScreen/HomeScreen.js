@@ -21,11 +21,11 @@ import {Icon, Button, Header, Content, Left, Container, Body, Title, Right} from
 
 import Carousel from 'react-native-snap-carousel';
 import {Card, CardTitle, CardContent, CardAction, CardButton, CardImage} from 'react-native-cards';
-import CardModal from '../components/CardModal';
+import CardModal from '../../components/CardModal';
 // import MyProfile from '../entity/ProfileData';
-import sharedQuizService from '../services/QuizService';
-import {QuestionType} from '../entity/Question';
-import DataHelper from "../helper/DataHelper";
+import sharedQuizService from '../../services/QuizService';
+import {QuestionType} from '../../entity/Question';
+import DataHelper from "../../helper/DataHelper";
 import {AntDesign, MaterialCommunityIcons, Entypo} from '@expo/vector-icons';
 
 
@@ -143,8 +143,8 @@ export default class HomeScreen extends PureComponent {
     render() {
         // Taken from https://flatuicolors.com/
         const items = [
-            {name: 'Step 1', code: DataHelper._getPercent(1), icon: require('../../assets/icon/i1.png')},
-            {name: 'Step 2', code: DataHelper._getPercent(2), icon: require('../../assets/icon/i2.png')},
+            {name: 'Step 1', code: DataHelper._getPercent(1), icon: require('../../../assets/icon/i1.png')},
+            {name: 'Step 2', code: DataHelper._getPercent(2), icon: require('../../../assets/icon/i2.png')},
             // {name: 'Conversations', code: DataHelper._getPercent(3), icon: require('../../assets/icon/i3.png')},
             // {name: 'Talks', code: DataHelper._getPercent(4), icon: require('../../assets/icon/i4.png')},
             // {name: 'Incomplete Sentences', code: DataHelper._getPercent(5), icon: require('../../assets/icon/i5.png')},
@@ -184,7 +184,7 @@ export default class HomeScreen extends PureComponent {
                     <ImageBackground
                         style={styles.headerBackgroundImage}
                         blurRadius={0}
-                        source={require('../../assets/images/background.jpg')}
+                        source={require('../../../assets/images/background.jpg')}
                     >
                         <TouchableOpacity onPress={() => {
                             this._openProfileScreen();
@@ -258,7 +258,7 @@ export default class HomeScreen extends PureComponent {
                                     <Image style={{
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                    }} source={require('../../assets/images/cup_icon_48.png')}
+                                    }} source={require('../../../assets/images/cup_icon_48.png')}
                                     />
                                 </View>
                             </View>
