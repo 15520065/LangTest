@@ -132,6 +132,7 @@ export default class App extends React.Component {
 
         const asset = await DataSync._checkVersion();
 
+
         let imageAsset = [];
         let audioAsset = [];
 
@@ -170,7 +171,19 @@ export default class App extends React.Component {
 
         console.log('imageAssetPromise = ' + imageAssetPromise.length);
         console.log('audioAssetPromise = ' + audioAssetPromise.length);
-        await Promise.all([...audioAssetPromise, ...imageAssetPromise, ...fontAssets]);
+
+        let imageStaticAssetPromise = Asset.loadAsync([
+            require('../assets/images/home/bg/bgs6.png'),
+            require('../assets/images/home/text/step1-2.png'),
+            require('../assets/images/home/bg/bgs4.png'),
+            require('../assets/images/home/text/step2-2.png'),
+
+            require('../assets/images/home/bg/bgs5.png'),
+            require('../assets/images/home/text/listening-1.png'),
+            require('../assets/images/home/bg/bgs10.png'),
+            require('../assets/images/home/text/reading-1.png')
+        ]);
+        await Promise.all([...audioAssetPromise, ...imageAssetPromise,...imageStaticAssetPromise, ...fontAssets]);
     };
 
     render() {
@@ -178,7 +191,10 @@ export default class App extends React.Component {
             return (
                 <AppLoading
                     startAsync={this._loadAssetsAsync}
-                    onFinish={() => this.setState({loading: false})}
+                    onFinish={() => {
+                        this.setState({loading: false});
+                        DataSync.saveVersionServer();
+                    }}
                     onError={(error) => {
                         console.warn("AppLoading Error + " + error);
                     }}

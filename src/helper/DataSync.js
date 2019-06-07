@@ -33,11 +33,23 @@ class DataSync {
         this.data['exam'] = object;
     }
 
+    setVersionServer(object) {
+        this.data['versionServer'] = object;
+    }
+
+    saveVersionServer() {
+        if (this.data && this.data['versionServer']) {
+            LocalHelper._storeMapData(LocalHelper.version, UtilHelper._objectToMap(this.data['versionServer']));
+        }
+    }
+
 
     _checkVersion = async () => {
         return fetch(SERVER_URL + '/version.json')
             .then(response => response.json())
             .then(async (versionServer) => {
+                this.setVersionServer(versionServer);
+
                 // Fetch Version
                 let imageAsset = [];
                 let audioAsset = [];
@@ -73,8 +85,6 @@ class DataSync {
 
                 imageAsset = [...imageAsset,
                     ...instance._getImageAssetFromObject(instance.getVoca(), instance.getExam())];
-
-                LocalHelper._storeMapData(LocalHelper.version, UtilHelper._objectToMap(versionServer));
 
                 return {
                     imageAsset:imageAsset,
@@ -200,7 +210,7 @@ class DataSync {
             if (typeof image === 'string') {
                 // Image.abortPrefetch(image);
                 // console.log(image);
-                return Image.prefetch(image);
+                return Image.prefetch({uri: image} );
             } else {
                 return Asset.fromModule(image).downloadAsync();
             }
