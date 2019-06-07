@@ -206,7 +206,7 @@ export default class App extends React.Component {
 
 
 const OtherScreen = createSwitchNavigator({
-    Questions: QuizScreen,
+    QuizScreen: QuizScreen,
     Results: ResultScreen
 });
 

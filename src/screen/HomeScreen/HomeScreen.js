@@ -1,33 +1,27 @@
-import React, {Component, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import {
+    Dimensions,
     Image,
+    ImageBackground,
     Platform,
+    ScrollView,
     StyleSheet,
     Text,
     TouchableOpacity,
     View,
-    Alert,
-    Dimensions,
-    ScrollView,
-    LayoutAnimation,
-    ImageBackground,
-
 } from 'react-native';
-import {WebBrowser} from 'expo';
 import GridView from 'react-native-super-grid';
-import NavigationBar from 'react-native-navbar';
 
-import {Icon, Button, Header, Content, Left, Container, Body, Title, Right} from 'native-base';
-
-import Carousel from 'react-native-snap-carousel';
-import {Card, CardTitle, CardContent, CardAction, CardButton, CardImage} from 'react-native-cards';
-import CardModal from '../../components/CardModal';
+import {Body, Button, Container, Header, Left, Right, Title} from 'native-base';
 // import MyProfile from '../entity/ProfileData';
 import sharedQuizService from '../../services/QuizService';
 import {QuestionType} from '../../entity/Question';
 import DataHelper from "../../helper/DataHelper";
-import {AntDesign, MaterialCommunityIcons, Entypo} from '@expo/vector-icons';
-
+import {Entypo} from '@expo/vector-icons';
+import Carousel from 'react-native-snap-carousel';
+import SliderEntry from "../../components/SliderEntry";
+import { Rating, AirbnbRating } from 'react-native-ratings';
+import {widthPercentageToDP} from "../../helper/ratioHelper";
 
 const NumItems = 6;
 const Items = [];
@@ -36,6 +30,39 @@ for (let i = 0; i < NumItems; i++) {
 }
 
 const {width: viewportWidth, height: viewportHeight} = Dimensions.get('window');
+
+const ENTRIES1 = [
+    {
+        title: 'Beautiful and dramatic Antelope Canyon',
+        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+        illustration: 'https://i.imgur.com/UYiroysl.jpg'
+    },
+    {
+        title: 'Earlier this morning, NYC',
+        subtitle: 'Lorem ipsum dolor sit amet',
+        illustration: 'https://i.imgur.com/UPrs1EWl.jpg'
+    },
+    {
+        title: 'White Pocket Sunset',
+        subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
+        illustration: 'https://i.imgur.com/MABUbpDl.jpg'
+    },
+    {
+        title: 'Acrocorinth, Greece',
+        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+        illustration: 'https://i.imgur.com/KZsmUi2l.jpg'
+    },
+    {
+        title: 'The lone tree, majestic landscape of New Zealand',
+        subtitle: 'Lorem ipsum dolor sit amet',
+        illustration: 'https://i.imgur.com/2nCt3Sbl.jpg'
+    },
+    {
+        title: 'Middle Earth, Germany',
+        subtitle: 'Lorem ipsum dolor sit amet',
+        illustration: 'https://i.imgur.com/lceHsT6l.jpg'
+    }
+];
 
 export default class HomeScreen extends PureComponent {
 
@@ -97,31 +124,31 @@ export default class HomeScreen extends PureComponent {
         switch (index) {
             case 0:
                 sharedQuizService.initTest(QuestionType.part1, 5, 3, 5 * 60 * 1000);
-                navigation.navigate('Questions');
+                navigation.navigate('QuizScreen');
                 break;
             case 1:
                 sharedQuizService.initTest(QuestionType.part2, 10, 3, 8 * 60 * 1000);
-                navigation.navigate('Questions');
+                navigation.navigate('QuizScreen');
                 break;
             case 2:
                 sharedQuizService.initTest(QuestionType.part3, 15, 3, 10 * 60 * 1000);
-                navigation.navigate('Questions');
+                navigation.navigate('QuizScreen');
                 break;
             case 3:
                 sharedQuizService.initTest(QuestionType.part4, 15, 3, 10 * 60 * 1000);
-                navigation.navigate('Questions');
+                navigation.navigate('QuizScreen');
                 break;
             case 4:
                 sharedQuizService.initTest(QuestionType.part5, 15, 3, 10 * 60 * 1000);
-                navigation.navigate('Questions');
+                navigation.navigate('QuizScreen');
                 break;
             case 5:
                 sharedQuizService.initTest(QuestionType.part6, 10, 3, 7 * 60 * 1000);
-                navigation.navigate('Questions');
+                navigation.navigate('QuizScreen');
                 break;
             case 6:
                 sharedQuizService.initTest(QuestionType.part7, 10, 3, 7 * 60 * 1000);
-                navigation.navigate('Questions');
+                navigation.navigate('QuizScreen');
                 break;
         }
     }
@@ -141,7 +168,6 @@ export default class HomeScreen extends PureComponent {
     };
 
     render() {
-        // Taken from https://flatuicolors.com/
         const items = [
             {name: 'Step 1', code: DataHelper._getPercent(1), icon: require('../../../assets/icon/i1.png')},
             {name: 'Step 2', code: DataHelper._getPercent(2), icon: require('../../../assets/icon/i2.png')},
@@ -265,33 +291,56 @@ export default class HomeScreen extends PureComponent {
                         </View>
                     </View>
 
-                    <View style={{flex: 1}}>
-                        <ScrollView style={{flex: 1}}>
-                            <GridView
-                                itemDimension={180}
-                                items={items}
-                                style={styles.gridView}
-                                renderItem={(item, index) => (
-                                    <TouchableOpacity
-                                        onPress={() => {
-                                            this._openStep1(index);
-                                        }}
-                                        style={[
-                                            styles.viewContainer,
-                                            {backgroundColor: '#ffffff'}
-                                        ]}>
-                                        <View style={styles.itemContainer}>
-                                            <Text style={styles.itemName}>{item.name}</Text>
-                                            <Text style={{
-                                                fontSize: 16,
-                                                color: '#5B5B5B',
-                                                fontWeight: '600', fontStyle: 'italic'
-                                            }}>Reading - Listening</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                )}
-                            />
-                        </ScrollView>
+                    <View style={{flex: 1,
+                        marginTop: widthPercentageToDP(19)}}>
+                        <Carousel
+                            ref={c => this._slider1Ref = c}
+                            data={ENTRIES1}
+                            renderItem={({item, index}) => {
+                                return <SliderEntry data={item} even={false} />;
+                            }}
+                            sliderWidth={viewportWidth}
+                            itemWidth={widthPercentageToDP(75) + widthPercentageToDP(1) * 2}
+                            hasParallaxImages={false}
+                            firstItem={1}
+                            inactiveSlideScale={0.94}
+                            inactiveSlideOpacity={0.7}
+                            // inactiveSlideShift={20}
+                            // containerCustomStyle={styles.slider}
+                            contentContainerCustomStyle={{paddingVertical: 10}}
+                            loop={true}
+                            loopClonesPerSide={2}
+                            autoplay={true}
+                            autoplayDelay={500}
+                            autoplayInterval={3000}
+                            onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index }) }
+                        />
+                        {/*<ScrollView style={{flex: 1}}>*/}
+                            {/*<GridView*/}
+                                {/*itemDimension={180}*/}
+                                {/*items={items}*/}
+                                {/*style={styles.gridView}*/}
+                                {/*renderItem={(item, index) => (*/}
+                                    {/*<TouchableOpacity*/}
+                                        {/*onPress={() => {*/}
+                                            {/*this._openStep1(index);*/}
+                                        {/*}}*/}
+                                        {/*style={[*/}
+                                            {/*styles.viewContainer,*/}
+                                            {/*{backgroundColor: '#ffffff'}*/}
+                                        {/*]}>*/}
+                                        {/*<View style={styles.itemContainer}>*/}
+                                            {/*<Text style={styles.itemName}>{item.name}</Text>*/}
+                                            {/*<Text style={{*/}
+                                                {/*fontSize: 16,*/}
+                                                {/*color: '#5B5B5B',*/}
+                                                {/*fontWeight: '600', fontStyle: 'italic'*/}
+                                            {/*}}>Reading - Listening</Text>*/}
+                                        {/*</View>*/}
+                                    {/*</TouchableOpacity>*/}
+                                {/*)}*/}
+                            {/*/>*/}
+                        {/*</ScrollView>*/}
                     </View>
 
                 </ScrollView>
@@ -318,7 +367,6 @@ const styles = StyleSheet.create({
         height: 150,
     },
     gridView: {
-        marginTop: 50,
         flex: 1,
         marginLeft: 15,
         marginRight: 15,

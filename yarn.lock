@@ -5874,6 +5874,14 @@ react-native-pure-chart@^0.0.24:
     lodash "^4.17.4"
     prop-types "^15.6.0"
 
+react-native-ratings@^6.3.1:
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-ratings/-/react-native-ratings-6.3.1.tgz#4e4bd87f376423dc62c933f570fc1932c78adaa4"
+  integrity sha512-+WEtk4wPvnoN5YbfWcmyM4LpKOlvkrFlpQe0KrqeWBAOkN6OXOZYBtiCh97dCIb8Ovpm7goOEcTf3T1MGCi2LA==
+  dependencies:
+    lodash "^4.17.4"
+    prop-types "^15.5.10"
+
 react-native-reanimated@1.0.0-alpha.10:
   version "1.0.0-alpha.10"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.0.0-alpha.10.tgz#e9e6fb35a2cf52fdc912b9fbc76f34f80698e530"
@@ -5910,10 +5918,10 @@ react-native-slider@^0.11.0:
   dependencies:
     prop-types "^15.5.6"
 
-react-native-snap-carousel@^3.7.5:
-  version "3.7.5"
-  resolved "https://registry.yarnpkg.com/react-native-snap-carousel/-/react-native-snap-carousel-3.7.5.tgz#7172456d40ab9161523055eb302f9b03b244240a"
-  integrity sha512-t0/wkjA4Doehv3QTcmzO56G7paGtYsvJgw9XrFI7GCDLK7MrHTiN22ROuJOxMy61nPetyjDAS0Qa3XMl8K7rVQ==
+react-native-snap-carousel@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-snap-carousel/-/react-native-snap-carousel-3.8.0.tgz#9372222d61d37d0a8a3bec423d135d0caa1b7595"
+  integrity sha512-YtDZLv2Di77HfnH4yf+NyyYyISPNjrnjXDQLrzOkG9kkSlho/BROgHLQKGRLg3C2YSUMArFOePrb9CH3yeV5FA==
   dependencies:
     prop-types "^15.6.1"
     react-addons-shallow-compare "15.6.2"

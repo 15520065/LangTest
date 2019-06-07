@@ -55,7 +55,7 @@ class SampleScreen extends React.Component {
         const {navigation} = this.props;
 
         sharedQuizService.initTest(QuestionType.part1, 5, 3, 5 * 60 * 1000);
-        navigation.navigate('Questions');
+        navigation.navigate('QuizScreen');
     };
 
     //region ------------- TEST SCREEN

@@ -186,7 +186,7 @@ export default class QuizScreenContainer extends React.Component<QuizScreenConta
         }
         const tryAgainButton = async function (): Promise<void> {
             await sharedQuizService.initLastTest();
-            navigation.navigate('Questions');
+            navigation.navigate('QuizScreen');
         };
         const homeFunc = async function(): Promise<void> {
             navigation.navigate('Home');
