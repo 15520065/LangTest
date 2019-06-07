@@ -1,11 +1,13 @@
 import * as React from 'react'
-import { View, Text, Button} from 'native-base';
-import { StyleSheet, ViewStyle, AsyncStorage } from 'react-native';
+import {View, Text, Button} from 'native-base';
+import {StyleSheet, ViewStyle, AsyncStorage} from 'react-native';
 import * as Progress from 'react-native-progress';
-import { heightPercentageToDP, widthPercentageToDP } from '../../helper/ratioHelper';
-import { systemWeights, human } from 'react-native-typography';
-import { NavigationScreenProps, NavigationParams } from 'react-navigation';
-export interface ResultScreenProps extends NavigationScreenProps<NavigationParams, any>{
+import {heightPercentageToDP, widthPercentageToDP} from '../../helper/ratioHelper';
+import {systemWeights, human} from 'react-native-typography';
+import {NavigationScreenProps, NavigationParams} from 'react-navigation';
+import {Rating, AirbnbRating} from 'react-native-ratings';
+
+export interface ResultScreenProps extends NavigationScreenProps<NavigationParams, any> {
     totalAnswer: number,
     correctAnswer: number,
     uncorrectedAnswer: number,
@@ -13,29 +15,35 @@ export interface ResultScreenProps extends NavigationScreenProps<NavigationParam
     leftButtonClick?: () => void,
     rightButtonText: string,
     rightButtonClick?: () => void,
+    star: number,
     onResultScreenOpen?: (correctAnswer: number, totalAnswer: number) => void,
 }
 
-interface ResultScreenState{
+interface ResultScreenState {
     progress: number
 }
 
 
-class ResultScreen extends React.Component<ResultScreenProps, ResultScreenState>{
-    static defaultProps : ResultScreenProps = {
+class ResultScreen extends React.Component<ResultScreenProps, ResultScreenState> {
+    static defaultProps: ResultScreenProps = {
         totalAnswer: 10,
         correctAnswer: 10,
         uncorrectedAnswer: 0,
+        star: 5,
         leftButtonText: "Click me",
         rightButtonText: "Home",
         navigation: null
     }
 
-    constructor(props: ResultScreenProps){
+    ratingCompleted(rating) {
+        console.log("Rating is: " + rating)
+    }
+
+    constructor(props: ResultScreenProps) {
         super(props);
 
         const correctedAnswer: number = this.props.navigation.getParam('correctedAnswer', props.correctAnswer);
-        if(correctedAnswer === 0){
+        if (correctedAnswer === 0) {
             this.state = {
                 progress: 1
             }
@@ -46,19 +54,36 @@ class ResultScreen extends React.Component<ResultScreenProps, ResultScreenState>
         }
     }
 
-    componentDidMount(){
+    showStart() {
+        const correctedAnswer: number = this.props.navigation.getParam('correctedAnswer', this.props.correctAnswer);
+        const totalAnswer: number = this.props.navigation.getParam('totalAnswer', this.props.correctAnswer);
+        if (correctedAnswer / totalAnswer <= 0.2) {
+            return 1;
+        } else if (correctedAnswer / totalAnswer > 0.2 && correctedAnswer / totalAnswer <= 0.4) {
+            return 2;
+        } else if (correctedAnswer / totalAnswer > 0.4 && correctedAnswer / totalAnswer <= 0.6) {
+            return 3;
+        } else if (correctedAnswer / totalAnswer > 0.6 && correctedAnswer / totalAnswer <= 0.8) {
+            return 4;
+        } else if (correctedAnswer / totalAnswer > 0.8 && correctedAnswer / totalAnswer <= 1) {
+            return 5;
+        }
+        return 0;
+    }
+
+    componentDidMount() {
         const onResultScreenOpen: (correctAnswer: number, totalAnswer: number) => void = this.props.navigation.getParam('onResultScreenOpen', this.props.onResultScreenOpen);
         const correctedAnswer: number = this.props.navigation.getParam('correctedAnswer', this.props.correctAnswer);
         const totalAnswer: number = this.props.navigation.getParam('totalAnswer', this.props.correctAnswer);
         this.setState({
             progress: correctedAnswer / totalAnswer
         })
-        if(onResultScreenOpen){
+        if (onResultScreenOpen) {
             onResultScreenOpen(correctedAnswer, totalAnswer);
         }
     }
 
-    render(){
+    render() {
         const correctedAnswer: number = this.props.navigation.getParam('correctedAnswer', this.props.correctAnswer);
         const uncorrectedAnswer: number = this.props.navigation.getParam('uncorrectedAnswer', this.props.correctAnswer);
         const totalAnswer: number = this.props.navigation.getParam('totalAnswer', this.props.correctAnswer);
@@ -66,23 +91,29 @@ class ResultScreen extends React.Component<ResultScreenProps, ResultScreenState>
         const leftButtonClick: () => void = this.props.navigation.getParam('leftButtonClick', this.props.leftButtonClick);
         const rightButtonText: number = this.props.navigation.getParam('rightButtonText', this.props.rightButtonText);
         const rightButtonClick: () => void = this.props.navigation.getParam('rightButtonClick', this.props.rightButtonClick);
-        
+
 
         return (
             <View style={styles.container}>
                 <View style={styles.title}>
                     <Text style={[human.largeTitle, {textAlign: 'center'}]}>Your result</Text>
                 </View>
+
+                <View style={{paddingVertical: 10}}>
+                    {/*<AirbnbRating*/}
+                    {/*    count={5}*/}
+                    {/*    reviews={["Terrible", "Bad", "Okay", "Good", "Great"]}*/}
+                    {/*    defaultRating={1}*/}
+                    {/*    size={40}*/}
+                    {/*/>*/}
+                    <Rating
+                        showRating
+                        startingValue={this.showStart()}
+                        onFinishRating={this.ratingCompleted}
+                    />
+                </View>
+
                 <View style={styles.infoContainer}>
-                    <Progress.Circle 
-                        size={widthPercentageToDP(40)} 
-                        showsText={true}
-                        progress={this.state.progress}
-                        borderWidth={0}
-                        thickness={7}
-                        fill="white"
-                        style={{marginLeft: widthPercentageToDP(30), zIndex: 3}}>
-                        </Progress.Circle>
                     <View style={styles.colorContainer}>
                         <View style={styles.textContainer}>
                             <View style={styles.labelContainer}>
@@ -98,11 +129,13 @@ class ResultScreen extends React.Component<ResultScreenProps, ResultScreenState>
                         </View>
                     </View>
                 </View>
-                <View style={styles.buttonContainer}> 
-                    <Button onPress={leftButtonClick} style={[styles.button as ViewStyle, {backgroundColor: '#FF5252'}]}>
+                <View style={styles.buttonContainer}>
+                    <Button onPress={leftButtonClick}
+                            style={[styles.button as ViewStyle, {backgroundColor: '#FF5252'}]}>
                         <Text>{leftButtonText}</Text>
                     </Button>
-                    <Button info bordered onPress={rightButtonClick} style={[styles.button as ViewStyle, {borderWidth: 3}]}>
+                    <Button info bordered onPress={rightButtonClick}
+                            style={[styles.button as ViewStyle, {borderWidth: 3}]}>
                         <Text style={{textAlign: "center"}}>{rightButtonText}</Text>
                     </Button>
                 </View>
@@ -111,7 +144,7 @@ class ResultScreen extends React.Component<ResultScreenProps, ResultScreenState>
     }
 }
 
-const styles  = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column'
@@ -128,13 +161,13 @@ const styles  = StyleSheet.create({
         alignContent: 'stretch',
         zIndex: -3
     },
-    progress : {
+    progress: {
         alignContent: 'center'
     },
     colorContainer: {
-        flex : 1,
+        flex: 1,
         flexDirection: 'row',
-        marginTop: -widthPercentageToDP(20),
+        marginTop: 10,
         height: heightPercentageToDP(40),
         backgroundColor: '#019AE8',
     },
@@ -143,7 +176,7 @@ const styles  = StyleSheet.create({
         marginLeft: widthPercentageToDP(8),
         marginRight: widthPercentageToDP(8),
         marginBottom: heightPercentageToDP(5),
-        flex : 1,
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         backgroundColor: 'white'

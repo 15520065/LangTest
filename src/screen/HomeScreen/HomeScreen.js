@@ -256,30 +256,30 @@ export default class HomeScreen extends PureComponent {
                             onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index }) }
                         />
                         {/*<ScrollView style={{flex: 1}}>*/}
-                            {/*<GridView*/}
-                                {/*itemDimension={180}*/}
-                                {/*items={items}*/}
-                                {/*style={styles.gridView}*/}
-                                {/*renderItem={(item, index) => (*/}
-                                    {/*<TouchableOpacity*/}
-                                        {/*onPress={() => {*/}
-                                            {/*this._openStep1(index);*/}
-                                        {/*}}*/}
-                                        {/*style={[*/}
-                                            {/*styles.viewContainer,*/}
-                                            {/*{backgroundColor: '#ffffff'}*/}
-                                        {/*]}>*/}
-                                        {/*<View style={styles.itemContainer}>*/}
-                                            {/*<Text style={styles.itemName}>{item.name}</Text>*/}
-                                            {/*<Text style={{*/}
-                                                {/*fontSize: 16,*/}
-                                                {/*color: '#5B5B5B',*/}
-                                                {/*fontWeight: '600', fontStyle: 'italic'*/}
-                                            {/*}}>Reading - Listening</Text>*/}
-                                        {/*</View>*/}
-                                    {/*</TouchableOpacity>*/}
-                                {/*)}*/}
-                            {/*/>*/}
+                        {/*<GridView*/}
+                        {/*itemDimension={180}*/}
+                        {/*items={items}*/}
+                        {/*style={styles.gridView}*/}
+                        {/*renderItem={(item, index) => (*/}
+                        {/*<TouchableOpacity*/}
+                        {/*onPress={() => {*/}
+                        {/*this._openStep1(index);*/}
+                        {/*}}*/}
+                        {/*style={[*/}
+                        {/*styles.viewContainer,*/}
+                        {/*{backgroundColor: '#ffffff'}*/}
+                        {/*]}>*/}
+                        {/*<View style={styles.itemContainer}>*/}
+                        {/*<Text style={styles.itemName}>{item.name}</Text>*/}
+                        {/*<Text style={{*/}
+                        {/*fontSize: 16,*/}
+                        {/*color: '#5B5B5B',*/}
+                        {/*fontWeight: '600', fontStyle: 'italic'*/}
+                        {/*}}>Reading - Listening</Text>*/}
+                        {/*</View>*/}
+                        {/*</TouchableOpacity>*/}
+                        {/*)}*/}
+                        {/*/>*/}
                         {/*</ScrollView>*/}
                     </View>
 
