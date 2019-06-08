@@ -19,7 +19,7 @@ import GridView from "react-native-super-grid";
 import DataHelper from "../../helper/DataHelper";
 
 
-import FlatButton from 'react-native-flat-button'
+import FlatButton from 'react-native-flat-button';
 import {heightPercentageToDP, widthPercentageToDP} from "../../helper/ratioHelper";
 import UtilHelper from "../../helper/UtilHelper";
 
@@ -37,12 +37,12 @@ class SampleScreen extends React.Component {
         this.exam = props.navigation.getParam('exam', null);
     }
 
-    _openStep = (index, name) => {
+    _openStep = (stepIndex, name) => {
         // Toast.show('This is a long toast.', Toast.LONG);
         const {navigation} = this.props;
 
         let stepData;
-        if (index === 0) {
+        if (stepIndex === 0) {
             stepData = this.exam.step1;
         } else {
             stepData = this.exam.step2;
@@ -50,8 +50,9 @@ class SampleScreen extends React.Component {
 
         navigation.navigate('StepScreen', {
             name: name,
-            index: index,
-            stepData: stepData
+            stepIndex: stepIndex,
+            stepData: stepData,
+            examId: this.exam.id
         });
     };
 
@@ -68,12 +69,11 @@ class SampleScreen extends React.Component {
         if (step2)
             questionData = questionData.concat(step2.listening, step2.reading);
 
-
         if (questionData.length === 0) {
             Alert.alert('No question Data');
         } else {
-            const id = "sample1";
-            sharedQuizService.initTest(id,questionData, questionData.length, 3, questionData.length * 60 * 1000);
+            const id = this.exam.id ? this.exam.id : "sample";
+            sharedQuizService.initTest(id, questionData, questionData.length, 3, questionData.length * 60 * 1000);
             navigation.navigate('QuizScreen');
         }
     };
@@ -246,11 +246,11 @@ class SampleScreen extends React.Component {
                         }
                     </Left>
                     <Body>
-                    <Title>{this.exam.title}</Title>
+                    <Title >
+                        {this.exam.title?this.exam.title.split('-')[0]:"Sample"}
+                    </Title>
                     </Body>
-                    <Right>
-
-                    </Right>
+                    <Right />
                 </Header>
                 <Content
                     contentContainerStyle={{flexGrow: 1}}>
@@ -281,7 +281,7 @@ class SampleScreen extends React.Component {
                                             }
                                         ]}>
                                         <ImageBackground source={item.icon}
-                                                         resizeMode= 'stretch'
+                                                         resizeMode='stretch'
                                                          style={[
                                                              sampleStyles.viewContainer,
                                                              {resizeMode: 'stretch', width: '100%', height: '100%'}
@@ -320,7 +320,7 @@ class SampleScreen extends React.Component {
                                 borderRadius={10}
                                 shadowHeight={5}
                                 containerStyle={{
-                                    flex:1,
+                                    flex: 1,
                                     height: 50,
                                 }}
                                 contentStyle={{
@@ -328,7 +328,7 @@ class SampleScreen extends React.Component {
                                 }}
                                 onPress={() => this._testAll()}
                             >
-                                Test
+                                Test All
                             </FlatButton>
                         </View>
                     </View>

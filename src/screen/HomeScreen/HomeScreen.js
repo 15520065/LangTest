@@ -252,7 +252,7 @@ export default class HomeScreen extends PureComponent {
                             loopClonesPerSide={2}
                             autoplay={true}
                             autoplayDelay={500}
-                            autoplayInterval={4000}
+                            autoplayInterval={50000}
                             onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index }) }
                         />
                     </View>

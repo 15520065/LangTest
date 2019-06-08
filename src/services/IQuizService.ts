@@ -6,6 +6,6 @@ export default interface IQuizService{
     initQuickTest(numberOfQuestion: number, difficultLevel: number, timer: number): Promise<void>,
     initTest(testId, questionData, numberOfQuestion: number, difficultLevel: number, timer: number): Promise<void>
     initLastTest(): Promise<void>,
-    getMode(): number
+    getTestId(): number
     initTestVocabulary(questions: IQuestion[]): Promise<void>
 }

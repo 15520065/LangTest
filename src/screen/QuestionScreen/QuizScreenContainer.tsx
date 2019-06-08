@@ -169,7 +169,7 @@ export default class QuizScreenContainer extends React.Component<QuizScreenConta
     saveQuizResult = () => {
         const {quizStore} = this.props;
 
-        DataHelper._updateTestResult(sharedQuizService.getMode(),
+        DataHelper._updateTestResult(sharedQuizService.getTestId(),
             quizStore.getTotalQuestionNumber(),
             quizStore.state.currentQuestion,
             quizStore.state.uncorrectedAnswer,

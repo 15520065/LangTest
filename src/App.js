@@ -171,9 +171,11 @@ export default class App extends React.Component {
 
         let imageStaticAssetPromise = Asset.loadAsync([
             require('../assets/images/home/bg/bgs6.png'),
+            require('../assets/images/home/bg/bgs5.png'),
             require('../assets/images/home/text/step12.png'),
             require('../assets/images/home/bg/bgs4.png'),
             require('../assets/images/home/text/step22.png'),
+            require('../assets/images/profile.jpg'),
 
             require('../assets/images/home/bg/bgs5.png'),
             require('../assets/images/home/text/listening1.png'),
@@ -185,7 +187,7 @@ export default class App extends React.Component {
             require('../assets/icon/avatar1.jpg'),
             require('../assets/icon/avatar2.jpg'),
             require('../assets/icon/avatar3.jpg'),
-            require('../assets/icon/avatar4.jpg')
+            require('../assets/icon/avatar4.jpg'),
         ]);
 
         await Promise.all([].concat(audioAssetPromise, imageAssetPromise,imageStaticAssetPromise, fontAssets));
@@ -251,7 +253,8 @@ const MyDrawerNavigator = createDrawerNavigator({
             screen: ProfileScreen,
             navigationOptions: {
                 drawerIcon: ({tintColor}) => (
-                    <FontAwesome name='home' style={{fontSize: 24, color: tintColor}}/>
+                    <FontAwesome name='user' style={{fontSize: 24, color: tintColor}}/>
+
                 )
             }
         },

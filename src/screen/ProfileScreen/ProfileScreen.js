@@ -16,9 +16,10 @@ import {
 } from 'react-native';
 import {withNavigation} from "react-navigation";
 
-import {Body, Container, Header, Left, Right, Title} from 'native-base'
+import {Body, Container, Header, Left, Right, Title,
+    Button} from 'native-base'
 
-import Button from 'react-native-flat-button';
+import FlatButton from 'react-native-flat-button';
 import LocalHelper from "../../helper/LocalHelper";
 import DataHelper from "../../helper/DataHelper";
 import UtilHelper from "../../helper/UtilHelper";
@@ -78,13 +79,6 @@ class ProfileScreen extends React.Component {
         drawerIcon: ({tintColor}) => (
             <FontAwesome name='user' color={tintColor} size={24}/>
         )
-        // title:'Home 1',
-        // // header: { visible:false },
-        //   drawerIcon: (
-        //       <Image source={require('../../assets/images/home.png')}
-        //              style={{height: 24, width: 24}}
-        //       />
-        //   )
     };
 
     render() {
@@ -143,7 +137,7 @@ class ProfileScreen extends React.Component {
                     <View style={styles.headerColumn}>
                         <Image
                             style={styles.userImage}
-                            source={require('../../../assets/images/profile.jpg')}
+                            source={DataHelper._getUserAvatar()}
                         />
                         <Text style={styles.userNameText}>{this.state.name}</Text>
                         <View style={styles.userAddressRow}>
@@ -203,7 +197,7 @@ class ProfileScreen extends React.Component {
                 </View>
 
                 <View style={styles.buttonCenter}>
-                    <Button
+                    <FlatButton
                         type="custom"
                         onPress={() => {
                             this._saveProfile();
@@ -216,7 +210,7 @@ class ProfileScreen extends React.Component {
                         contentStyle={styles.content}
                     >
                         Save
-                    </Button>
+                    </FlatButton>
                 </View>
             </View>
         );

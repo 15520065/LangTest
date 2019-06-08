@@ -24,7 +24,6 @@ import {heightPercentageToDP, widthPercentageToDP} from "../../helper/ratioHelpe
 
 class StepScreen extends React.Component {
     step = null;
-    topicData = null;
 
     static navigationOptions = {
         header: null // !!! Hide Header
@@ -32,166 +31,55 @@ class StepScreen extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
 
         let name = props.navigation.getParam('name', null);
-        let index = props.navigation.getParam('index', null);
+        let stepIndex = props.navigation.getParam('stepIndex', null);
         let stepData = props.navigation.getParam('stepData', null);
+        let examId = props.navigation.getParam('examId', null);
 
         this.step = {
             name: name,
-            index: index,
-            stepData: stepData
+            stepIndex: stepIndex,
+            stepData: stepData,
+            examId: examId
         };
     }
 
     _readingOrListeningClick(item, index) {
         const {navigation} = this.props;
 
-        if (item.name === 'Listening') {
-
-            sharedQuizService.initTest("listening", this.step.stepData.listening,
-                5, 3, 5 * 60 * 1000);
+        const idStr = this.step.examId + '-' + this.step.stepIndex;
+        const stepData = this.step.stepData;
+        
+        if (item.name === 'Listening' && stepData && stepData.listening) {
+            sharedQuizService.initTest(idStr + '-listening', stepData.listening,
+                stepData.listening.length, 3, stepData.listening.length * 60 * 1000);
             navigation.navigate('QuizScreen');
-
+        } else if (stepData && stepData.reading) {
+            sharedQuizService.initTest(idStr + '-reading', stepData.reading,
+                stepData.reading.length, 3, stepData.reading.length * 60 * 1000);
+            navigation.navigate('QuizScreen');
         } else {
-
-            sharedQuizService.initTest("reading", this.step.stepData.reading,
-                5, 3, 5 * 60 * 1000);
-            navigation.navigate('QuizScreen');
+            Alert.alert('No question Data');
         }
     }
 
-    //region ------------- TEST SCREEN
+    _testAll = () => {
+        const {navigation} = this.props;
 
-    _wordDataToTestData = (wordData) => {
-        const questionArr = [];
-        for (let curWordIndex = 0; curWordIndex < wordData.length; curWordIndex++) {
+        let questionData = [];
 
-            const correctAnswerNum = Math.floor(Math.random() * 4);
-            let correctWord = wordData[curWordIndex];
+        if (this.step && this.step.stepData)
+            questionData = questionData.concat(this.step.stepData.listening, this.step.stepData.reading);
 
-            // Random answer array
-            const answerArrIndex = [];
-            while (answerArrIndex.length <= 3) {
-                const answerIndex = Math.floor(Math.random() * wordData.length);
-
-                let isAdded = false;
-                for (const answerIndexGetted of answerArrIndex) {
-                    if ((answerIndex === answerIndexGetted)) {
-                        isAdded = true;
-                        break;
-                    }
-                }
-                if (answerIndex === curWordIndex) {
-                    isAdded = true;
-                }
-
-                if (!isAdded) {
-                    answerArrIndex.push(answerIndex);
-                }
-            }
-
-            // put Answer and Correct answer into one Array
-            const answerArr = [];
-            for (let i = 0, j = 0; i < 4; i++) {
-                if (i === correctAnswerNum) {
-                    answerArr.push(correctWord.translate);
-                } else {
-                    answerArr.push(wordData[answerArrIndex[j]].translate);
-                    j++;
-                }
-            }
-
-            //push question to array
-            const question = {
-                id: correctWord.id,
-                type: QuestionType.vocabulary,
-                question: correctWord.word,
-                answer: answerArr,
-                correctAnswer: correctAnswerNum,
-                imageAsset: correctWord.img,
-                explain: 'Nothing at all',
-                help: correctWord.ex,
-                difficultLevel: 3,
-                comeWith: [correctWord.id]
-            };
-            questionArr.push(
-                question
-            );
-        }
-        return questionArr;
-    };
-
-    _openTestVocabularyScreen = () => {
-        if (this.topicData.length <= 4) {
-            Alert.alert(
-                'Alert',
-                'Not enough data to run test!',
-            );
+        if (questionData.length === 0) {
+            Alert.alert('No question Data');
         } else {
-            sharedQuizService.initTestVocabulary(this._wordDataToTestData(this.topicData));
-            this.props.navigation.navigate('Questions'
-                , {
-                    'quizOver': this.quizOver
-                }
-            );
+            const id = "sample1";
+            sharedQuizService.initTest(id, questionData, questionData.length, 3, questionData.length * 60 * 1000);
+            navigation.navigate('QuizScreen');
         }
     };
-
-    _onResultScreenOpen = (correctAnswer, totalAnswer) => {
-        this._storeVocabularyResult(correctAnswer, totalAnswer);
-    };
-
-
-    _storeVocabularyResult = async (correctAnswer, totalAnswer) => {
-        const result = correctAnswer / totalAnswer;
-        let topicResultMap = await LocalHelper._getMapData(LocalHelper.topicResult);
-        if (topicResultMap == null) {
-            topicResultMap = new Map();
-        }
-        topicResultMap.set(this.topic.id, result);
-
-        // calculate user score
-        let score = await LocalHelper._getMapData(LocalHelper.score);
-        if (score == null) {
-            score = new Map();
-            score.set('totalAnswer', totalAnswer);
-            score.set('correctAnswer', correctAnswer);
-        } else {
-            score.set('totalAnswer', totalAnswer + score.get('totalAnswer'));
-            score.set('correctAnswer', correctAnswer + score.get('correctAnswer'));
-        }
-
-        LocalHelper._storeMapData(LocalHelper.topicResult, topicResultMap);
-        LocalHelper._storeMapData(LocalHelper.score, score);
-    };
-
-    quizOver = (quizStore) => {
-        this.props.navigation.popToTop();
-        const navigation = this.props.navigation;
-        const tryAgainButton = async () => {
-            this._openTestVocabularyScreen();
-        };
-        const homeFunc = async () => {
-            this.props.navigation.navigate('Word',
-                {
-                    topic: this.topic
-                });
-        };
-        navigation.navigate('Results', {
-            totalAnswer: quizStore.getTotalQuestionNumber(),
-            correctedAnswer: quizStore.state.correctedAnswer,
-            uncorrectedAnswer: quizStore.state.uncorrectedAnswer,
-            leftButtonText: 'LET DO AGAIN',
-            leftButtonClick: tryAgainButton,
-            rightButtonText: 'Go Back',
-            rightButtonClick: homeFunc,
-            onResultScreenOpen: this._onResultScreenOpen,
-        });
-    };
-
-    //endregion
 
     render() {
         const items = [
@@ -297,7 +185,7 @@ class StepScreen extends React.Component {
                         <View style={styles.buttonContainer}>
                             <FlatButton
                                 type="custom"
-                                onPress={() => Alert.alert('Custom Button #1')}
+                                onPress={() => this._testAll}
                                 backgroundColor={"#1abc9c"}
                                 borderColor={"#16a085"}
                                 borderRadius={10}

@@ -114,10 +114,20 @@ class DataHelper {
         return _timeSpent;
     }
 
+    _getStarScore(id) {
+        if (this._testResultData && this._testResultData.get(id)) {
+            let correctAnswer = this._testResultData.get(id).correctAnswer;
+            let totalQuestion = this._testResultData.get(id).totalQuestion;
+
+            return Math.ceil((correctAnswer / totalQuestion) * 5);
+        }
+        return undefined;
+    }
+
     _testResultData = new Map();
 
-    _updateTestResult(mode, totalQuestion, correctAnswer, incorrectAnswer, timeSpent) {
-        let testResult = this._testResultData.get(mode);
+    _updateTestResult(testId, totalQuestion, correctAnswer, incorrectAnswer, timeSpent) {
+        let testResult = this._testResultData.get(testId);
         if (testResult !== undefined) {
             testResult.correctAnswer += correctAnswer;
             testResult.incorrectAnswer += incorrectAnswer;
@@ -131,8 +141,9 @@ class DataHelper {
                 totalQuestion: totalQuestion
             };
         }
-        this._testResultData.set(mode, testResult);
+        this._testResultData.set(testId, testResult);
 
+        console.log("Test Id - ",testId)
         LocalHelper._storeMapData(LocalHelper.testResult, this._testResultData);
     }
 

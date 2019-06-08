@@ -19,14 +19,18 @@ class QuizService implements IQuizService{
 
     _testId = null;
 
+    getTestId(): number {
+        return this._testId;
+    }
+
     _srcQuestionList: IQuestion[] = null;
     _lastSrcQuestionList = null;
 
-    _lastMode: number = 0;
+    // _lastMode: number = 0;
 
-    getMode(): number {
-        return this._lastMode;
-    }
+    // getMode(): number {
+    //     return this._lastMode;
+    // }
 
     _difficult: number = 0;
     _timer: number = 0;
@@ -52,7 +56,6 @@ class QuizService implements IQuizService{
     //Then scan for the number of question of each type, the number of difficult level may increase by one two but not over
     async initQuickTest(numberOfQuestion: number = 5, difficultLevel: number = 3, timer: number): Promise<void> {
         this._timer = timer;
-        this._lastMode = 0;
         this._difficult = difficultLevel;
         this._numberOfQuestion = numberOfQuestion;
 
@@ -179,7 +182,7 @@ class QuizService implements IQuizService{
 
     initLastTest(): Promise<void> {
         if (this._lastSrcQuestionList && this._lastSrcQuestionList.length > 0) {
-            return this.initQuickTest(this._numberOfQuestion, this._difficult, this._timer);
+            return this.initTest(this._testId,this._lastSrcQuestionList,this._numberOfQuestion, this._difficult, this._timer);
         }
         return new Promise<void>(null);
     }

@@ -5,7 +5,6 @@ import {heightPercentageToDP, widthPercentageToDP} from '../../helper/ratioHelpe
 import {systemWeights, human} from 'react-native-typography';
 import {NavigationScreenProps, NavigationParams} from 'react-navigation';
 import {Rating} from 'react-native-ratings';
-import StarRating from 'react-native-star-rating';
 
 export interface ResultScreenProps extends NavigationScreenProps<NavigationParams, any> {
     totalAnswer: number,
@@ -55,15 +54,12 @@ class ResultScreen extends React.Component<ResultScreenProps, ResultScreenState>
     }
 
     showStart = () => {
-        let word = "Good";
-
         const correctedAnswer: number = this.props.navigation.getParam('correctedAnswer', this.props.correctAnswer);
         const totalAnswer: number = this.props.navigation.getParam('totalAnswer', this.props.correctAnswer);
 
         let score = (correctedAnswer / totalAnswer) * 5;
 
         score = Math.ceil(score * 2) / 2;
-        console.log(Math.ceil(score));
 
         this.setState({
             word: wordContainer[Math.ceil(score)],
